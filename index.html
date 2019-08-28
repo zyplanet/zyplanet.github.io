@@ -256,7 +256,7 @@
 <h3 id="控制动力系统"><a href="#控制动力系统" class="headerlink" title="控制动力系统"></a>控制动力系统</h3><p>令$A\subset\mathbb{R}^m$，$\mathbf{f} : \mathbb{R}^{n} \times A \rightarrow \mathbb{R}^{n}$，$\alpha :[0, \infty) \rightarrow A$，考虑如下的动力系统：</p>
 <script type="math/tex; mode=display">
 \left\{\begin{array}{ll}{\dot{\mathbf{x}}(t)=\mathbf{f}(\mathbf{x}(t), \boldsymbol{\alpha}(t))} & {(t>0)} \\ {\mathbf{x}(0)=x^{0}}\end{array}\right.\tag{1.1}</script><p>我们称$\boldsymbol{\alpha} :[0, \infty) \longrightarrow A$为一个控制，对应每个控制的轨迹$\mathbf{x}(\cdot)$为对应系统的响应。</p>
-<p>这里定义$\mathcal{A}=\{\boldsymbol{\alpha} :[0, \infty) \rightarrow A | \boldsymbol{\alpha}(\cdot) \text {measurable }\}$为可行控制空间。</p>
+<p>这里定义$\mathcal{A}={\boldsymbol{\alpha} :[0, \infty) \rightarrow A | \boldsymbol{\alpha}(\cdot) \text {measurable }}$为可行控制空间。</p>
 <h3 id="损失泛函"><a href="#损失泛函" class="headerlink" title="损失泛函"></a>损失泛函</h3><p>通常来说损失泛函的形式如下：</p>
 <script type="math/tex; mode=display">
 P[\boldsymbol{\alpha}(\cdot)] :=\int_{0}^{T} r(\mathbf{x}(t), \boldsymbol{\alpha}(t)) d t+g(\mathbf{x}(T))\tag{1.2}</script><p>这里$\mathrm{x}(\cdot)$为$\boldsymbol{\alpha}(\cdot)$下动力系统的解，$r : \mathbb{R}^{n} \times A \rightarrow \mathbb{R}$，$g : \mathbb{R}^{n} \rightarrow \mathbb{R}$为给定的度量。一般称$r$为控制代价，$g$为终止代价，终止点$T&gt;0$也是提前给定的。</p>
@@ -267,7 +267,7 @@ P[\boldsymbol{\alpha}(\cdot)] :=\int_{0}^{T} r(\mathbf{x}(t), \boldsymbol{\alpha
 <li>最优控制如何构造</li>
 </ol>
 <h2 id="可控性与Bang-Bang-原理"><a href="#可控性与Bang-Bang-原理" class="headerlink" title="可控性与Bang-Bang 原理"></a>可控性与Bang-Bang 原理</h2><p>仍然考虑式子$(1.1)$描述的控制动力系统，我们从可控性问题开始。</p>
-<h3 id="可控性问题"><a href="#可控性问题" class="headerlink" title="可控性问题"></a>可控性问题</h3><p>给定初始点$x^{0}$以及一个目标集合$S \subset \mathbb{R}^{n}$，是否存在一个控制能够在有限时间内将系统导引至$S$中？首先我们并不给定一个损失泛函以刻画某个最优控制，而是关注是否存在能够将系统导引至给定目标的控制，这里通常假定$S=\{0\}$.</p>
+<h3 id="可控性问题"><a href="#可控性问题" class="headerlink" title="可控性问题"></a>可控性问题</h3><p>给定初始点$x^{0}$以及一个目标集合$S \subset \mathbb{R}^{n}$，是否存在一个控制能够在有限时间内将系统导引至$S$中？首先我们并不给定一个损失泛函以刻画某个最优控制，而是关注是否存在能够将系统导引至给定目标的控制，这里通常假定$S={0}$.</p>
 <p>时刻t的可达集$\mathcal{C}(t)$为，由存在控制使得$\mathbf{x}(t)=0$的初值点$x^{0}$构成的集合。</p>
 <p>全局可达集$C$为，存在控制及某个有限时间$t$使得$\mathbf{x}(t)=0$的初值点$x^0$构成的集合。</p>
 <p>显然有如下关系成立：</p>
@@ -313,7 +313,7 @@ H(x, p)=p \cdot \mathbf{v}(x, p)-L(x, \mathbf{v}(x, p))\tag{3.4}</script><p>这�
 <script type="math/tex; mode=display">
 \left\{\begin{array}{l}{\dot{\mathbf{x}}(t)=\nabla_{p} H(\mathbf{x}(t), \mathbf{p}(t))} \\ {\dot{\mathbf{p}}(t)=-\nabla_{x} H(\mathbf{x}(t), \mathbf{p}(t))}\end{array}\right.\tag{3.5}</script><p>进一步，$t \mapsto H(\mathbf{x}(t), \mathbf{p}(t))$必然为常量映射，即满足极小性的、必然遵循某种守恒性。</p>
 <h3 id="拉格朗日乘子"><a href="#拉格朗日乘子" class="headerlink" title="拉格朗日乘子"></a>拉格朗日乘子</h3><p>如果定义域没有做任何限制，那么极值点的判别标准即梯度为零，下面考虑有限制的情况。</p>
-<p>在$R :=\left\{x \in \mathbb{R}^{n} | g(x) \leq 0\right\}$中考虑，令$x^{<em>} \in R$并且有$f(x^</em>)=\max _{x \in R} f(x)$，这里考虑如何刻画这个极值点。</p>
+<p>在$R :=\left{x \in \mathbb{R}^{n} | g(x) \leq 0\right}$中考虑，令$x^{<em>} \in R$并且有$f(x^</em>)=\max _{x \in R} f(x)$，这里考虑如何刻画这个极值点。</p>
 <p>若$\mathrm{x}^<em>$在$R$的内部，那么$\nabla f\left(x^{</em>}\right)=0$.</p>
 <p>若$\mathrm{x}^<em>$在$\partial R$上，考虑$\nabla f\left(x^{</em>}\right)$的方向。显然地，如下图所示的情况是不可能的：</p>
 <p><img src="https://i.loli.net/2019/08/27/LSjclJVi2TqyzHC.png" alt="impossiblecase"></p>
@@ -420,7 +420,7 @@ v(x)=\left\{\begin{array}{ll}{-x_{2}-2\left(x_{1}+\frac{1}{2} x_{2}^{2}\right)^{
 \begin{array}{l}{v_{x_{2}}=-1-\left(x_{1}+\frac{x_{2}^{2}}{2}\right)^{-\frac{1}{2}} x_{2}} \\ {v_{x_{1}}=-\left(x_{1}+\frac{x_{2}^{2}}{2}\right)^{-\frac{1}{2}}}\end{array}</script><p>因此：</p>
 <script type="math/tex; mode=display">
 x_{2} v_{x_{1}}+\left|v_{x_{2}}\right|-1=-x_{2}\left(x_{1}+\frac{x_{2}^{2}}{2}\right)^{-\frac{1}{2}}+\left[1+x_{2}\left(x_{1}+\frac{x_{2}^{2}}{2}\right)^{-\frac{1}{2}}\right]-1=0</script><p>这表明了HJB在区域$I$是满足的，同样也可在区域$II$上得到验证。</p>
-<p>由于$\max _{|a| \leq 1}\left\{x_{2} v_{x_{1}}+a v_{x_{2}}+1\right\}=0$，所以可知最优控制为：</p>
+<p>由于$\max <em>{|a| \leq 1}\left{x</em>{2} v<em>{x</em>{1}}+a v<em>{x</em>{2}}+1\right}=0$，所以可知最优控制为：</p>
 <script type="math/tex; mode=display">
 \alpha=\operatorname{sgn} v_{x_{2}}</script><h3 id="动态规划与Pontryagin极小原理"><a href="#动态规划与Pontryagin极小原理" class="headerlink" title="动态规划与Pontryagin极小原理"></a>动态规划与Pontryagin极小原理</h3><h4 id="特征方法"><a href="#特征方法" class="headerlink" title="特征方法"></a>特征方法</h4><p>假定$H : \mathbb{R}^{n} \times \mathbb{R}^{n} \rightarrow \mathbb{R}$并考虑如下的Hamilton-Jacobi方程初值问题</p>
 <script type="math/tex; mode=display">

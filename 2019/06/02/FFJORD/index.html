@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/zyplanet.github.io/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/zyplanet.github.io/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/zyplanet.github.io/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/zyplanet.github.io/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/zyplanet.github.io/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/zyplanet.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/zyplanet.github.io/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”AbstractT. Q. Chen等提出的连续时间可逆生成模型，在算法复杂度、内存效率、实践性能上都表现了很强的竞争力。前言">
+<meta name="keywords" content="Dynamic system,Deep learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FFJORD">
+<meta property="og:url" content="http://yoursite.com/2019/06/02/FFJORD/index.html">
+<meta property="og:site_name" content="Nighttime">
+<meta property="og:description" content="Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”AbstractT. Q. Chen等提出的连续时间可逆生成模型，在算法复杂度、内存效率、实践性能上都表现了很强的竞争力。前言">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://i.loli.net/2019/08/28/1nwSqjylXECOI2t.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/28/ebJkMr1fqW6Ynoc.png">
+<meta property="og:image" content="https://i.loli.net/2019/08/28/clF7uR9fmOHIqk1.png">
+<meta property="og:updated_time" content="2019-08-28T09:21:36.822Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FFJORD">
+<meta name="twitter:description" content="Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”AbstractT. Q. Chen等提出的连续时间可逆生成模型，在算法复杂度、内存效率、实践性能上都表现了很强的竞争力。前言">
+<meta name="twitter:image" content="https://i.loli.net/2019/08/28/1nwSqjylXECOI2t.png">
+  <link rel="canonical" href="http://yoursite.com/2019/06/02/FFJORD/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>FFJORD | Nighttime</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/zyplanet.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Nighttime</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">tell him about nighttime</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/zyplanet.github.io/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/zyplanet.github.io/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/zyplanet.github.io/2019/06/02/FFJORD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zyplanet">
+      <meta itemprop="description" content="so I'll be a fleeting sound, a lightray out on the water">
+      <meta itemprop="image" content="/zyplanet.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nighttime">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">FFJORD
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-06-02 21:00:00" itemprop="dateCreated datePublished" datetime="2019-06-02T21:00:00+08:00">2019-06-02</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-08-28 17:21:36" itemprop="dateModified" datetime="2019-08-28T17:21:36+08:00">2019-08-28</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Notes-on-“FFJORD-Free-form-Continuous-Dynamics-for-Scable-Reversible-Generative-Models”"><a href="#Notes-on-“FFJORD-Free-form-Continuous-Dynamics-for-Scable-Reversible-Generative-Models”" class="headerlink" title="Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”"></a>Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>T. Q. Chen等提出的连续时间可逆生成模型，在算法复杂度、内存效率、实践性能上都表现了很强的竞争力。</p><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><a id="more"></a>
+<p>可逆生成模型指通过变量转换将一个基分布变换为模型分布，并同时在单次传播中保持高效密度估计与采样能力的模型。目前这类工作包括Dinh等的NICE(ICLR2014)，Dinh等的Real NVP(ICLR2017)以及Kingma等的Glow.</p>
+<p>这些方法拥有一些以往生成模型不具备的特点，但同时由于训练算法较高的复杂度，通常要进行结构或者参量上的限制。这篇文章基于T. Q. Chen 2018年所提出的基于微分方程连续时间形式的标准化流，将其中利用迹进行似然计算的方法进一步改进，引入一个似然的无偏随机估计器用于降低算法复杂性，最终能够以 $\mathcal{O}(D)$ 的代价进行训练，使得可逆生成模型可以使用任意的网络结构。</p>
+<h3 id="可逆生成模型"><a href="#可逆生成模型" class="headerlink" title="可逆生成模型"></a>可逆生成模型</h3><p>相比直接参数化一个标准化分布，变量替换公式允许我们通过一个可逆的函数$f : \mathbb{R}^{D} \rightarrow \mathbb{R}^{D}$将基分布 $p_{\mathbf{z}}(\mathrm{z})$ 进行变换，隐式地表示一个复杂的标准化分布。给定一个随机变量$\mathbf{z} \sim p_{\mathbf{z}}(\mathbf{Z})$，则$\mathrm{x}=f(\mathrm{z})$的对数密度满足：</p>
+<script type="math/tex; mode=display">
+\log p_{\mathbf{x}}(\mathbf{x})=\log p_{\mathbf{z}}(\mathbf{z})-\log \operatorname{det}\left|\frac{\partial f(\mathbf{z})}{\partial \mathbf{z}}\right|\tag{1.1}</script><p>这里$\partial f(\mathbf{z}) / \partial \mathbf{z}$是$f$的雅克比阵。一般而言，对式子$(1.1)$中对数行列式的计算需要$\mathcal{O}(D^3)$的时间复杂度，这使得此类方法通常需要限制神经网络的结构，以降低计算代价，可以分为以下三类：</p>
+<ul>
+<li><strong>标准化流.</strong>通过限制$f$的函数形式，可以得到很多行列式的一致性。由于没有解析形式的$f^{-1}$，这类模型不能直接在数据上训练以及进行采样，但在表示用于变分推断的近似先验时是有效的。</li>
+<li><strong>自回归变换.</strong>通过使用自回归模型并固定维度上的顺序，$f$的雅克比阵被转变为下三角型。这类模型擅长于表格式数据的密度估计，但是需要$D$个$f$的序列估计用于逆变换，当维度较大时难以进行。</li>
+<li><strong>分割式变换.</strong>对维度进行分割并使用仿射变换使得雅克比阵行列式计算十分简单，并且$f^{-1}$的计算代价与$f$相同。这允许了卷积结构的使用，在图像数据的密度估计上十分有效。</li>
+</ul>
+<h3 id="连续标准化流"><a href="#连续标准化流" class="headerlink" title="连续标准化流"></a>连续标准化流</h3><p>在2018年T.Q.Chen等提出了类似基于式子$(1.1)$方法的生成式模型，它将变换函数替换为连续时间动力系统的积分。首先从基分布$\mathbf{z}_{0} \sim p_{z_{0}}\left(\mathbf{z}_{0}\right)$中采样，然后给定一个由参量函数$f(\mathbf{z}(t), t ; \theta)$确定的微分方程，求解初值问题$\mathbf{z}\left(t_{0}\right)=\mathbf{z}_{0},\partial z(t) / \partial t=f(\mathbf{z}(t), t ; \theta)$得到$\mathbf{z}(t_1)$即构成了可见数据. 在这个模型下对数密度满足第二个微分方程，称为瞬时变量变换公式：</p>
+<script type="math/tex; mode=display">
+\frac{\partial \log p(\mathbf{z}(t))}{\partial t}=-\operatorname{Tr}\left(\frac{\partial f}{\partial \mathbf{z}(t)}\right)\tag{1.2}</script><p>在时间上积分，即可计算对数密度的整个变化：</p>
+<script type="math/tex; mode=display">
+\log p\left(\mathbf{z}\left(t_{1}\right)\right)=\log p\left(\mathbf{z}\left(t_{0}\right)\right)-\int_{t_{0}}^{t_{1}} \operatorname{Tr}\left(\frac{\partial f}{\partial \mathbf{z}(t)}\right) d t\tag{1.3}</script><p>给定一个数据点$\mathbf{x}$，我们可以同时计算它原像$\mathbf{z}_0$，以及在模型下$\mathbf{x}$的对数概率密度：</p>
+<script type="math/tex; mode=display">
+\left[ \begin{array}{c}{\mathbf{z}_{0}} \\ {\log p(\mathbf{x})-\log p_{z_{0}}\left(\mathbf{z}_{0}\right)}\end{array}\right]=\int_{t_{1}}^{t_{0}} \left[ \begin{array}{c}{f(\mathbf{z}(t), t ; \theta)} \\ {-\operatorname{Tr}\left(\frac{\partial f}{\partial \mathbf{z}(t)}\right)}\end{array}\right] d t,\left[ \begin{array}{c}{\mathbf{z}\left(t_{1}\right)} \\ {\log p(\mathbf{x})-\log p\left(\mathbf{z}\left(t_{1}\right)\right)}\end{array}\right]=\left[ \begin{array}{l}{\mathbf{x}} \\ {0}\end{array}\right]\tag{1.4}</script><p>它对$z(t)$与样本的对数密度组合成的动力系统从$t_1$到$t_0$后向积分。式子$(1.4)$的存在与唯一性需要$f$和其一阶导数都是Lipschitz连续的，这只要在神经网络中使用光滑Lipschitz激活函数即可。</p>
+<h3 id="使用ASM进行反向传播"><a href="#使用ASM进行反向传播" class="headerlink" title="使用ASM进行反向传播"></a>使用ASM进行反向传播</h3><p>CNF使用极大似然进行训练，即最大化式子$(1.3)$。这个目标函数包含了以$\theta$为参数的初值问题的解，而解是没有解析形式的，梯度的求解成为了一个阻碍。实际上，对于任意的度量函数：</p>
+<script type="math/tex; mode=display">
+L\left(\mathbf{z}\left(t_{1}\right)\right)=L\left(\int_{t_{0}}^{t_{1}} f(\mathbf{z}(t), t ; \theta) d t\right)\tag{1.5}</script><p>adjoint state method都能够通过解一个伴随微分方程，求出泛函对参量的梯度：</p>
+<script type="math/tex; mode=display">
+\frac{d L}{d \theta}=-\int_{t_{1}}^{t_{0}}\left(\frac{\partial L}{\partial \mathbf{z}(t)}\right)^{T} \frac{\partial f(\mathbf{z}(t), t ; \theta)}{\partial \theta} d t\tag{1.6}</script><p>而求解时是从时刻$t_1$后向进行的，即最终的推断结果，这是反向传播的连续推广，具体的流程可以参考T.Q.Chen等在neurips2018上的文章。</p>
+<h2 id="使用任意网络结构进行定量密度估计"><a href="#使用任意网络结构进行定量密度估计" class="headerlink" title="使用任意网络结构进行定量密度估计"></a>使用任意网络结构进行定量密度估计</h2><p>CNF将标准化流进行了连续化处理，这使得算法的复杂度从$\mathcal{O}\left(D^{3}\right)$降低到了$\mathcal{O}\left(D^{2}\right)$，使得我们能够选择更复杂的模型。这篇文章作为后续工作，将算法时间复杂度进一步降低，对网络结构的限制被极大降低。</p>
+<h3 id="无偏线性时间对数密度估计"><a href="#无偏线性时间对数密度估计" class="headerlink" title="无偏线性时间对数密度估计"></a>无偏线性时间对数密度估计</h3><p>计算$\operatorname{Tr}(\partial f / \partial \mathbf{z}(t))$的时间复杂度为$\mathcal{O}\left(D^{2}\right)$，由于雅克比阵对角线上的每个量都需要求解一个独立的$f$的微分，有两种方式可以降低复杂度。首先，使用反向自动微分，向量-雅克比阵积$\boldsymbol{v}^T\frac{\partial f}{\partial \boldsymbol{z}}$可以用近似计算$f$的代价得到。第二，我们可以使用一个噪声向量的权平方进行矩阵迹的无偏估计：</p>
+<script type="math/tex; mode=display">
+\operatorname{Tr}(A)=E_{p(\boldsymbol{\epsilon})}\left[\boldsymbol{\epsilon}^{T} A \epsilon\right]\tag{2.1}</script><p>上面的等式对于任意$D^2$矩阵$A$以及满足$\mathbb{E}[\epsilon]=0$和$\operatorname{Cov}(\boldsymbol{\epsilon})=I$的$D$维随机向量$\boldsymbol{\epsilon}$都成立，使用式$(2.1)$的蒙特卡洛估计称为Hutchinson迹估计。</p>
+<p>为了保持每次调用ODE solver时动力系统的确定性，这里在每次求解时都使用固定的$\boldsymbol{\epsilon}$：</p>
+<script type="math/tex; mode=display">
+\begin{aligned} \log p\left(\mathbf{z}\left(t_{1}\right)\right) &=\log p\left(\mathbf{z}\left(t_{0}\right)\right)-\int_{t_{0}}^{t_{1}} \operatorname{Tr}\left(\frac{\partial f}{\partial \mathbf{z}(t)}\right) d t \\ &=\log p\left(\mathbf{z}\left(t_{0}\right)\right)-\int_{t_{0}}^{t_{1}} \mathbb{E}_{p(\boldsymbol{\epsilon})}\left[\boldsymbol{\epsilon}^{T} \frac{\partial f}{\partial \mathbf{z}(t)} \boldsymbol{\epsilon}\right] d t \\ &=\log p\left(\mathbf{z}\left(t_{0}\right)\right)-\mathbb{E}_{p(\boldsymbol{\epsilon})}\left[\int_{t_{0}}^{t_{1}} \epsilon^{T} \frac{\partial f}{\partial \mathbf{z}(t)} \epsilon d t\right] \end{aligned}\tag{2.2}</script><p>通常从标准正态分布或者Rademacher分布采样$\boldsymbol{\epsilon}$，上面的改进使得时间复杂度降为$\mathcal{O}\left(D\right)$.</p>
+<h3 id="使用Bottleneck增强稳定性"><a href="#使用Bottleneck增强稳定性" class="headerlink" title="使用Bottleneck增强稳定性"></a>使用Bottleneck增强稳定性</h3><p>Bottleneck即隐藏层的宽度$H$比输入维度$D$更小，通过迹的循环对称性我们可以使Hutchinson迹估计更加稳定。这是因为Hutchinson迹估计的方差以渐进$||A||_F^2$增长，因此降低维度应该对减少方差有帮助。将动力项视作两个函数的复合$f=g \circ h(\mathbf{z})$，那么有：</p>
+<script type="math/tex; mode=display">
+\operatorname{Tr} \underbrace{\left(\frac{\partial f}{\partial \mathrm{z}}\right)}_{D \times D}=\operatorname{Tr} \underbrace{\left(\frac{\partial g}{\partial h} \frac{\partial h}{\partial \mathrm{z}}\right)}_{D \times D}=\operatorname{Tr} \underbrace{\left(\frac{\partial h}{\partial \mathrm{z}} \frac{\partial g}{\partial h}\right)}_{H \times H}=\mathbb{E}_{p(\boldsymbol{\epsilon})}\left[\epsilon^{T} \frac{\partial h}{\partial \mathbf{z}} \frac{\partial g}{\partial h} \epsilon\right]\tag{2.3}</script><p>当$f$含有多个层时，选择$H$为最小维度。</p>
+<h3 id="FFJORD"><a href="#FFJORD" class="headerlink" title="FFJORD"></a>FFJORD</h3><p>使用FFJORD进行对数密度估计算法如下</p>
+<p><img src="https://i.loli.net/2019/08/28/1nwSqjylXECOI2t.png" alt="FFJORD用于对数密度估计"></p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>这里只展示密度估计的对比实验：</p>
+<p><img src="https://i.loli.net/2019/08/28/ebJkMr1fqW6Ynoc.png" alt="1559446582255"></p>
+<p><img src="https://i.loli.net/2019/08/28/clF7uR9fmOHIqk1.png" alt="1559446046090"></p>
+<p>Glow在模型化分离区域中间的低概率部分时出现了问题，如第一张图所示。在MNIST上，FFJORD使用单个流就可以达到Glow和Real NVP的效果，当使用多尺度流时达到了更好的效果，并且其参数量不到Glow的2%. FFJORD相比最好的方法更慢，但asm的高内存效率使得它能每次在多得多的数据上优化。</p>
+<p>使用VAE进行变分推断的对比实验也表明FFJORD的性能更加优越，这里省略。</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/zyplanet.github.io/tags/Dynamic-system/" rel="tag"># Dynamic system</a>
+            
+              <a href="/zyplanet.github.io/tags/Deep-learning/" rel="tag"># Deep learning</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/zyplanet.github.io/2019/05/26/Hydrangea after the Rain/" rel="next" title="hydrangea after the rain">
+                  <i class="fa fa-chevron-left"></i> hydrangea after the rain
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/zyplanet.github.io/2019/06/03/Adjoint State Method/" rel="prev" title="adjoint state method">
+                  adjoint state method <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Notes-on-“FFJORD-Free-form-Continuous-Dynamics-for-Scable-Reversible-Generative-Models”"><span class="nav-number">1.</span> <span class="nav-text">Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.2.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可逆生成模型"><span class="nav-number">1.2.1.</span> <span class="nav-text">可逆生成模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连续标准化流"><span class="nav-number">1.2.2.</span> <span class="nav-text">连续标准化流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用ASM进行反向传播"><span class="nav-number">1.2.3.</span> <span class="nav-text">使用ASM进行反向传播</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用任意网络结构进行定量密度估计"><span class="nav-number">1.3.</span> <span class="nav-text">使用任意网络结构进行定量密度估计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无偏线性时间对数密度估计"><span class="nav-number">1.3.1.</span> <span class="nav-text">无偏线性时间对数密度估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Bottleneck增强稳定性"><span class="nav-number">1.3.2.</span> <span class="nav-text">使用Bottleneck增强稳定性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FFJORD"><span class="nav-number">1.3.3.</span> <span class="nav-text">FFJORD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验"><span class="nav-number">1.4.</span> <span class="nav-text">实验</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zyplanet</p>
+  <div class="site-description" itemprop="description">so I'll be a fleeting sound, a lightray out on the water</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/zyplanet.github.io/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zyplanet</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/zyplanet.github.io/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/zyplanet.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/zyplanet.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/zyplanet.github.io/js/utils.js?v=7.3.0"></script><script src="/zyplanet.github.io/js/motion.js?v=7.3.0"></script>
+<script src="/zyplanet.github.io/js/schemes/muse.js?v=7.3.0"></script>
+<script src="/zyplanet.github.io/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+</body>
+</html>

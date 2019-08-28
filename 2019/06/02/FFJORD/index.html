@@ -54,13 +54,13 @@
   };
 </script>
 
-  <meta name="description" content="Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”AbstractT. Q. Chen等提出的连续时间可逆生成模型，在算法复杂度、内存效率、实践性能上都表现了很强的竞争力。前言">
+  <meta name="description" content="Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”AbstractT. Q. Chen等提出的连续时间可逆生成模型，在算法复杂度、内存效率、实践性能上都表现了很强的竞争力。">
 <meta name="keywords" content="Dynamic system,Deep learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FFJORD">
 <meta property="og:url" content="http://yoursite.com/2019/06/02/FFJORD/index.html">
 <meta property="og:site_name" content="Nighttime">
-<meta property="og:description" content="Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”AbstractT. Q. Chen等提出的连续时间可逆生成模型，在算法复杂度、内存效率、实践性能上都表现了很强的竞争力。前言">
+<meta property="og:description" content="Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”AbstractT. Q. Chen等提出的连续时间可逆生成模型，在算法复杂度、内存效率、实践性能上都表现了很强的竞争力。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://i.loli.net/2019/08/28/1nwSqjylXECOI2t.png">
 <meta property="og:image" content="https://i.loli.net/2019/08/28/ebJkMr1fqW6Ynoc.png">
@@ -68,7 +68,7 @@
 <meta property="og:updated_time" content="2019-08-28T09:21:36.822Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FFJORD">
-<meta name="twitter:description" content="Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”AbstractT. Q. Chen等提出的连续时间可逆生成模型，在算法复杂度、内存效率、实践性能上都表现了很强的竞争力。前言">
+<meta name="twitter:description" content="Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”AbstractT. Q. Chen等提出的连续时间可逆生成模型，在算法复杂度、内存效率、实践性能上都表现了很强的竞争力。">
 <meta name="twitter:image" content="https://i.loli.net/2019/08/28/1nwSqjylXECOI2t.png">
   <link rel="canonical" href="http://yoursite.com/2019/06/02/FFJORD/">
 
@@ -258,6 +258,27 @@
           
 
           
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              
+              <span>5.6k</span>
+            </span>
+          
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              
+              <span>9 mins.</span>
+            </span>
+          
 
         </div>
       </header>
@@ -268,8 +289,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Notes-on-“FFJORD-Free-form-Continuous-Dynamics-for-Scable-Reversible-Generative-Models”"><a href="#Notes-on-“FFJORD-Free-form-Continuous-Dynamics-for-Scable-Reversible-Generative-Models”" class="headerlink" title="Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”"></a>Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>T. Q. Chen等提出的连续时间可逆生成模型，在算法复杂度、内存效率、实践性能上都表现了很强的竞争力。</p><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><a id="more"></a>
-<p>可逆生成模型指通过变量转换将一个基分布变换为模型分布，并同时在单次传播中保持高效密度估计与采样能力的模型。目前这类工作包括Dinh等的NICE(ICLR2014)，Dinh等的Real NVP(ICLR2017)以及Kingma等的Glow.</p>
+        <h1 id="Notes-on-“FFJORD-Free-form-Continuous-Dynamics-for-Scable-Reversible-Generative-Models”"><a href="#Notes-on-“FFJORD-Free-form-Continuous-Dynamics-for-Scable-Reversible-Generative-Models”" class="headerlink" title="Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”"></a>Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>T. Q. Chen等提出的连续时间可逆生成模型，在算法复杂度、内存效率、实践性能上都表现了很强的竞争力。</p><a id="more"></a>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>可逆生成模型指通过变量转换将一个基分布变换为模型分布，并同时在单次传播中保持高效密度估计与采样能力的模型。目前这类工作包括Dinh等的NICE(ICLR2014)，Dinh等的Real NVP(ICLR2017)以及Kingma等的Glow.</p>
 <p>这些方法拥有一些以往生成模型不具备的特点，但同时由于训练算法较高的复杂度，通常要进行结构或者参量上的限制。这篇文章基于T. Q. Chen 2018年所提出的基于微分方程连续时间形式的标准化流，将其中利用迹进行似然计算的方法进一步改进，引入一个似然的无偏随机估计器用于降低算法复杂性，最终能够以 $\mathcal{O}(D)$ 的代价进行训练，使得可逆生成模型可以使用任意的网络结构。</p>
 <h3 id="可逆生成模型"><a href="#可逆生成模型" class="headerlink" title="可逆生成模型"></a>可逆生成模型</h3><p>相比直接参数化一个标准化分布，变量替换公式允许我们通过一个可逆的函数$f : \mathbb{R}^{D} \rightarrow \mathbb{R}^{D}$将基分布 $p_{\mathbf{z}}(\mathrm{z})$ 进行变换，隐式地表示一个复杂的标准化分布。给定一个随机变量$\mathbf{z} \sim p_{\mathbf{z}}(\mathbf{Z})$，则$\mathrm{x}=f(\mathrm{z})$的对数密度满足：</p>
 <script type="math/tex; mode=display">
@@ -497,6 +518,16 @@ L\left(\mathbf{z}\left(t_{1}\right)\right)=L\left(\int_{t_{0}}^{t_{1}} f(\mathbf
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">zyplanet</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="Symbols count total">28k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">47 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
   <span class="post-meta-divider">|</span>
@@ -521,6 +552,9 @@ L\left(\mathbf{z}\left(t_{1}\right)\right)=L\left(\int_{t_{0}}^{t_{1}} f(\mathbf
   </div>
 
   
+    
+  
+  <script color='173,195,192' opacity='0.5' zIndex='-1' count='99' src="/zyplanet.github.io/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/zyplanet.github.io/lib/jquery/index.js?v=3.4.1"></script>
   <script src="/zyplanet.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/zyplanet.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>

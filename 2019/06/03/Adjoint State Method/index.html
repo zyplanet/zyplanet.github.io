@@ -54,18 +54,18 @@
   };
 </script>
 
-  <meta name="description" content="Adjoint State MethodAbstract将深度神经网络视为连续动力系统的想法诞生了一类新的深度学习模型，它们拥有着一些独特的性质，在实践性能上也较为优越。需要指出，动力系统的解是以数值形式隐式表达的，通常的反向传播算法并不适用，ASM长久以来被用于此类模型的优化中。Introduction">
+  <meta name="description" content="Adjoint State MethodAbstract将深度神经网络视为连续动力系统的想法诞生了一类新的深度学习模型，它们拥有着一些独特的性质，在实践性能上也较为优越。需要指出，动力系统的解是以数值形式隐式表达的，通常的反向传播算法并不适用，ASM长久以来被用于此类模型的优化中。">
 <meta name="keywords" content="Dynamic system">
 <meta property="og:type" content="article">
 <meta property="og:title" content="adjoint state method">
 <meta property="og:url" content="http://yoursite.com/2019/06/03/Adjoint State Method/index.html">
 <meta property="og:site_name" content="Nighttime">
-<meta property="og:description" content="Adjoint State MethodAbstract将深度神经网络视为连续动力系统的想法诞生了一类新的深度学习模型，它们拥有着一些独特的性质，在实践性能上也较为优越。需要指出，动力系统的解是以数值形式隐式表达的，通常的反向传播算法并不适用，ASM长久以来被用于此类模型的优化中。Introduction">
+<meta property="og:description" content="Adjoint State MethodAbstract将深度神经网络视为连续动力系统的想法诞生了一类新的深度学习模型，它们拥有着一些独特的性质，在实践性能上也较为优越。需要指出，动力系统的解是以数值形式隐式表达的，通常的反向传播算法并不适用，ASM长久以来被用于此类模型的优化中。">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-08-28T09:21:45.433Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="adjoint state method">
-<meta name="twitter:description" content="Adjoint State MethodAbstract将深度神经网络视为连续动力系统的想法诞生了一类新的深度学习模型，它们拥有着一些独特的性质，在实践性能上也较为优越。需要指出，动力系统的解是以数值形式隐式表达的，通常的反向传播算法并不适用，ASM长久以来被用于此类模型的优化中。Introduction">
+<meta name="twitter:description" content="Adjoint State MethodAbstract将深度神经网络视为连续动力系统的想法诞生了一类新的深度学习模型，它们拥有着一些独特的性质，在实践性能上也较为优越。需要指出，动力系统的解是以数值形式隐式表达的，通常的反向传播算法并不适用，ASM长久以来被用于此类模型的优化中。">
   <link rel="canonical" href="http://yoursite.com/2019/06/03/Adjoint State Method/">
 
 
@@ -254,6 +254,27 @@
           
 
           
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              
+              <span>7.6k</span>
+            </span>
+          
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              
+              <span>13 mins.</span>
+            </span>
+          
 
         </div>
       </header>
@@ -264,8 +285,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Adjoint-State-Method"><a href="#Adjoint-State-Method" class="headerlink" title="Adjoint State Method"></a>Adjoint State Method</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>将深度神经网络视为连续动力系统的想法诞生了一类新的深度学习模型，它们拥有着一些独特的性质，在实践性能上也较为优越。需要指出，动力系统的解是以数值形式隐式表达的，通常的反向传播算法并不适用，ASM长久以来被用于此类模型的优化中。</p><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><a id="more"></a>
-<p>考虑时间序列向量$\mathbf{y}_i\in\mathbb{R}^n,i=1,\ldots,N$，这里$n$是观测空间的维度，$N$是观测数，与落在区间$I :=[0,T]$的$t_i$对应。在研究中经常使用如下初值问题来模型化这些数据：</p>
+        <h1 id="Adjoint-State-Method"><a href="#Adjoint-State-Method" class="headerlink" title="Adjoint State Method"></a>Adjoint State Method</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>将深度神经网络视为连续动力系统的想法诞生了一类新的深度学习模型，它们拥有着一些独特的性质，在实践性能上也较为优越。需要指出，动力系统的解是以数值形式隐式表达的，通常的反向传播算法并不适用，ASM长久以来被用于此类模型的优化中。</p><a id="more"></a>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>考虑时间序列向量$\mathbf{y}_i\in\mathbb{R}^n,i=1,\ldots,N$，这里$n$是观测空间的维度，$N$是观测数，与落在区间$I :=[0,T]$的$t_i$对应。在研究中经常使用如下初值问题来模型化这些数据：</p>
 <script type="math/tex; mode=display">
 \begin{aligned} d_{t} \boldsymbol{u} &=\boldsymbol{f}(t, \boldsymbol{u}, \boldsymbol{\phi}), \quad t \in[0, T] \\ \boldsymbol{u}(0) &=\boldsymbol{u}_{0}(\boldsymbol{\phi}) \end{aligned}\tag{1.1}</script><p>这里$\boldsymbol{\phi}$为模型参数，$\boldsymbol{u}\in\mathbb{R}^m$，预测函数是对式子$(1.1)$的积分结果与一个之后的后处理，比如样本降维。可以表示为$\hat{y}=\mathscr{P}(\boldsymbol{u}(t, \boldsymbol{\phi}))=: \boldsymbol{g}(t, \boldsymbol{\phi}),\mathscr{P} : \mathbb{R}^{m} \rightarrow \mathbb{R}^{n}$，$\mathscr{P}$即为对解值的后处理算子。</p>
 <p>伴随状态方法的目的，就是为了对上面的模型进行优化，即有效的计算下面式子的一二阶梯度(关于参量）：</p>
@@ -503,6 +524,16 @@ l(\boldsymbol{\phi})=\pm \sum_{i} d\left(\boldsymbol{y}_{i}, \boldsymbol{g}\left
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">zyplanet</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="Symbols count total">28k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">47 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
   <span class="post-meta-divider">|</span>
@@ -527,6 +558,9 @@ l(\boldsymbol{\phi})=\pm \sum_{i} d\left(\boldsymbol{y}_{i}, \boldsymbol{g}\left
   </div>
 
   
+    
+  
+  <script color='173,195,192' opacity='0.5' zIndex='-1' count='99' src="/zyplanet.github.io/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/zyplanet.github.io/lib/jquery/index.js?v=3.4.1"></script>
   <script src="/zyplanet.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/zyplanet.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>

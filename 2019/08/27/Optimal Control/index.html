@@ -64,7 +64,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://i.loli.net/2019/08/27/LSjclJVi2TqyzHC.png">
 <meta property="og:image" content="https://i.loli.net/2019/08/27/Icrn2bFQKAeVJay.png">
-<meta property="og:updated_time" content="2019-08-28T07:27:54.915Z">
+<meta property="og:updated_time" content="2019-08-28T07:29:36.522Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="optimal control theory">
 <meta name="twitter:description" content="最优控制理论Introduction最优控制解决的是对某个给定的系统寻找其一个满足特定最优标准的控制规律。它是变分法的一个扩展，也是一种得到控制规律的数值最优方法。这一方法大部分由Lev Pontryagin和Richard Bellman发展，最优控制可以视为控制理论中的一个控制策略。一个控制问题包括一个损失泛函，它是状态变量与控制变量的函数。一个最优控制是描述最小化损失泛函控制变量路径的微分方">
@@ -240,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-28 15:27:54" itemprop="dateModified" datetime="2019-08-28T15:27:54+08:00">2019-08-28</time>
+                <time title="Modified: 2019-08-28 15:29:36" itemprop="dateModified" datetime="2019-08-28T15:29:36+08:00">2019-08-28</time>
               </span>
             
           
@@ -256,7 +256,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="最优控制理论"><a href="#最优控制理论" class="headerlink" title="最优控制理论"></a>最优控制理论</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>最优控制解决的是对某个给定的系统寻找其一个满足特定最优标准的控制规律。它是变分法的一个扩展，也是一种得到控制规律的数值最优方法。这一方法大部分由Lev Pontryagin和Richard Bellman发展，最优控制可以视为控制理论中的一个控制策略。一个控制问题包括一个损失泛函，它是状态变量与控制变量的函数。一个最优控制是描述最小化损失泛函控制变量路径的微分方程集合，它可以由Pontryagon极小法则（这是一个必要条件）得到，或者通过求解Hamilton-Jacobi-Bellman方程（充分条件）得到。</p>
+        <h1 id="最优控制理论"><a href="#最优控制理论" class="headerlink" title="最优控制理论"></a>最优控制理论</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>最优控制解决的是对某个给定的系统寻找其一个满足特定最优标准的控制规律。它是变分法的一个扩展，也是一种得到控制规律的数值最优方法。这一方法大部分由Lev Pontryagin和Richard Bellman发展，最优控制可以视为控制理论中的一个控制策略。一个控制问题包括一个损失泛函，它是状态变量与控制变量的函数。一个最优控制是描述最小化损失泛函控制变量路径的微分方程集合，它可以由Pontryagon极小法则（这是一个必要条件）得到，或者通过求解Hamilton-Jacobi-Bellman方程（充分条件）得到。</p><a id="more"></a>
 <h3 id="控制动力系统"><a href="#控制动力系统" class="headerlink" title="控制动力系统"></a>控制动力系统</h3><p>令$A\subset\mathbb{R}^m$，$\mathbf{f} : \mathbb{R}^{n} \times A \rightarrow \mathbb{R}^{n}$，$\alpha :[0, \infty) \rightarrow A$，考虑如下的动力系统：</p>
 <script type="math/tex; mode=display">
 \left\{\begin{array}{ll}{\dot{\mathbf{x}}(t)=\mathbf{f}(\mathbf{x}(t), \boldsymbol{\alpha}(t))} & {(t>0)} \\ {\mathbf{x}(0)=x^{0}}\end{array}\right.\tag{1.1}</script><p>我们称$\boldsymbol{\alpha} :[0, \infty) \longrightarrow A$为一个控制，对应每个控制的轨迹$\mathbf{x}(\cdot)$为对应系统的响应。</p>
@@ -328,7 +328,7 @@ H(x, p)=p \cdot \mathbf{v}(x, p)-L(x, \mathbf{v}(x, p))\tag{3.4}</script><p>这�
 \nabla f\left(x^{*}\right)=\lambda \nabla g\left(x^{*}\right)\tag{3.6}</script><p>由于$\nabla g\left(x^{*}\right)$有可能为零，所以更加准确的描述如下：</p>
 <p>存在不同时为零的实数$\lambda$与$\mu$使得：</p>
 <script type="math/tex; mode=display">
-\mu \nabla f\left(x^{*}\right)=\lambda \nabla g\left(x^{*}\right)\tag{3.7}</script><h3 id="Pontyragin极小原理"><a href="#Pontyragin极小原理" class="headerlink" title="Pontyragin极小原理"></a>Pontyragin极小原理</h3><p>核心的理论结果是，如果$\alpha\^{<em>}(\cdot)$为一个最优控制，那么就对应着一个称为costate的函数$\mathbf{p}^{</em>}(\cdot)$，它满足一个特定的极小性，我们应该把costate视作一类拉格朗日乘子。</p>
+\mu \nabla f\left(x^{*}\right)=\lambda \nabla g\left(x^{*}\right)\tag{3.7}</script><h3 id="Pontyragin极小原理"><a href="#Pontyragin极小原理" class="headerlink" title="Pontyragin极小原理"></a>Pontyragin极小原理</h3><p>核心的理论结果是，如果$\alpha^{<em>}(\cdot)$为一个最优控制，那么就对应着一个称为costate的函数$\mathbf{p}^{</em>}(\cdot)$，它满足一个特定的极小性，我们应该把costate视作一类拉格朗日乘子。</p>
 <h4 id="定时自由终止点问题"><a href="#定时自由终止点问题" class="headerlink" title="定时自由终止点问题"></a>定时自由终止点问题</h4><p>控制理论哈密顿算子如下定义：</p>
 <script type="math/tex; mode=display">
 H(x, p, a) :=\mathbf{f}(x, a) \cdot p+r(x, a) \qquad\left(x, p \in \mathbb{R}^{n}, a \in A\right)\tag{3.8}</script><p>这里给出pontryagin极小原理的描述：</p>

@@ -54,20 +54,20 @@
   };
 </script>
 
-  <meta name="description" content="Notes on \”Neural Ordinary Differential Equations\”前言写这篇文章时，有一件有趣的事。我以为Neural ODE的作者Ricky T. Q.Chen和华盛顿大学的那位很强的陈天奇（就是搞了XGBoost的那个）是同一个人，其实并不是，这位Ricky Tian-qi Chen是多伦多大学的，猛吹了一波发现搞错人了，有点尴尬。">
+  <meta name="description" content="Notes on \”Neural Ordinary Differential Equations\”前言这篇18年Neurlps的bestpaper，主要的卖点在于改进了以往网络随着深度增加所需求的内存不断增多的问题，通过求解常微分方程的形式，在不储存中间状态的情况下，计算出网络的最终输出，将神经网络控制在了常数级的内存消耗(与网络深浅无关）。">
 <meta name="keywords" content="Dynamic system,Deep learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="neural ode">
 <meta property="og:url" content="http://yoursite.com/2019/05/07/Neural ODE/index.html">
 <meta property="og:site_name" content="Nighttime">
-<meta property="og:description" content="Notes on \”Neural Ordinary Differential Equations\”前言写这篇文章时，有一件有趣的事。我以为Neural ODE的作者Ricky T. Q.Chen和华盛顿大学的那位很强的陈天奇（就是搞了XGBoost的那个）是同一个人，其实并不是，这位Ricky Tian-qi Chen是多伦多大学的，猛吹了一波发现搞错人了，有点尴尬。">
+<meta property="og:description" content="Notes on \”Neural Ordinary Differential Equations\”前言这篇18年Neurlps的bestpaper，主要的卖点在于改进了以往网络随着深度增加所需求的内存不断增多的问题，通过求解常微分方程的形式，在不储存中间状态的情况下，计算出网络的最终输出，将神经网络控制在了常数级的内存消耗(与网络深浅无关）。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://zyplanethome.files.wordpress.com/2019/05/piecewise.png">
 <meta property="og:image" content="https://zyplanethome.files.wordpress.com/2019/05/proof.png">
-<meta property="og:updated_time" content="2019-08-28T09:21:25.415Z">
+<meta property="og:updated_time" content="2019-08-28T09:25:40.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="neural ode">
-<meta name="twitter:description" content="Notes on \”Neural Ordinary Differential Equations\”前言写这篇文章时，有一件有趣的事。我以为Neural ODE的作者Ricky T. Q.Chen和华盛顿大学的那位很强的陈天奇（就是搞了XGBoost的那个）是同一个人，其实并不是，这位Ricky Tian-qi Chen是多伦多大学的，猛吹了一波发现搞错人了，有点尴尬。">
+<meta name="twitter:description" content="Notes on \”Neural Ordinary Differential Equations\”前言这篇18年Neurlps的bestpaper，主要的卖点在于改进了以往网络随着深度增加所需求的内存不断增多的问题，通过求解常微分方程的形式，在不储存中间状态的情况下，计算出网络的最终输出，将神经网络控制在了常数级的内存消耗(与网络深浅无关）。">
 <meta name="twitter:image" content="https://zyplanethome.files.wordpress.com/2019/05/piecewise.png">
   <link rel="canonical" href="http://yoursite.com/2019/05/07/Neural ODE/">
 
@@ -240,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-28 17:21:25" itemprop="dateModified" datetime="2019-08-28T17:21:25+08:00">2019-08-28</time>
+                <time title="Modified: 2019-08-28 17:25:40" itemprop="dateModified" datetime="2019-08-28T17:25:40+08:00">2019-08-28</time>
               </span>
             
           
@@ -256,8 +256,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Notes-on-”Neural-Ordinary-Differential-Equations-”"><a href="#Notes-on-”Neural-Ordinary-Differential-Equations-”" class="headerlink" title="Notes on \”Neural Ordinary Differential Equations\”"></a>Notes on \”Neural Ordinary Differential Equations\”</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>写这篇文章时，有一件有趣的事。我以为Neural ODE的作者Ricky T. Q.<br>Chen和华盛顿大学的那位很强的陈天奇（就是搞了XGBoost的那个）是同一个人，其实并不是，这位<br>Ricky Tian-qi Chen是多伦多大学的，猛吹了一波发现搞错人了，有点尴尬。</p><a id="more"></a>
-<p>这篇18年Neurlps的best<br>paper，主要的卖点在于改进了以往网络随着深度增加所需求的内存不断增多的问题，通过求解常微分方程的形式，在不储存中间状态的情况下，计算出网络的最终输出，简而言之，将神经网络控制在了常数级的内存消耗(与网络深浅无关）。</p>
+        <h1 id="Notes-on-”Neural-Ordinary-Differential-Equations-”"><a href="#Notes-on-”Neural-Ordinary-Differential-Equations-”" class="headerlink" title="Notes on \”Neural Ordinary Differential Equations\”"></a>Notes on \”Neural Ordinary Differential Equations\”</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇18年Neurlps的bestpaper，主要的卖点在于改进了以往网络随着深度增加所需求的内存不断增多的问题，通过求解常微分方程的形式，在不储存中间状态的情况下，计算出网络的最终输出，将神经网络控制在了常数级的内存消耗(与网络深浅无关）。</p><a id="more"></a>
 <h2 id="Insight"><a href="#Insight" class="headerlink" title="Insight"></a>Insight</h2><p>常微分方程我们都学过，怎么解析求解、存在性定理、唯一性定理、渐近性质等等，在数值计算课上也学过一些数值求解算法。无论做什么，想法都很重要。</p>
 <p>许多网络模型中，前馈过程都使用了迭代形式，如残差网络：</p>
 <script type="math/tex; mode=display">

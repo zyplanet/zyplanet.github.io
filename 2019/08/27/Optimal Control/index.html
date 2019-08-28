@@ -64,7 +64,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://i.loli.net/2019/08/27/LSjclJVi2TqyzHC.png">
 <meta property="og:image" content="https://i.loli.net/2019/08/27/Icrn2bFQKAeVJay.png">
-<meta property="og:updated_time" content="2019-08-28T06:28:48.133Z">
+<meta property="og:updated_time" content="2019-08-28T06:41:25.203Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="optimal control theory">
 <meta name="twitter:description" content="最优控制理论Introduction最优控制解决的是对某个给定的系统寻找其一个满足特定最优标准的控制规律。它是变分法的一个扩展，也是一种得到控制规律的数值最优方法。这一方法大部分由Lev Pontryagin和Richard Bellman发展，最优控制可以视为控制理论中的一个控制策略。一个控制问题包括一个损失泛函，它是状态变量与控制变量的函数。一个最优控制是描述最小化损失泛函控制变量路径的微分方">
@@ -240,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-08-28 14:28:48" itemprop="dateModified" datetime="2019-08-28T14:28:48+08:00">2019-08-28</time>
+                <time title="Modified: 2019-08-28 14:41:25" itemprop="dateModified" datetime="2019-08-28T14:41:25+08:00">2019-08-28</time>
               </span>
             
           
@@ -317,7 +317,7 @@ H(x, p)=p \cdot \mathbf{v}(x, p)-L(x, \mathbf{v}(x, p))\tag{3.4}</script><p>这�
 <script type="math/tex; mode=display">
 \left\{\begin{array}{l}{\dot{\mathbf{x}}(t)=\nabla_{p} H(\mathbf{x}(t), \mathbf{p}(t))} \\ {\dot{\mathbf{p}}(t)=-\nabla_{x} H(\mathbf{x}(t), \mathbf{p}(t))}\end{array}\right.\tag{3.5}</script><p>进一步，$t \mapsto H(\mathbf{x}(t), \mathbf{p}(t))$必然为常量映射，即满足极小性的、必然遵循某种守恒性。</p>
 <h3 id="拉格朗日乘子"><a href="#拉格朗日乘子" class="headerlink" title="拉格朗日乘子"></a>拉格朗日乘子</h3><p>如果定义域没有做任何限制，那么极值点的判别标准即梯度为零，下面考虑有限制的情况。</p>
-<p>在$R :=\left{x \in \mathbb{R}^{n} | g(x) \leq 0\right}$中考虑，令$x^{<em>} \in R$并且有$f(x^</em>)=\max _{x \in R} f(x)$，这里考虑如何刻画这个极值点。</p>
+<p>在$R :={x \in \mathbb{R}^{n} | g(x) \leq 0}$中考虑，令$x^{<em>} \in R$并且有$f(x^</em>)=\max _{x \in R} f(x)$，这里考虑如何刻画这个极值点。</p>
 <p>若$\mathrm{x}^<em>$在$R$的内部，那么$\nabla f\left(x^{</em>}\right)=0$.</p>
 <p>若$\mathrm{x}^<em>$在$\partial R$上，考虑$\nabla f\left(x^{</em>}\right)$的方向。显然地，如下图所示的情况是不可能的：</p>
 <p><img src="https://i.loli.net/2019/08/27/LSjclJVi2TqyzHC.png" alt="impossiblecase"></p>

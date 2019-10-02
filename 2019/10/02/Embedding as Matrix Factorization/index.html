@@ -54,21 +54,22 @@
   };
 </script>
 
-  <meta name="description" content="Secure Aggregation for Federated Learning引言本工作由keith等(google)完成发表在2016年nips上。对于联邦学习，隐私性与安全性是首要的，为此可以接受模型性能的轻微下降。Secure Aggregation（以下简称SA)是一类从分布式群体$u \in \mathcal{U}$中获取统计量而不泄露单用户信息$x_{u}$的方法。在这篇文章中，作">
-<meta name="keywords" content="Federated learning,Cryptography">
+  <meta name="description" content="Neural Word Embedding as Implicit Matrix Factorization前言尽管嵌入模型很明显是基于分布假设来进行优化，使常出现的word-context对向量内积极大化，并极小化随机word-context对内积。但对于这些优化指标的讨论很少，也不清楚为什么这样能够得到期望的结果。这篇文章对此进行了探讨，表明SGNS(skip-gram with negati">
+<meta name="keywords" content="Representation learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="secure aggregation for federated learning">
-<meta property="og:url" content="https://zyplanet.github.io/2019/09/01/Secure Aggregation/index.html">
+<meta property="og:title" content="embedding as matrix factorizaiton">
+<meta property="og:url" content="https://zyplanet.github.io/2019/10/02/Embedding as Matrix Factorization/index.html">
 <meta property="og:site_name" content="Nighttime">
-<meta property="og:description" content="Secure Aggregation for Federated Learning引言本工作由keith等(google)完成发表在2016年nips上。对于联邦学习，隐私性与安全性是首要的，为此可以接受模型性能的轻微下降。Secure Aggregation（以下简称SA)是一类从分布式群体$u \in \mathcal{U}$中获取统计量而不泄露单用户信息$x_{u}$的方法。在这篇文章中，作">
+<meta property="og:description" content="Neural Word Embedding as Implicit Matrix Factorization前言尽管嵌入模型很明显是基于分布假设来进行优化，使常出现的word-context对向量内积极大化，并极小化随机word-context对内积。但对于这些优化指标的讨论很少，也不清楚为什么这样能够得到期望的结果。这篇文章对此进行了探讨，表明SGNS(skip-gram with negati">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://zyplanethome.files.wordpress.com/2019/09/sap4.png">
-<meta property="og:updated_time" content="2019-09-01T11:20:12.815Z">
+<meta property="og:image" content="https://zyplanethome.files.wordpress.com/2019/10/svd1.png">
+<meta property="og:image" content="https://zyplanethome.files.wordpress.com/2019/10/svd2.png">
+<meta property="og:updated_time" content="2019-10-02T13:12:41.661Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="secure aggregation for federated learning">
-<meta name="twitter:description" content="Secure Aggregation for Federated Learning引言本工作由keith等(google)完成发表在2016年nips上。对于联邦学习，隐私性与安全性是首要的，为此可以接受模型性能的轻微下降。Secure Aggregation（以下简称SA)是一类从分布式群体$u \in \mathcal{U}$中获取统计量而不泄露单用户信息$x_{u}$的方法。在这篇文章中，作">
-<meta name="twitter:image" content="https://zyplanethome.files.wordpress.com/2019/09/sap4.png">
-  <link rel="canonical" href="https://zyplanet.github.io/2019/09/01/Secure Aggregation/">
+<meta name="twitter:title" content="embedding as matrix factorizaiton">
+<meta name="twitter:description" content="Neural Word Embedding as Implicit Matrix Factorization前言尽管嵌入模型很明显是基于分布假设来进行优化，使常出现的word-context对向量内积极大化，并极小化随机word-context对内积。但对于这些优化指标的讨论很少，也不清楚为什么这样能够得到期望的结果。这篇文章对此进行了探讨，表明SGNS(skip-gram with negati">
+<meta name="twitter:image" content="https://zyplanethome.files.wordpress.com/2019/10/svd1.png">
+  <link rel="canonical" href="https://zyplanet.github.io/2019/10/02/Embedding as Matrix Factorization/">
 
 
 <script id="page-configurations">
@@ -82,7 +83,7 @@
   };
 </script>
 
-  <title>secure aggregation for federated learning | Nighttime</title>
+  <title>embedding as matrix factorizaiton | Nighttime</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -239,7 +240,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://zyplanet.github.io/2019/09/01/Secure Aggregation/">
+    <link itemprop="mainEntityOfPage" href="https://zyplanet.github.io/2019/10/02/Embedding as Matrix Factorization/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zyplanet">
@@ -251,7 +252,7 @@
       <meta itemprop="name" content="Nighttime">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">secure aggregation for federated learning
+        <h1 class="post-title" itemprop="name headline">embedding as matrix factorizaiton
 
           
         </h1>
@@ -267,7 +268,7 @@
                 
               
 
-              <time title="Created: 2019-09-01 19:12:30 / Modified: 19:20:12" itemprop="dateCreated datePublished" datetime="2019-09-01T19:12:30+08:00">2019-09-01</time>
+              <time title="Created: 2019-10-02 20:44:00 / Modified: 21:12:41" itemprop="dateCreated datePublished" datetime="2019-10-02T20:44:00+08:00">2019-10-02</time>
             </span>
           
             
@@ -276,7 +277,7 @@
           
 
           
-            <span id="/2019/09/01/Secure Aggregation/" class="post-meta-item leancloud_visitors" data-flag-title="secure aggregation for federated learning" title="Views">
+            <span id="/2019/10/02/Embedding as Matrix Factorization/" class="post-meta-item leancloud_visitors" data-flag-title="embedding as matrix factorizaiton" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -294,7 +295,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/09/01/Secure Aggregation/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/01/Secure Aggregation/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/10/02/Embedding as Matrix Factorization/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/10/02/Embedding as Matrix Factorization/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -306,7 +307,7 @@
               
                 <span class="post-meta-item-text">Symbols count in article: </span>
               
-              <span>5.1k</span>
+              <span>4k</span>
             </span>
           
             <span class="post-meta-item" title="Reading time">
@@ -316,7 +317,7 @@
               
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               
-              <span>8 mins.</span>
+              <span>7 mins.</span>
             </span>
           
 
@@ -329,56 +330,62 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Secure-Aggregation-for-Federated-Learning"><a href="#Secure-Aggregation-for-Federated-Learning" class="headerlink" title="Secure Aggregation for Federated Learning"></a>Secure Aggregation for Federated Learning</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>本工作由keith等(google)完成发表在2016年nips上。对于联邦学习，隐私性与安全性是首要的，为此可以接受模型性能的轻微下降。Secure Aggregation（以下简称SA)是一类从分布式群体$u \in \mathcal{U}$中获取统计量而不泄露单用户信息$x_{u}$的方法。在这篇文章中，作者提出了用于保护联邦学习中分布式梯度更新的单个用户梯度的协议，这项协议在效率以及稳定性上都做了考虑，在至多三分之一用户未完成协议时仍然能保证安全性。</p><a id="more"></a>
-<h2 id="SA4FL"><a href="#SA4FL" class="headerlink" title="SA4FL"></a>SA4FL</h2><p>在标准的联邦学习算法中，客户端使用本地数据对本地模型参数计算一次梯度更新$\delta_{u}^{t}=\left|D_{u}\right| \nabla \mathcal{L}_{f}\left(D_{u}, \Theta^{t}\right)$，这里$D_{u}$为客户端$u$所持有的训练数据，服务器则汇总来自客户端的梯度计算平均值$\nabla \mathcal{L}_{f}(B, \Theta)=\frac{1}{|B|} \sum_{u \in \mathcal{U}^{\prime}} \delta_{u}^{t}$，$B=\bigcup_{u \in u^{\prime}} D_{u}$为从客户端群体子群包含训练集的并，并使用这个平均值更新全局模型。</p>
-<p>尽管客户端上传的参数相比数据包含有更强的隐私性，在一些工作中表明了我们仍然可以使用模型参数重构训练样例，使用SA协议可以保证我们至多能够从全局模型中重构数据，而无法知道数据与客户端的对应关系。</p>
-<h3 id="Protocol-0-单轮掩码保护"><a href="#Protocol-0-单轮掩码保护" class="headerlink" title="Protocol 0: 单轮掩码保护"></a>Protocol 0: 单轮掩码保护</h3><p>假定所有的客户端都完成协议，并且拥有充足带宽的成对安全交换通道，该协议分为如下几步：</p>
-<ol>
-<li>用户$u$对其余用户$v$生成$k$维整数均匀分布随机向量$s_{u,v}$，用户$u,v$在安全信道交换各自的$s_{u,v}$，并计算扰动$p_{u,v}=s_{u,v}-s_{v,u}$. 注意有$p_{u, v}=-p_{v, u}$并规定$u,v$相等时$p_{u,v}=0$;</li>
-<li>用户$u$计算$y_u=x_u+\Sigma_{v\in \mathcal{U}}p_{u,v}$，并上传至服务器;</li>
-<li>服务器汇总所有上传，计算$\bar{x}=\Sigma_{u\in \mathcal{U}}y_u$，正确性由以下等式保证：</li>
-</ol>
-<script type="math/tex; mode=display">
-\bar{x}=\Sigma_{u\in \mathcal{U}}x_u+\Sigma_{u\in \mathcal{U}}\Sigma_{v\in \mathcal{U}}p_{u,v}=\Sigma_{u\in \mathcal{U}}x_u+\Sigma_{u\in \mathcal{U}}\Sigma_{v\in \mathcal{U}}s_{u,v}-\Sigma_{u\in \mathcal{U}}\Sigma_{v\in \mathcal{U}}s_{v,u}=\Sigma_{u\in \mathcal{U}}x_u.</script><p>以上为<strong>protocol 0</strong>的内容，它保证了用户$u$所拥有$x_u$的完全隐私性，因为用户实际上传的$y_u$包含了一项通过均匀采样产生的噪声，更重要地保证了服务器能够准确还原统计量$\bar{x}$. 实际上，即便服务器通过某些方式访问到部分$u$的$x_u$值，这项协议仍然能保证剩余用户的信息安全性。</p>
-<h3 id="Protocol-1-使用密信共享在含违协议用户情况还原统计量"><a href="#Protocol-1-使用密信共享在含违协议用户情况还原统计量" class="headerlink" title="Protocol 1: 使用密信共享在含违协议用户情况还原统计量"></a>Protocol 1: 使用密信共享在含违协议用户情况还原统计量</h3><p><strong>protocol 0</strong>的问题在于，如果含有未将$y_u$上传至客户端的用户，那么服务器将无法还原所需统计量。</p>
-<p>为了保证协议的稳定性，我们首先增加一个初始轮次，每个用户$u$都会生成一个公私钥对，并通过配对通道广播公钥给其余用户。之后所有由$u$传至$v$的信息都由服务器中转，但是首先会用$v$的公钥加密，形成一条安全认证信道。这使得服务器始终能观察哪些用户成功完成协议的各个轮次。</p>
-<p>在选定$s_{u,v}$后增加密信共享轮次，每个用户使用$(t,n)-threshold\ scheme$对每个$p_{u,v}$都计算$n$个share，$n$为用户总数。简单说明一下$(t,n)-threshold\ scheme$的功能是将一个信息分成$n$份，使用其中不少于$t$份都可以还原信息，规定$t&gt;\frac{n}{2}$.</p>
-<p>协议流程如下：</p>
-<ol>
-<li>用户$u$生成公私钥对，通过用户间配对通道向其余用户广播公钥;</li>
-<li>用户$u$对其余用户$v$生成$k$维整数均匀分布随机向量$s_{u,v}$，用户$u,v$在安全信道交换各自的$s_{u,v}$，并计算扰动$p_{u,v}=s_{u,v}-s_{v,u}$;</li>
-<li>用户$u$对拥有的每个secret，即$p_{u,v}($$v\in \mathcal{U}$)都计算其$n$个share，按照顺序依次用公钥加密后由服务器分发给其余用户$v$（每个$v$拿到的share都不同）。服务器记录参与secret share的用户群体，形成$\mathcal{U}$的子集$\mathcal{U}_1$，要求$|\mathcal{U}_1|\ge t$. 由于每个$\mathcal{U}_1$中的用户都收到了本集合中其它用户的share，故而知道$\mathcal{U}_1$所代表用户名单;</li>
-<li>用户$u$计算$y_u=x_u+\Sigma_{v\in \mathcal{U}_1}p_{u,v}$，并上传至服务器，服务器记录进行本次上传操作的用户，形成$\mathcal{U}_1$的子集$\mathcal{U}_2$（同样要求$|\mathcal{U}_2|\ge t$）;</li>
-<li>服务器要求$\mathcal{U}_2$的每个用户$u$提供由$\mathcal{U}_1\setminus \mathcal{U}_2$发送的share，若$\mathcal{U}_1,\mathcal{U}_2$相同那么无需进行，考虑不同的情况（即有一部分用户没有上传$y_u$），由于$|\mathcal{U}_2|\ge t$，所以服务器能够还原这些secret: $\{p_{u,v}|u\in \mathcal{U}_1\setminus \mathcal{U}_2,v\in \mathcal{U}_2\}$，计算$\bar{x}=\Sigma_{u\in \mathcal{U}_2}y_u-\Sigma_{u\in\mathcal{U}_2\Sigma_{v\in \mathcal{U}_1\setminus \mathcal{U}_2}p_{u,v}}$，正确性由以下等式保证：</li>
-</ol>
-<script type="math/tex; mode=display">
-\bar{x} = (\Sigma_{u\in \mathcal{U}_2}x_u+\Sigma_{u\in \mathcal{U}_2}\Sigma_{v\in \mathcal{U}_1}p_{u,v})-\Sigma_{u\in \mathcal{U}_2}\Sigma_{\mathcal{U}_1\setminus \mathcal{U}_2}p_{u,v}=\Sigma_{u\in \mathcal{U}_2}x_u+\Sigma_{u\in \mathcal{U}_2}\Sigma_{v\in \mathcal{U}_2}p_{u,v}=\Sigma_{u\in \mathcal{U}_2}x_u</script><p>然而当服务器谎报$\mathcal{U}_1\setminus \mathcal{U}_2$时，单个用户的隐私就会被泄露，如服务器向$\mathcal{U}_1\setminus \mathcal{U}_2$减少特定用户$u_k$，通过对比正确的$\bar{x}$与增加$u_k$后计算的$\bar{x}’$就可以知道$u_k$向$x_{u_k}$添加的噪声，从而获取$x_{u_k}$的值。</p>
-<h3 id="Protocol-2-针对恶意服务器的双掩码保护"><a href="#Protocol-2-针对恶意服务器的双掩码保护" class="headerlink" title="Protocol 2: 针对恶意服务器的双掩码保护"></a>Protocol 2: 针对恶意服务器的双掩码保护</h3><p>增加一轮掩码，服务器如果谎报则无法还原正确结果，也得不到任何有效信息。</p>
-<p>首先每个用户$u$在生成$s_{u,v}$时均匀采样一个额外的随机$k$维向量$b_u$，在secret share的阶段也将$b_u$的share用公钥加密后由服务器中转给其余用户。</p>
-<p>在产生$y_u$时，用户同样将其作为掩码加入$y_u=x_u+b_u+\Sigma_{v\in \mathcal{U}_1}p_{u,v}$，在去掩码阶段服务器必须明确选择让$\mathcal{U}_2$的用户提供$\mathcal{U}_1$发送的$s_{u,v}$或$b_u$的share其中之一，不能同时提供两者。</p>
-<p>以单个$\mathcal{U}_2$中的用户$u$来说，对于$u$拥有的来自$\mathcal{U}_1\setminus \mathcal{U}_2$的share对（$s_{u,v}$及$b_u$的share），服务器应该要求$u$提供$s_{u,v}$的share，剩余来自$\mathcal{U}_2$则应要求提供$b_u$的share.</p>
-<p>由于$|\mathcal{U}_2|\ge t$，故而sever能够还原$\{b_u,u\in \mathcal{U}_2\}$，以如下方式计算最终统计量：</p>
-<script type="math/tex; mode=display">
-\bar{x} = \Sigma_{u\in \mathcal{U}_2}y_u-\Sigma_{u\in \mathcal{U}_2}b_u- \Sigma_{u\in \mathcal{U}_2}\Sigma_{\mathcal{U}_1\setminus  \mathcal{U}_2}p_{u,v}</script><p>若以其它方式选择share，如向$\mathcal{U}_1\setminus \mathcal{U}_2$增加用户，多获得一些$p_{u,v}$的信息的同时会损失$b_u$的信息，在结果上无法从别的选择方式中获得额外信息，并且不能正确还原统计量。</p>
-<h3 id="Protocol-3-高效交换密信"><a href="#Protocol-3-高效交换密信" class="headerlink" title="Protocol 3: 高效交换密信"></a>Protocol 3: 高效交换密信</h3><p>协议2虽然在正确选择$t$后可以保证稳定和安全，但需要$\mathcal{O}(kn^2)$的交流次数。</p>
-<p>注意到使用单个数值与安全伪随机生成器就可以生成伪随机向量，用户可以只交换标量值$s_{u,v},b_u$然后作为种子扩张成$k$维向量。</p>
-<p>这里使用钥协定来更有效率地建立这些secret，每个用户生成一个Diffie-Hellman密钥$s^{SK}$与公钥$s^{PK}$，然后将公钥上传至服务器，服务器将所有公钥广播给所有用户，并保留备份。</p>
-<p>用户$u,v$通过如下方式确定各自$s_{u,v}$:</p>
-<script type="math/tex; mode=display">
-s_{u,v}=s_{v,u}=AGREE(S_u^{SK},S_v^{PK})=AGREE(S_v^{SK},S_u^{PK})</script><p>这里$AGREE(\cdot)$为密钥协定算法。</p>
-<p>然后以如下方式计算扰动，假定$\mathcal{U}$拥有全排序：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}p_{u,v}&=PRG(s_{u,v}),u<v\\p_{u,v}&=0,u=v\\p_{u,v}&=-PRG(s_{u,v}),u>v \end{aligned}</script><p>服务器只需要知道$s_u^{SK}$就可以重构出$u$的所有扰动，因此u在secret share阶段只需要分发$s_u^{SK},b_u$的share即可。</p>
-<p><strong>protocol 3</strong>的安全性可以被证明与<strong>protocol 2</strong>一致</p>
-<h3 id="Protocol-4-实践最小信任"><a href="#Protocol-4-实践最小信任" class="headerlink" title="Protocol 4: 实践最小信任"></a>Protocol 4: 实践最小信任</h3><p><img src="https://zyplanethome.files.wordpress.com/2019/09/sap4.png" alt="SA4FLP4"></p>
-<p>在上面的协议中，我们都假设用户间有安全的配对信道，需要给出更多细节。这里提出使用服务器中转密钥协议代替<strong>protocol 1</strong>描述的公私钥交换。</p>
-<p>每个用户都会生成一个Diffie-Hellman密钥$c^{SK}$以及公钥$c^{PK}$，并将后者与$s^{PK}$一起公布。</p>
-<p>这里指出服务器有可能进行中间者攻击，但出于几个理由这是可以容忍的：</p>
+        <h1 id="Neural-Word-Embedding-as-Implicit-Matrix-Factorization"><a href="#Neural-Word-Embedding-as-Implicit-Matrix-Factorization" class="headerlink" title="Neural Word Embedding as Implicit Matrix Factorization"></a>Neural Word Embedding as Implicit Matrix Factorization</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>尽管嵌入模型很明显是基于分布假设来进行优化，使常出现的word-context对向量内积极大化，并极小化随机word-context对内积。但对于这些优化指标的讨论很少，也不清楚为什么这样能够得到期望的结果。这篇文章对此进行了探讨，表明SGNS(skip-gram with negative-sampling)的训练方法实际上是加权矩阵分解，其目标函数在隐式地分解一个移动PMI矩阵，并基于此提出了更高效的优化方式。</p><a id="more"></a>
+<h2 id="SGNS"><a href="#SGNS" class="headerlink" title="SGNS"></a>SGNS</h2><p>关于skip-gram with negative-sampling，这里就不再赘述，请查看下面两篇文章：</p>
 <ul>
-<li>对于缺少认证机制的用户和预先存在的公钥架构这是不可避免的。只依赖联络阶段的非恶意性同样构成了信任最小：这一阶段的代码实现较短并且可以被空开编辑，向可信任第三方开源，或者通过一个能提供远程认证的可信计算平台来实现。</li>
-<li>这项协议在其余层面提高了安全性（除了服务器进行中间攻击外），并且提供了正向保密性（在密钥交换后的任何时候入侵服务器，攻击者都不会得到有用信息，即便所有数据和会话都被记录下来）</li>
+<li><a href="https://arxiv.org/abs/1301.3781" target="_blank" rel="noopener">Efficient estimation of word representations in vector space</a></li>
+<li><a href="https://arxiv.org/abs/1310.4546" target="_blank" rel="noopener">Distributed representations of words and phrases and their compositionality</a></li>
 </ul>
-<p>图片给出了<strong>protocol 4</strong>各项复杂度以及流程</p>
+<p>总的来说，SGNS的目标函数如下：</p>
+<script type="math/tex; mode=display">
+l=\Sigma_{w\in V_W}\Sigma_{c\in V_C}|(w,c)|(log\sigma(\vec{w}\cdot\vec{c})+k\cdot\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)])\tag{1}</script><p>这里$V_W$为单词集，$V_C$为上下文集，$P_D$为均匀测度满足$P_D(c)=\frac{|(c)|}{|D|}$.</p>
+<h2 id="隐式矩阵分解下的SGNS"><a href="#隐式矩阵分解下的SGNS" class="headerlink" title="隐式矩阵分解下的SGNS"></a>隐式矩阵分解下的SGNS</h2><p>SGNS将单词以及上下文嵌入为低维空间的向量，得到单词与上下文向量构成的矩阵$W$与$C$，这两者实际上是相同的。$W$的行元素（即单词嵌入向量）被直接提取使用，但原始SG模型会进行上下文预测，SGNS可以看作是对矩阵$M=W\cdot C^T$的分解。</p>
+<p>对于$M$，其分量$M_{i,j}$对应了$W_i,C_j$的向量积，这表示着特定单词与上下文的关联强度，而这种关联矩阵常常出现于NLP的研究中，但该矩阵并没有显式出现在SGNS的优化函数中，那么将SNGS看作对$M$的隐式分解说得通吗？如果不是，SGNS分解的是哪个矩阵呢？</p>
+<h3 id="刻画该隐式矩阵"><a href="#刻画该隐式矩阵" class="headerlink" title="刻画该隐式矩阵"></a>刻画该隐式矩阵</h3><p>重写式子$(1)$:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+l&=\Sigma_{w\in V_W}\Sigma_{c\in V_C}|(w,c)|(log\sigma(\vec{w}\cdot\vec{c}))+\Sigma_{w\in V_W}\Sigma_{c\in V_C}\|(w,c)|(k\cdot\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)])\\
+&=\Sigma_{w\in V_W}\Sigma_{c\in V_C}|(w,c)|(log\sigma(\vec{w}\cdot\vec{c}))+\Sigma_{w\in V_W}|(w)|(k\cdot\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)])
+\end{aligned}\tag{2}</script><p>然后显式地计算出期望项：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)]&=\Sigma_{c_N\in V_C }\frac{|(c_N)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c}_N)\\
+&=\frac{|(c)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c})+\Sigma_{c_N\in V_C\setminus \{c \}}\frac{|(c_N)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c}_N)
+\end{aligned}\tag{3}</script><p>结合两式并将$l$改写为局部形式：</p>
+<script type="math/tex; mode=display">
+l(w,c)=|(w,c)|log\sigma (\vec{w}\cdot \vec{c})+k\cdot |(w)|\cdot\frac{|(c)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c})\tag{4}</script><p>定义$x=\vec{w}\cdot \vec{c}$，并对其求导：</p>
+<script type="math/tex; mode=display">
+\frac{\partial{l}}{\partial{x}}=|(w,c)|\cdot\sigma(-x)-k\cdot|(w)|\frac{|(c)|}{|D|}\sigma(x)</script><p>令其为零得到：</p>
+<script type="math/tex; mode=display">
+e^{2x}-(\frac{|(w,c)|}{k\cdot|(w)|\cdot\frac{|(c)|}{|D|}}-1)e^x-\frac{|(w,c)|}{k\cdot|(w)|\cdot\frac{|(c)|}{|D|}}=0</script><p>我们可以直接给出显式解：</p>
+<script type="math/tex; mode=display">
+\vec{w}\cdot \vec{c}=log(\frac{|(w,c)|\cdot|D|}{|(w)|\cdot |(c)|})-logk\tag{5}</script><p>这里指出$log(\frac{|(w,c)|\cdot|D|}{|(w)|\cdot |(c)|})$即$(w,c)$的PMI(pointwise mutual information)，PMI常见于nlp的研究中，可以进一步将上式写为：</p>
+<script type="math/tex; mode=display">
+M_{i,j}^{SGNS}=W_i\cdot C_j=\vec{w}_i\cdot\vec{c}_j=PMI(w_i,c_j)-logk\tag{6}</script><p>SGNS实际上在分解上述的矩阵，当$k=1$即负采样率为1时，SGNS的目标函数其实在分解由单词与上下文构成的关联矩阵，并且关联强度由PMI给出，这里将其定义为PMI阵，$M^{PMI}$. 当$k$变化时，对应的PMI阵会有所偏移，$M^{PMIk}=M^{PMI}-logk$.</p>
+<p>其它的嵌入算法也可以相应理解，如noise-contrastive estimation模型分解的矩阵为：</p>
+<script type="math/tex; mode=display">
+M_{i,j}^{NCE}=\vec{w}_i\cdot \vec{c}_j=log(\frac{|(w,c)|}{|(c)|})-logk=logP(w|c)-logk\tag{7}</script><h3 id="PMI"><a href="#PMI" class="headerlink" title="PMI"></a>PMI</h3><p>PMI是信息理论中用于度量一对离散输出$x,y$的度量函数：</p>
+<script type="math/tex; mode=display">
+PMI(x,y) = log\frac{P(x,y)}{P(x)P(y)}\tag{8}</script><p>在进行词嵌入时，上面的概率完全是由计数来估计的：</p>
+<script type="math/tex; mode=display">
+PMI(w,c)=log\frac{|(w,c)|\cdot|D|}{|(w)|\cdot |(c)|}\tag{9}</script><p>上面所给的PMI估计并不是定义良好的，当不存在某个$(w,c)$对时，对应的估计将为负无穷，一个修改方式是将负无穷的分量重整为0。但考虑PMI的语义，这并不合理，更好的做法是将负值全都置为零，这称为postive PMI(PPMI)：</p>
+<script type="math/tex; mode=display">
+PPMI(w,c)=\max(PMI(w,c),0)\tag{10}</script><h2 id="词嵌入的其它选择"><a href="#词嵌入的其它选择" class="headerlink" title="词嵌入的其它选择"></a>词嵌入的其它选择</h2><p>首先由前面的推导，很容易得到下面的shifted PPMI:</p>
+<script type="math/tex; mode=display">
+SPPMI_k(w,c)=\max (PMI(w,c)-logk,0)\tag{11}</script><h3 id="谱降维：SVD-over-Shifted-PPMI"><a href="#谱降维：SVD-over-Shifted-PPMI" class="headerlink" title="谱降维：SVD over Shifted PPMI"></a>谱降维：SVD over Shifted PPMI</h3><p>如果将SGNS理解为矩阵分解，那么通常的矩阵分解也可以直接用于求解词嵌入，这里使用truncated SVD.</p>
+<p>SVD将M分解为三个矩阵的乘积$U\cdot \Sigma \cdot V^T$，这里$U$和$V$是正交阵，$\Sigma$为奇异值构成的对角阵。令$\Sigma_d$为前$d$个奇异值构成的对角阵，$U_d$和$V_d$为从$U,V$对应列抽出的子阵。$M_d=U_d\cdot \Sigma_d \cdot V_d^T$为$M$的秩$d$最佳估计，即有$M_d=\mathop{\arg\min}\limits_{Rank(M’)=d}||M’-M||_2$成立.</p>
+<p>如果使用SVD，那么$W=U_d \cdot \Sigma_d$行间的向量积等于$M_D$行间的向量积，使用$W$足够作为$M_D$的低维稠密表示。在NLP的研究中，一个常见方法是对PPMI矩阵$M^{PPMI}$进行SVD分解，并使用$W^{SVD}=U_d\cdot \Sigma_d$以及$C^{SVD}=V_D$的行元素分别作为单词与上下文表示。但这种方法得到的结果在语义任务上总是达不到SGNS的性能。</p>
+<p><strong>对称SVD</strong></p>
+<p>如果直接使用SVD来分解，那么最终得到的单词、上下文嵌入阵会相当不同，仅$C^{SVD}$为正交的，SGNS方法相比显得更加对称，故而这里使用如下的分解：</p>
+<script type="math/tex; mode=display">
+W^{SVD_{1/2}}=U_D\cdot \sqrt{\Sigma_d}\quad C^{SVD_{1/2}}=V_d\cdot \sqrt{\Sigma_d}\tag{12}</script><p>尽管缺乏理论解释，但在实践中进行对称化后能得到更好的性能。</p>
+<p><strong>SVD versus SGNS</strong></p>
+<p>SVD不需要训练以及超参数的调整，对任何$\{(w,c,|(w,c)|)\}$形式的数据都可以使用，泛用性更高。</p>
+<p>而SGNS可以更好地处理观察，未观察事件；除此之外， SGNS对不同$(w,c)$对分配了不同权重，这对于SVD来说是相当困难的，对于非稀疏的矩阵SGNS拥有更高的分解效率。</p>
+<p>一个有趣的想法是使用随机矩阵分解，作者将其放在未来工作中。</p>
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p>个人觉得理论仍然不太充分，有些地方还是有点自圆其说，实验结果还过得去。</p>
+<p><img src="https://zyplanethome.files.wordpress.com/2019/10/svd1.png" alt="table1"></p>
+<p><img src="https://zyplanethome.files.wordpress.com/2019/10/svd2.png" alt="table2"></p>
 
     </div>
 
@@ -394,9 +401,7 @@ s_{u,v}=s_{v,u}=AGREE(S_u^{SK},S_v^{PK})=AGREE(S_v^{SK},S_u^{PK})</script><p>这
           
           <div class="post-tags">
             
-              <a href="/tags/Federated-learning/" rel="tag"># Federated learning</a>
-            
-              <a href="/tags/Cryptography/" rel="tag"># Cryptography</a>
+              <a href="/tags/Representation-learning/" rel="tag"># Representation learning</a>
             
           </div>
         
@@ -406,8 +411,8 @@ s_{u,v}=s_{v,u}=AGREE(S_u^{SK},S_v^{PK})=AGREE(S_v^{SK},S_u^{PK})</script><p>这
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/06/29/Red Dragonfly/" rel="next" title="red dragonfly">
-                  <i class="fa fa-chevron-left"></i> red dragonfly
+                <a href="/2019/09/01/Secure Aggregation/" rel="next" title="secure aggregation for federated learning">
+                  <i class="fa fa-chevron-left"></i> secure aggregation for federated learning
                 </a>
               
             </div>
@@ -415,10 +420,6 @@ s_{u,v}=s_{v,u}=AGREE(S_u^{SK},S_v^{PK})=AGREE(S_v^{SK},S_u^{PK})</script><p>这
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/10/02/Embedding as Matrix Factorization/" rel="prev" title="embedding as matrix factorizaiton">
-                  embedding as matrix factorizaiton <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -470,7 +471,7 @@ s_{u,v}=s_{v,u}=AGREE(S_u^{SK},S_v^{PK})=AGREE(S_v^{SK},S_u^{PK})</script><p>这
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Secure-Aggregation-for-Federated-Learning"><span class="nav-number">1.</span> <span class="nav-text">Secure Aggregation for Federated Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SA4FL"><span class="nav-number">1.2.</span> <span class="nav-text">SA4FL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocol-0-单轮掩码保护"><span class="nav-number">1.2.1.</span> <span class="nav-text">Protocol 0: 单轮掩码保护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocol-1-使用密信共享在含违协议用户情况还原统计量"><span class="nav-number">1.2.2.</span> <span class="nav-text">Protocol 1: 使用密信共享在含违协议用户情况还原统计量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocol-2-针对恶意服务器的双掩码保护"><span class="nav-number">1.2.3.</span> <span class="nav-text">Protocol 2: 针对恶意服务器的双掩码保护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocol-3-高效交换密信"><span class="nav-number">1.2.4.</span> <span class="nav-text">Protocol 3: 高效交换密信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocol-4-实践最小信任"><span class="nav-number">1.2.5.</span> <span class="nav-text">Protocol 4: 实践最小信任</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Word-Embedding-as-Implicit-Matrix-Factorization"><span class="nav-number">1.</span> <span class="nav-text">Neural Word Embedding as Implicit Matrix Factorization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SGNS"><span class="nav-number">1.2.</span> <span class="nav-text">SGNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐式矩阵分解下的SGNS"><span class="nav-number">1.3.</span> <span class="nav-text">隐式矩阵分解下的SGNS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#刻画该隐式矩阵"><span class="nav-number">1.3.1.</span> <span class="nav-text">刻画该隐式矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PMI"><span class="nav-number">1.3.2.</span> <span class="nav-text">PMI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词嵌入的其它选择"><span class="nav-number">1.4.</span> <span class="nav-text">词嵌入的其它选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#谱降维：SVD-over-Shifted-PPMI"><span class="nav-number">1.4.1.</span> <span class="nav-text">谱降维：SVD over Shifted PPMI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">1.5.</span> <span class="nav-text">实验结果</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->

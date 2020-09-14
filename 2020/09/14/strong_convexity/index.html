@@ -54,18 +54,23 @@
   };
 </script>
 
-  <meta name="description" content="If you find something helpful, don&apos;t forget to share with your friends.">
-<meta name="keywords" content="distributed learning, optimization, graph learning, photography, essay">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JadeOne">
-<meta property="og:url" content="https://zyplanet.github.io/tags/Deep-learning/index.html">
+  <meta name="description" content="Strong Convexity and Its GeneralizationIntroductionThe convex condition of the objective function guarantees extrema uniqueness. It says that if $f$ is convex, we can discuss the convergence rate of o">
+<meta name="keywords" content="Optimization">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Strong Convexity">
+<meta property="og:url" content="https://zyplanet.github.io/2020/09/14/strong_convexity/index.html">
 <meta property="og:site_name" content="JadeOne">
-<meta property="og:description" content="If you find something helpful, don&apos;t forget to share with your friends.">
+<meta property="og:description" content="Strong Convexity and Its GeneralizationIntroductionThe convex condition of the objective function guarantees extrema uniqueness. It says that if $f$ is convex, we can discuss the convergence rate of o">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/14/wr25b4.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/14/wBb5Mn.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/14/wrM4B9.png">
+<meta property="og:updated_time" content="2020-09-14T11:47:56.270Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JadeOne">
-<meta name="twitter:description" content="If you find something helpful, don&apos;t forget to share with your friends.">
-  <link rel="canonical" href="https://zyplanet.github.io/tags/Deep-learning/">
+<meta name="twitter:title" content="Strong Convexity">
+<meta name="twitter:description" content="Strong Convexity and Its GeneralizationIntroductionThe convex condition of the objective function guarantees extrema uniqueness. It says that if $f$ is convex, we can discuss the convergence rate of o">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/09/14/wr25b4.png">
+  <link rel="canonical" href="https://zyplanet.github.io/2020/09/14/strong_convexity/">
 
 
 <script id="page-configurations">
@@ -73,13 +78,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>Tag: Deep learning | JadeOne</title>
+  <title>Strong Convexity | JadeOne</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -227,111 +232,259 @@
         <div class="content-wrap">
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block tag">
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1 class="collection-header">Deep learning<small>Tag</small>
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://zyplanet.github.io/2020/09/14/strong_convexity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yijing">
+      <meta itemprop="description" content="If you find something helpful, don't forget to share with your friends.">
+      <meta itemprop="image" content="https://s1.ax1x.com/2020/09/10/wYmgUI.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JadeOne">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Strong Convexity
+
+          
         </h1>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-09-14 19:15:00 / Modified: 19:47:56" itemprop="dateCreated datePublished" datetime="2020-09-14T19:15:00+08:00">2020-09-14</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+            <span id="/2020/09/14/strong_convexity/" class="post-meta-item leancloud_visitors" data-flag-title="Strong Convexity" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/09/14/strong_convexity/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/09/14/strong_convexity/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              
+              <span>6.5k</span>
+            </span>
+          
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              
+              <span>11 mins.</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+        <h1 id="Strong-Convexity-and-Its-Generalization"><a href="#Strong-Convexity-and-Its-Generalization" class="headerlink" title="Strong Convexity and Its Generalization"></a>Strong Convexity and Its Generalization</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>The convex condition of the objective function guarantees extrema uniqueness. It says that if $f$ is convex, we can discuss the convergence rate of optimization methods by estimating $||f(w_t)-f^{opt}||$, where $f^{opt}$ is the global maximum/minimum (optimum). Otherwise, we know nothing about the distance and only discuss $\min_{t\in\{0,1,\dots,T\}}||\nabla f(w^t)||^{2}$. </p><a id="more"></a>
+<p>Intuitively, the convexity requires that the function graph is above its tangent line. A typical example is a quadratic function: $f(x) = ax^2+bx+c$. If $a&gt;0$, it is convex. One can validate this observation by sketch its tangent line.</p>
+<p><img src="https://s1.ax1x.com/2020/09/14/wr25b4.png" alt="img" style="zoom:150%;"></p>
+<p>However, there are lots of “flat” convex functions. Their graphs are above the corresponding tangent lines, but they are very close. The following figure draws a convex and flat basin:</p>
+<p><img src="https://s1.ax1x.com/2020/09/14/wBb5Mn.png" alt="flat basin"></p>
+<p>We can find that the graph coincides with its tangent line. The problem is that these functions provide low gradients, which lead to a sub-linear convergence rate of the gradient descent method. We hope to avoid discussing these cases; the strong convexity constrains the functions by requesting them to own a quadratic lower bound. The optimization is much more comfortable in the strong convex cases, and a global linear convergence rate can be achieved.</p>
+<p>The strong convexity is a strong assumption, and we want to discuss its generalization in this work.</p>
+<h2 id="Relation-Between-Conditions"><a href="#Relation-Between-Conditions" class="headerlink" title="Relation Between Conditions"></a>Relation Between Conditions</h2><p> Strong convexity is a strong assumption to guarantee the linear convergence rate in our discussion. We formulate it as follows:</p>
+<p><strong>Strong Convexity</strong>(SC): For all $x$ and $y$ we have</p>
+<script type="math/tex; mode=display">
+f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2</script><p>Suppose you are curious about how to prove gradient descent (<strong>GD</strong>) and stochastic gradient descent (<strong>SGD</strong>) have linear convergence rate under strong convexity assumption. In that case, you can find them in this work: <a href="https://perso.telecom-paristech.fr/rgower/pdf/M2_statistique_optimisation/grad_conv.pdf" target="_blank" rel="noopener">Convergence Theorems for Gradient Descent</a>.</p>
+<p>We only concern about SC’s generalizations and theirs relation.</p>
+<p><strong>Essential Strong Convexity</strong>(ESC): For all $x$ and $y$ such that $x_p=y_p$, we have</p>
+<script type="math/tex; mode=display">
+f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2</script><p>Where $x_p$ is the projection of $x$ onto the solution set $\mathcal{X}^{opt}$.</p>
+<p>Obviously, ESC is weaker than SC: $SC\Rightarrow ESC$.</p>
+<p><strong>Weak Strong Convexity</strong>(WSC): For all $x$ we have</p>
+<script type="math/tex; mode=display">
+f^*\ge f(x)+\nabla f(x)^T(x_p-x)+\frac{\mu}{2}||x_p-x||^2</script><p>Let $y=x_p$, then we can prove that $ESC\Rightarrow WSC$.</p>
+<p><strong>Restricted Secant Inequality</strong>(RSI): For all $x$ we have</p>
+<script type="math/tex; mode=display">
+\nabla f(x)^T(x-x_p)\ge\mu||x_p-x||^2</script><p>If we further assume function $f$ is convex, then the condition is called <strong>Restricted Strong Convexity</strong>(RSC).</p>
+<p>Re-order the WSC inequality:</p>
+<script type="math/tex; mode=display">
+\nabla f(x)^T(x-x_p)\ge f(x)-f^{opt}+\frac{\mu}{2}||x_p-x||^2</script><p>Because $f^{*}$ is the lower bound of $f(x)$, $f(x)-f^{opt}\ge0$.</p>
+<p>Therefore, $WSC\Rightarrow RSI$.</p>
+<p><strong>Error Bound</strong>(EB): For all $x$ we have</p>
+<script type="math/tex; mode=display">
+||\nabla f(x)||\ge\mu(x_p-x)</script><p>Since $||\nabla f(x)||||x-x_p||\ge\nabla f(x)^T(x-x_p)$, dividing both side of RSI by $||x-x_p||$ we can prove $RSI\Rightarrow EB$.</p>
+<p><strong>Polyak-Lojasiewicz</strong>(PL): For all x we have</p>
+<script type="math/tex; mode=display">
+\frac{1}{2}||\nabla f(x)||^2\ge\mu(f(x)-f^{opt})</script><p>PL inequality is commonly used in recent researches. This assumption is more general than Strong convexity and sufficient to guarantee linear convergence. Furthermore, we can prove that it is equivalent to the EB assumption.(Assumption on Lipschitz continuity of gradients is necessary.)</p>
+<p>We show that $EB\Rightarrow PL$:</p>
+<p>Lipschitz continuity is a strong assumption on function continuity. The $L$-Lipschitz continuity of $g(x)$ is defined by the following inequality:</p>
+<script type="math/tex; mode=display">
+||g(x)-g(y)||\le L||x-y||, \forall x,y\in \mathcal{D}_g</script><p>If $f(x)$ has $L$-Lipschitz continuous gradient, say, $||\nabla f(x)-\nabla f(y)||\le L||x-y||$. Then</p>
+<script type="math/tex; mode=display">
+f(x)\le f(x_p)+\nabla f(x_p)^T(x-x_p)+\frac{L}{2}||x_p-x||^2</script><p>Let $f(x_p)=f^*$, the corresponding gradients are equal to zero vector. We have</p>
+<script type="math/tex; mode=display">
+f(x)-f^{opt}\le\frac{L}{2}||x_p-x||^2</script><p>Applying EB, </p>
+<script type="math/tex; mode=display">
+f(x)-f^{opt}\le\frac{L}{2\mu}||\nabla f(x)||^2</script><p>For $PL\Rightarrow EB$,</p>
+<p>We firstly introduce another assumption weaker than PL.</p>
+<p><strong>Quadratic Growth</strong>(QG): For all $x$ we have</p>
+<script type="math/tex; mode=display">
+f(x)-f^{opt}\ge\frac{\mu}{2}||x_p-x||^2</script><p>If  we further assume $f(x)$ is convex, this case is called <strong>optimal strong convexity</strong>.</p>
+<p>We show that $PL\Rightarrow QG$,</p>
+<p>Define the following function:</p>
+<script type="math/tex; mode=display">
+g(x) = \sqrt{f(x)-f^{opt}}</script><p>If $f(\cdot)$ satisfies PL inequality, then for any $x\notin \mathcal{X}^{opt}$:</p>
+<script type="math/tex; mode=display">
+||\nabla g(x)||^2=\frac{||\nabla f(x)||^2}{f(x)-f^{opt}}\ge2\mu</script><p>For any point $x_0\notin\mathcal{X}^*$, consider solving the following differential equation:</p>
+<script type="math/tex; mode=display">
+\frac{d x(t)}{dt}=-\nabla g(x(t))\\
+x(t=0)=x_0</script><p>The solution defines a flow orbit starting at $x_0$ and flowing along the gradient of $g(\cdot)$. </p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+g(x_0)-g(x_t)&=\int_{x_t}^{x_0}\nabla g(x)^Tdx\\
+&=-\int_{x_0}^{x_t}\nabla g(x)^Tdx\\
+&=-\int_{0}^{T}\nabla g(x(t))^T\frac{d x(t)}{dt}dt\\
+&=\int_{0}^T||\nabla g(x(t))||^2dt\\
+&\ge\int_{0}^T2\mu dt\\
+&=2\mu T
+\end{aligned}
+\end{equation}</script><p>Notice that $g(x_t)\ge 0$, thus we know that $T\le\frac{g(x_0)}{2\mu}$, so there must be a $T$ with $x(T)\in\mathcal{X}^{opt}$.</p>
+<p>The length of the orbit can be calculated by the following integral,</p>
+<script type="math/tex; mode=display">
+\mathcal{L}(x_0)=\int_0^T||\frac{dx(t)}{dt}||dt=\int_0^T||\nabla g(x(t))||dt\ge||x_0-x_p||</script><p>$x_p$ is the projection of $x_0$ onto $\mathcal{X}^{opt}$</p>
+<p>Recall that:</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+g(x_0)-g(x_T)&=\int_0^T||\nabla g(x(t))||^2dt\\
+&\ge\sqrt{2\mu}\int_{0}^T||\nabla g(x(t))||dt\\
+&\ge\sqrt{2\mu}||x_0-x_p||
+\end{aligned}
+\end{equation}</script><p>Since $g(x_T)=0$, according to the definition of $g(\cdot)$:</p>
+<script type="math/tex; mode=display">
+f(x)-f^*\ge2\mu||x-x_p||^2</script><p>It is the QG inequality.</p>
+<p>Now, we turn to the proof of $PL\Rightarrow EB$,</p>
+<p>Using the above result. We denote the PL constant as $\mu_p$ and QG constant as $\mu_q$, </p>
+<script type="math/tex; mode=display">
+\frac{1}{2}||\nabla f(x)||^2\ge\mu_p(f(x)-f^*)\ge\frac{\mu_p\mu_q}{2}||x-x_p||^2</script><p>Thus, we derive the EB inequality:</p>
+<script type="math/tex; mode=display">
+||\nabla f(x)||\ge\sqrt{\mu_p\mu_q}||x-x_p||</script><p><strong>what if we assume $f(\cdot)$ is convex?</strong></p>
+<p>Actually, $RSI\Leftrightarrow EB\Leftrightarrow PL\Leftrightarrow QG$ hold in this case.</p>
+<p>We prove this observation by showing that $QG+Convex\Rightarrow RSI$,</p>
+<p>By convexity we have,</p>
+<script type="math/tex; mode=display">
+f(x_p)\ge f(x)+\nabla f(x)^T(x_p-x)</script><p>Applying QG inequality,</p>
+<script type="math/tex; mode=display">
+\nabla f(x)^T(x-x_P)\ge f(x)-f^{opt}\ge\frac{\mu}{2}||x_p-x||^2</script><p>Which is RSI inequality.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In the end, we finish our work by a relation graph:</p>
+<p><img src="https://s1.ax1x.com/2020/09/14/wrM4B9.png" alt="relation graph"></p>
+<p>Most of the content comes from the following work:</p>
+<ul>
+<li><a href="https://arxiv.org/abs/1608.04636" target="_blank" rel="noopener">Linear Convergence of Gradient and Proximal-Gradient Methods Under the Polyak- Lojasiewicz Condition</a></li>
+<li><a href="https://arxiv.org/abs/1803.06573" target="_blank" rel="noopener">On the Fenchel Duality between Strong Convexity and Lipschitz Continuous Gradient</a></li>
+</ul>
 
-  
-  
+    </div>
 
-  
     
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
-    </div>
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
+    
+    
         
-          <a class="post-title-link" href="/2019/06/02/FFJORD/" itemprop="url">
-            <span itemprop="name">FFJORD</span>
-          </a>
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/Optimization/" rel="tag"># Optimization</a>
+            
+          </div>
         
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-06-02T21:00:00+08:00"
-              content="2019-06-02">
-          06-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
         
-          <a class="post-title-link" href="/2019/05/07/Neural ODE/" itemprop="url">
-            <span itemprop="name">neural ode</span>
-          </a>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/10/02/Embedding as Matrix Factorization/" rel="next" title="embedding as matrix factorizaiton">
+                  <i class="fa fa-chevron-left"></i> embedding as matrix factorizaiton
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
         
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-05-07T21:00:00+08:00"
-              content="2019-05-07">
-          05-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    </div>
+      </footer>
+    
   </div>
   
   
   
+  </article>
 
-  
-
+  </div>
 
 
           </div>
           
+    
+    <div class="comments" id="comments"></div>
+  
 
         </div>
           
@@ -346,6 +499,11 @@
 
   <aside class="sidebar">
     <div class="sidebar-inner">
+        
+        
+        
+        
+      
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc" data-target="post-toc-wrap">
@@ -358,6 +516,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Strong-Convexity-and-Its-Generalization"><span class="nav-number">1.</span> <span class="nav-text">Strong Convexity and Its Generalization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Relation-Between-Conditions"><span class="nav-number">1.2.</span> <span class="nav-text">Relation Between Conditions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.3.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
+        
       </div>
       <!--/noindex-->
 

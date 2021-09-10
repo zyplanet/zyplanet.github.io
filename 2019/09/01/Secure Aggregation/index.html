@@ -809,7 +809,7 @@ s_{u,v}=s_{v,u}=AGREE(S_u^{SK},S_v^{PK})=AGREE(S_v^{SK},S_u^{PK})</script><p>这
 <script>
 NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', () => {
   var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
+  var guest = 'nick,mail';
   guest = guest.split(',').filter(item => {
     return GUEST.indexOf(item) > -1;
   });

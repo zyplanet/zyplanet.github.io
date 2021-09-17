@@ -54,23 +54,31 @@
   };
 </script>
 
-  <meta name="description" content="Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”AbstractT. Q. Chen等提出的连续时间可逆生成模型，在算法复杂度、内存效率、实践性能上都表现了很强的竞争力。">
-<meta name="keywords" content="Dynamic System,Deep Learning">
+  <meta name="description" content="Self-Supervised Graph Transformer on Large-Scale Molecular DataAbstract研究分子的表示学习，最近的工作直接使用GNN来进行。然而有两点问题：1.分子标注量不够2.对新合成分子泛化性不够。这篇工作提出了GROVER，graph representation from self-supervised message passing">
+<meta name="keywords" content="Self-supervised Learning,Graph Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FFJORD">
-<meta property="og:url" content="https://zyplanet.github.io/2019/06/02/FFJORD/index.html">
+<meta property="og:title" content="Self-Supervised Graph Transformer on Large-Scale Molecular Data">
+<meta property="og:url" content="https://zyplanet.github.io/2021/09/17/Self-Supervised Graph Transformer on Large-Scale Molecular Data/index.html">
 <meta property="og:site_name" content="diphda">
-<meta property="og:description" content="Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”AbstractT. Q. Chen等提出的连续时间可逆生成模型，在算法复杂度、内存效率、实践性能上都表现了很强的竞争力。">
+<meta property="og:description" content="Self-Supervised Graph Transformer on Large-Scale Molecular DataAbstract研究分子的表示学习，最近的工作直接使用GNN来进行。然而有两点问题：1.分子标注量不够2.对新合成分子泛化性不够。这篇工作提出了GROVER，graph representation from self-supervised message passing">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://i.loli.net/2019/08/28/1nwSqjylXECOI2t.png">
-<meta property="og:image" content="https://i.loli.net/2019/08/28/ebJkMr1fqW6Ynoc.png">
-<meta property="og:image" content="https://i.loli.net/2019/08/28/clF7uR9fmOHIqk1.png">
-<meta property="og:updated_time" content="2021-09-17T08:42:49.423Z">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/487894/1631796638967-828ecc30-2ff4-4bed-8e3b-e334b4e42981.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/__latex/b47fdd5f5f128390bd340a7bf9a7fb19.svg">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/487894/1631792215099-430970c4-90e1-474f-b7df-4ef21bfacf1d.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/__latex/b47fdd5f5f128390bd340a7bf9a7fb19.svg">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/487894/1631798485335-031e7c9d-7087-4f88-877a-1e73f4a7fa52.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/__latex/0d940266b39d150a39730577c04989e9.svg">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/487894/1631799407825-9bdbbf04-d858-4f65-93e5-1d19cfa59d60.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/487894/1631800810628-2877d0d8-9d1f-4cdf-8c09-52d12b3b41b7.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/487894/1631864243215-4f8e0114-b720-460f-be7a-368b90abaf7e.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/487894/1631864654935-5873d2c0-279c-43e8-9935-29ab4e77c845.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2021/png/487894/1631864966809-f7c4e07b-3fd0-4961-8fd3-eee1e8f44057.png">
+<meta property="og:updated_time" content="2021-09-17T08:41:38.405Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FFJORD">
-<meta name="twitter:description" content="Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”AbstractT. Q. Chen等提出的连续时间可逆生成模型，在算法复杂度、内存效率、实践性能上都表现了很强的竞争力。">
-<meta name="twitter:image" content="https://i.loli.net/2019/08/28/1nwSqjylXECOI2t.png">
-  <link rel="canonical" href="https://zyplanet.github.io/2019/06/02/FFJORD/">
+<meta name="twitter:title" content="Self-Supervised Graph Transformer on Large-Scale Molecular Data">
+<meta name="twitter:description" content="Self-Supervised Graph Transformer on Large-Scale Molecular DataAbstract研究分子的表示学习，最近的工作直接使用GNN来进行。然而有两点问题：1.分子标注量不够2.对新合成分子泛化性不够。这篇工作提出了GROVER，graph representation from self-supervised message passing">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2021/png/487894/1631796638967-828ecc30-2ff4-4bed-8e3b-e334b4e42981.png">
+  <link rel="canonical" href="https://zyplanet.github.io/2021/09/17/Self-Supervised Graph Transformer on Large-Scale Molecular Data/">
 
 
 <script id="page-configurations">
@@ -84,7 +92,7 @@
   };
 </script>
 
-  <title>FFJORD | diphda</title>
+  <title>Self-Supervised Graph Transformer on Large-Scale Molecular Data | diphda</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -241,7 +249,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://zyplanet.github.io/2019/06/02/FFJORD/">
+    <link itemprop="mainEntityOfPage" href="https://zyplanet.github.io/2021/09/17/Self-Supervised Graph Transformer on Large-Scale Molecular Data/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="diphda">
@@ -253,7 +261,7 @@
       <meta itemprop="name" content="diphda">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">FFJORD
+        <h1 class="post-title" itemprop="name headline">Self-Supervised Graph Transformer on Large-Scale Molecular Data
 
           
         </h1>
@@ -269,24 +277,16 @@
                 
               
 
-              <time title="Created: 2019-06-02 21:00:00" itemprop="dateCreated datePublished" datetime="2019-06-02T21:00:00+08:00">2019-06-02</time>
+              <time title="Created: 2021-09-17 16:40:00 / Modified: 16:41:38" itemprop="dateCreated datePublished" datetime="2021-09-17T16:40:00+08:00">2021-09-17</time>
             </span>
           
             
 
             
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-09-17 16:42:49" itemprop="dateModified" datetime="2021-09-17T16:42:49+08:00">2021-09-17</time>
-              </span>
-            
           
 
           
-            <span id="/2019/06/02/FFJORD/" class="post-meta-item leancloud_visitors" data-flag-title="FFJORD" title="Views">
+            <span id="/2021/09/17/Self-Supervised Graph Transformer on Large-Scale Molecular Data/" class="post-meta-item leancloud_visitors" data-flag-title="Self-Supervised Graph Transformer on Large-Scale Molecular Data" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -304,7 +304,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/06/02/FFJORD/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/06/02/FFJORD/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2021/09/17/Self-Supervised Graph Transformer on Large-Scale Molecular Data/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2021/09/17/Self-Supervised Graph Transformer on Large-Scale Molecular Data/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -316,7 +316,7 @@
               
                 <span class="post-meta-item-text">Symbols count in article: </span>
               
-              <span>5.6k</span>
+              <span>3.3k</span>
             </span>
           
             <span class="post-meta-item" title="Reading time">
@@ -326,7 +326,7 @@
               
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               
-              <span>9 mins.</span>
+              <span>5 mins.</span>
             </span>
           
 
@@ -339,46 +339,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Notes-on-“FFJORD-Free-form-Continuous-Dynamics-for-Scable-Reversible-Generative-Models”"><a href="#Notes-on-“FFJORD-Free-form-Continuous-Dynamics-for-Scable-Reversible-Generative-Models”" class="headerlink" title="Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”"></a>Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>T. Q. Chen等提出的连续时间可逆生成模型，在算法复杂度、内存效率、实践性能上都表现了很强的竞争力。</p><a id="more"></a>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>可逆生成模型指通过变量转换将一个基分布变换为模型分布，并同时在单次传播中保持高效密度估计与采样能力的模型。目前这类工作包括Dinh等的NICE(ICLR2014)，Dinh等的Real NVP(ICLR2017)以及Kingma等的Glow.</p>
-<p>这些方法拥有一些以往生成模型不具备的特点，但同时由于训练算法较高的复杂度，通常要进行结构或者参量上的限制。这篇文章基于T. Q. Chen 2018年所提出的基于微分方程连续时间形式的标准化流，将其中利用迹进行似然计算的方法进一步改进，引入一个似然的无偏随机估计器用于降低算法复杂性，最终能够以 $\mathcal{O}(D)$ 的代价进行训练，使得可逆生成模型可以使用任意的网络结构。</p>
-<h3 id="可逆生成模型"><a href="#可逆生成模型" class="headerlink" title="可逆生成模型"></a>可逆生成模型</h3><p>相比直接参数化一个标准化分布，变量替换公式允许我们通过一个可逆的函数$f : \mathbb{R}^{D} \rightarrow \mathbb{R}^{D}$将基分布 $p_{\mathbf{z}}(\mathrm{z})$ 进行变换，隐式地表示一个复杂的标准化分布。给定一个随机变量$\mathbf{z} \sim p_{\mathbf{z}}(\mathbf{Z})$，则$\mathrm{x}=f(\mathrm{z})$的对数密度满足：</p>
-<script type="math/tex; mode=display">
-\log p_{\mathbf{x}}(\mathbf{x})=\log p_{\mathbf{z}}(\mathbf{z})-\log \operatorname{det}\left|\frac{\partial f(\mathbf{z})}{\partial \mathbf{z}}\right|\tag{1.1}</script><p>这里$\partial f(\mathbf{z}) / \partial \mathbf{z}$是$f$的雅克比阵。一般而言，对式子$(1.1)$中对数行列式的计算需要$\mathcal{O}(D^3)$的时间复杂度，这使得此类方法通常需要限制神经网络的结构，以降低计算代价，可以分为以下三类：</p>
-<ul>
-<li><strong>标准化流.</strong>通过限制$f$的函数形式，可以得到很多行列式的一致性。由于没有解析形式的$f^{-1}$，这类模型不能直接在数据上训练以及进行采样，但在表示用于变分推断的近似先验时是有效的。</li>
-<li><strong>自回归变换.</strong>通过使用自回归模型并固定维度上的顺序，$f$的雅克比阵被转变为下三角型。这类模型擅长于表格式数据的密度估计，但是需要$D$个$f$的序列估计用于逆变换，当维度较大时难以进行。</li>
-<li><strong>分割式变换.</strong>对维度进行分割并使用仿射变换使得雅克比阵行列式计算十分简单，并且$f^{-1}$的计算代价与$f$相同。这允许了卷积结构的使用，在图像数据的密度估计上十分有效。</li>
-</ul>
-<h3 id="连续标准化流"><a href="#连续标准化流" class="headerlink" title="连续标准化流"></a>连续标准化流</h3><p>在2018年T.Q.Chen等提出了类似基于式子$(1.1)$方法的生成式模型，它将变换函数替换为连续时间动力系统的积分。首先从基分布$\mathbf{z}_{0} \sim p_{z_{0}}\left(\mathbf{z}_{0}\right)$中采样，然后给定一个由参量函数$f(\mathbf{z}(t), t ; \theta)$确定的微分方程，求解初值问题$\mathbf{z}\left(t_{0}\right)=\mathbf{z}_{0},\partial z(t) / \partial t=f(\mathbf{z}(t), t ; \theta)$得到$\mathbf{z}(t_1)$即构成了可见数据. 在这个模型下对数密度满足第二个微分方程，称为瞬时变量变换公式：</p>
-<script type="math/tex; mode=display">
-\frac{\partial \log p(\mathbf{z}(t))}{\partial t}=-\operatorname{Tr}\left(\frac{\partial f}{\partial \mathbf{z}(t)}\right)\tag{1.2}</script><p>在时间上积分，即可计算对数密度的整个变化：</p>
-<script type="math/tex; mode=display">
-\log p\left(\mathbf{z}\left(t_{1}\right)\right)=\log p\left(\mathbf{z}\left(t_{0}\right)\right)-\int_{t_{0}}^{t_{1}} \operatorname{Tr}\left(\frac{\partial f}{\partial \mathbf{z}(t)}\right) d t\tag{1.3}</script><p>给定一个数据点$\mathbf{x}$，我们可以同时计算它原像$\mathbf{z}_0$，以及在模型下$\mathbf{x}$的对数概率密度：</p>
-<script type="math/tex; mode=display">
-\left[ \begin{array}{c}{\mathbf{z}_{0}} \\ {\log p(\mathbf{x})-\log p_{z_{0}}\left(\mathbf{z}_{0}\right)}\end{array}\right]=\int_{t_{1}}^{t_{0}} \left[ \begin{array}{c}{f(\mathbf{z}(t), t ; \theta)} \\ {-\operatorname{Tr}\left(\frac{\partial f}{\partial \mathbf{z}(t)}\right)}\end{array}\right] d t,\left[ \begin{array}{c}{\mathbf{z}\left(t_{1}\right)} \\ {\log p(\mathbf{x})-\log p\left(\mathbf{z}\left(t_{1}\right)\right)}\end{array}\right]=\left[ \begin{array}{l}{\mathbf{x}} \\ {0}\end{array}\right]\tag{1.4}</script><p>它对$z(t)$与样本的对数密度组合成的动力系统从$t_1$到$t_0$后向积分。式子$(1.4)$的存在与唯一性需要$f$和其一阶导数都是Lipschitz连续的，这只要在神经网络中使用光滑Lipschitz激活函数即可。</p>
-<h3 id="使用ASM进行反向传播"><a href="#使用ASM进行反向传播" class="headerlink" title="使用ASM进行反向传播"></a>使用ASM进行反向传播</h3><p>CNF使用极大似然进行训练，即最大化式子$(1.3)$。这个目标函数包含了以$\theta$为参数的初值问题的解，而解是没有解析形式的，梯度的求解成为了一个阻碍。实际上，对于任意的度量函数：</p>
-<script type="math/tex; mode=display">
-L\left(\mathbf{z}\left(t_{1}\right)\right)=L\left(\int_{t_{0}}^{t_{1}} f(\mathbf{z}(t), t ; \theta) d t\right)\tag{1.5}</script><p>adjoint state method都能够通过解一个伴随微分方程，求出泛函对参量的梯度：</p>
-<script type="math/tex; mode=display">
-\frac{d L}{d \theta}=-\int_{t_{1}}^{t_{0}}\left(\frac{\partial L}{\partial \mathbf{z}(t)}\right)^{T} \frac{\partial f(\mathbf{z}(t), t ; \theta)}{\partial \theta} d t\tag{1.6}</script><p>而求解时是从时刻$t_1$后向进行的，即最终的推断结果，这是反向传播的连续推广，具体的流程可以参考T.Q.Chen等在neurips2018上的文章。</p>
-<h2 id="使用任意网络结构进行定量密度估计"><a href="#使用任意网络结构进行定量密度估计" class="headerlink" title="使用任意网络结构进行定量密度估计"></a>使用任意网络结构进行定量密度估计</h2><p>CNF将标准化流进行了连续化处理，这使得算法的复杂度从$\mathcal{O}\left(D^{3}\right)$降低到了$\mathcal{O}\left(D^{2}\right)$，使得我们能够选择更复杂的模型。这篇文章作为后续工作，将算法时间复杂度进一步降低，对网络结构的限制被极大降低。</p>
-<h3 id="无偏线性时间对数密度估计"><a href="#无偏线性时间对数密度估计" class="headerlink" title="无偏线性时间对数密度估计"></a>无偏线性时间对数密度估计</h3><p>计算$\operatorname{Tr}(\partial f / \partial \mathbf{z}(t))$的时间复杂度为$\mathcal{O}\left(D^{2}\right)$，由于雅克比阵对角线上的每个量都需要求解一个独立的$f$的微分，有两种方式可以降低复杂度。首先，使用反向自动微分，向量-雅克比阵积$\boldsymbol{v}^T\frac{\partial f}{\partial \boldsymbol{z}}$可以用近似计算$f$的代价得到。第二，我们可以使用一个噪声向量的权平方进行矩阵迹的无偏估计：</p>
-<script type="math/tex; mode=display">
-\operatorname{Tr}(A)=E_{p(\boldsymbol{\epsilon})}\left[\boldsymbol{\epsilon}^{T} A \epsilon\right]\tag{2.1}</script><p>上面的等式对于任意$D^2$矩阵$A$以及满足$\mathbb{E}[\epsilon]=0$和$\operatorname{Cov}(\boldsymbol{\epsilon})=I$的$D$维随机向量$\boldsymbol{\epsilon}$都成立，使用式$(2.1)$的蒙特卡洛估计称为Hutchinson迹估计。</p>
-<p>为了保持每次调用ODE solver时动力系统的确定性，这里在每次求解时都使用固定的$\boldsymbol{\epsilon}$：</p>
-<script type="math/tex; mode=display">
-\begin{aligned} \log p\left(\mathbf{z}\left(t_{1}\right)\right) &=\log p\left(\mathbf{z}\left(t_{0}\right)\right)-\int_{t_{0}}^{t_{1}} \operatorname{Tr}\left(\frac{\partial f}{\partial \mathbf{z}(t)}\right) d t \\ &=\log p\left(\mathbf{z}\left(t_{0}\right)\right)-\int_{t_{0}}^{t_{1}} \mathbb{E}_{p(\boldsymbol{\epsilon})}\left[\boldsymbol{\epsilon}^{T} \frac{\partial f}{\partial \mathbf{z}(t)} \boldsymbol{\epsilon}\right] d t \\ &=\log p\left(\mathbf{z}\left(t_{0}\right)\right)-\mathbb{E}_{p(\boldsymbol{\epsilon})}\left[\int_{t_{0}}^{t_{1}} \epsilon^{T} \frac{\partial f}{\partial \mathbf{z}(t)} \epsilon d t\right] \end{aligned}\tag{2.2}</script><p>通常从标准正态分布或者Rademacher分布采样$\boldsymbol{\epsilon}$，上面的改进使得时间复杂度降为$\mathcal{O}\left(D\right)$.</p>
-<h3 id="使用Bottleneck增强稳定性"><a href="#使用Bottleneck增强稳定性" class="headerlink" title="使用Bottleneck增强稳定性"></a>使用Bottleneck增强稳定性</h3><p>Bottleneck即隐藏层的宽度$H$比输入维度$D$更小，通过迹的循环对称性我们可以使Hutchinson迹估计更加稳定。这是因为Hutchinson迹估计的方差以渐进$||A||_F^2$增长，因此降低维度应该对减少方差有帮助。将动力项视作两个函数的复合$f=g \circ h(\mathbf{z})$，那么有：</p>
-<script type="math/tex; mode=display">
-\operatorname{Tr} \underbrace{\left(\frac{\partial f}{\partial \mathrm{z}}\right)}_{D \times D}=\operatorname{Tr} \underbrace{\left(\frac{\partial g}{\partial h} \frac{\partial h}{\partial \mathrm{z}}\right)}_{D \times D}=\operatorname{Tr} \underbrace{\left(\frac{\partial h}{\partial \mathrm{z}} \frac{\partial g}{\partial h}\right)}_{H \times H}=\mathbb{E}_{p(\boldsymbol{\epsilon})}\left[\epsilon^{T} \frac{\partial h}{\partial \mathbf{z}} \frac{\partial g}{\partial h} \epsilon\right]\tag{2.3}</script><p>当$f$含有多个层时，选择$H$为最小维度。</p>
-<h3 id="FFJORD"><a href="#FFJORD" class="headerlink" title="FFJORD"></a>FFJORD</h3><p>使用FFJORD进行对数密度估计算法如下</p>
-<p><img src="https://i.loli.net/2019/08/28/1nwSqjylXECOI2t.png" alt="FFJORD用于对数密度估计"></p>
-<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>这里只展示密度估计的对比实验：</p>
-<p><img src="https://i.loli.net/2019/08/28/ebJkMr1fqW6Ynoc.png" alt="1559446582255"></p>
-<p><img src="https://i.loli.net/2019/08/28/clF7uR9fmOHIqk1.png" alt="1559446046090"></p>
-<p>Glow在模型化分离区域中间的低概率部分时出现了问题，如第一张图所示。在MNIST上，FFJORD使用单个流就可以达到Glow和Real NVP的效果，当使用多尺度流时达到了更好的效果，并且其参数量不到Glow的2%. FFJORD相比最好的方法更慢，但asm的高内存效率使得它能每次在多得多的数据上优化。</p>
-<p>使用VAE进行变分推断的对比实验也表明FFJORD的性能更加优越，这里省略。</p>
+        <h1 id="Self-Supervised-Graph-Transformer-on-Large-Scale-Molecular-Data"><a href="#Self-Supervised-Graph-Transformer-on-Large-Scale-Molecular-Data" class="headerlink" title="Self-Supervised Graph Transformer on Large-Scale Molecular Data"></a>Self-Supervised Graph Transformer on Large-Scale Molecular Data</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>研究分子的表示学习，最近的工作直接使用GNN来进行。然而有两点问题：1.分子标注量不够2.对新合成分子泛化性不够。这篇工作提出了GROVER，graph representation from self-supervised message passing transformer. GROVER设计了node/edge/graph层级的自监督任务，并将message passing network与transformer融合，获得更好的分子编码。GROVER含有一亿参数在千万分子上进行无监督训练，在11个benchmark上达到了平均6%的精度提升。</p><a id="more"></a>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>GNNs在分子数据上有很好表现，比如分子性质预测、虚拟筛选。虽然但是，还有摘要中提到的两点缺陷。因为分子的标注获取是比图像困难很多的，现有benchmark的标注都是远远不够的。NLP中自监督学习可以带来很大泛化能力的提升，<strong>SMILE</strong>将分子转化为序列化表示，并使用Bert风格的模型来进行分子表示预训练，N-gram graph: Simple unsupervised representation for graphs, with applications to molecules.用Ngram的方法得到边表示。但这些方法没有关注拓扑结构。</p>
+<p>也有构建三个自监督任务来做分子预训练的，contex prediction，node masking，graph property prediction. 这些任务并不是最优的，mask任务中它们将atom种类作为label，但比起NLP的词库，atom的种类太少，频率高的atom将会极大影响编码。在graph层级的任务则是有监督的。这对下游任务造成了负迁移的可能。</p>
+<p>GROVER设计了两种自监督任务，node层级GROVER随机掩码目标node/edge的局部子图然后用graph嵌入预测语义性质，graph层级GROVER根据领域知识抽取语义样式，然后根据graph嵌入预测这些样式是否出现。</p>
+<p>在下游任务中，GROVER在分类任务上相对N-gram替身了22.4%，相对之前的自监督框架提升了7.4%。进一步在11个常见的benchmark上GROVER提升了平均6%.</p>
+<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><h3 id="Self-supervised-Learning-on-Graphs"><a href="#Self-supervised-Learning-on-Graphs" class="headerlink" title="Self-supervised Learning on Graphs"></a>Self-supervised Learning on Graphs</h3><p>最近在分子数据集上的是N-gram和Pre-training graph neural networks。N-gram用短距离游走以及节点嵌入来获取图表示。Pre-training则分离了node/edge上高相关的context预测任务，造成难以保持局部结构和节点特征的领域信息。（这说的什么寄吧，反正就是效果不好呗）其次它graph层级的任务是有监督，这已经说过了。</p>
+<h3 id="Molecular-Representation-learning"><a href="#Molecular-Representation-learning" class="headerlink" title="Molecular Representation learning"></a>Molecular Representation learning</h3><p>新的工作基本都是基于GNN的。</p>
+<h2 id="Transformer和GNN的背景知识"><a href="#Transformer和GNN的背景知识" class="headerlink" title="Transformer和GNN的背景知识"></a>Transformer和GNN的背景知识</h2><p>这个不懂的自己查阅，GNN相比NN会用到一个邻接矩阵，Transformer是做sequence to sequence的，整体是一个encoder-decoder的结构，encoder对序列进行编码，decoder从编码中不断生成新的预测，形成预测序列。这个过程还用到自回归的机制，后面的预测依赖于先前的预测。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/487894/1631796638967-828ecc30-2ff4-4bed-8e3b-e334b4e42981.png" alt="img"></p>
+<p>message passing neural networks包含了两个参数层数L和hop数<img src="https://cdn.nlark.com/yuque/__latex/b47fdd5f5f128390bd340a7bf9a7fb19.svg" alt="img">，L决定了readout中的表示数量，hop数决定了每个L会编码几阶邻域的信息。</p>
+<h2 id="The-GROVER-Pre-training-Framework"><a href="#The-GROVER-Pre-training-Framework" class="headerlink" title="The GROVER Pre-training Framework"></a>The GROVER Pre-training Framework</h2><p><img src="https://cdn.nlark.com/yuque/0/2021/png/487894/1631792215099-430970c4-90e1-474f-b7df-4ef21bfacf1d.png" alt="img">  </p>
+<h3 id="模型结构细节"><a href="#模型结构细节" class="headerlink" title="模型结构细节"></a>模型结构细节</h3><p> GROVER包含两个模块，node/edge两块，这里只介绍node部分。重点是dyMPN模块，mesage passing有两个参数：迭代次数L和跳跃次数<img src="https://cdn.nlark.com/yuque/__latex/b47fdd5f5f128390bd340a7bf9a7fb19.svg" alt="img">. 跳跃次数与图卷积的感受域有很大相关。对于给定的层数L，作者发现事先决定好的跳跃次数无法对多个数据集有效。因此，GROVER在训练时对每一层使用了随机的跳跃次数。有两种随机策略是有效的1.(a,b)间的均匀分布2.由(a,b)区间规范的正态分布。改动其实只有这里而已，其余部分都和transformer的模块一样，看Figure 1即可。</p>
+<h3 id="自监督任务"><a href="#自监督任务" class="headerlink" title="自监督任务"></a>自监督任务</h3><p>自监督的核心就是设计好的自监督任务，在这篇工作不使用任何有监督，以免引入不够通用的先验，而造成负迁移。这里有两种自监督任务，contextual property prediction和graph-level motif prediction，Figure2展示了这两个任务。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/487894/1631798485335-031e7c9d-7087-4f88-877a-1e73f4a7fa52.png" alt="img"></p>
+<p><strong>Contexual Property Prediction.</strong> 自监督任务需要满足两个条件：1.任务标签要易于获取2.任务需要反映node/edge的上下文信息。以Figure 3为例，1.给定一个目标节点（碳原子），提取它的局部子图作为k-hop邻nodes/edges，k=1时包含氮原子和氧原子，双键和单键。2.抽取子图的统计信息，具体来说，数center node的（node,edge)对，然后以字母顺序列出所有node-edge对：C_N-DOUBLE1_O-SINGLE1. 这相当于按照pair构成的Attirbute进行聚类。得到这些任务标签后，给定一个分子图，我们用GROVER抽取所有node/edge的嵌入。假定随机选择一个原子v，对应嵌入为<img src="https://cdn.nlark.com/yuque/__latex/0d940266b39d150a39730577c04989e9.svg" alt="img">。GROVER不去预测v的种类，而是用嵌入预测v的上下文信息（即上面定义的任务标签）</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/487894/1631799407825-9bdbbf04-d858-4f65-93e5-1d19cfa59d60.png" alt="img"></p>
+<p><strong>Graph-level Motif Prediction.</strong> 对于分子来说，最重要的样式之一是官能团，它编码了重要的领域知识，并且可以轻易地由专业工具获取。这个任务是一个多标签分类，即判断多个样式在分子中的出现情况。</p>
+<h3 id="Fine-tuning-for-Downstream-Tasks"><a href="#Fine-tuning-for-Downstream-Tasks" class="headerlink" title="Fine-tuning for Downstream Tasks"></a>Fine-tuning for Downstream Tasks</h3><p>下游任务大致可以分成三种，node/edge/graph层级。以graph层级为例，用GROVER抽取node/edge嵌入，然后用readout去得到整张图的嵌入，最后用一个额外的MLP去预测分子性质。也可以使用有监督数据去微调几轮整个encoder和readout,MLP.</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p><img src="https://cdn.nlark.com/yuque/0/2021/png/487894/1631800810628-2877d0d8-9d1f-4cdf-8c09-52d12b3b41b7.png" alt="img"></p>
+<p>有两个GROVER模型: $GROVER_{base},GROVER_{large}$base有48M参数，large有100M参数，在11个任务上都效果很好。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/487894/1631864243215-4f8e0114-b720-460f-be7a-368b90abaf7e.png" alt="img"><img src="https://cdn.nlark.com/yuque/0/2021/png/487894/1631864654935-5873d2c0-279c-43e8-9935-29ab4e77c845.png" alt="img"></p>
+<p>Table2对比了是否进行预训练的模型性能，在六个benchmark上进行的实验，平均分类精度会降低3.8%. Figure4对比几个backbone的性能区别，使用了一个toydataset，差不多600k未标注分子，然后保证差不多参数量(38M)，GTransformer能够获得更低的训练/验证损失。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/487894/1631864966809-f7c4e07b-3fd0-4961-8fd3-eee1e8f44057.png" alt="img"></p>
+<p>Figure5仍然是消融实验，w/o dyMPN表示用固定hop数，w/o GTrans表示用原始的Transformer。w/o GTrans的效果很差，w/o dyMPN在验证损失上稍微好一点。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇工作主要的贡献在于设计两个自监督任务，但是实验部分没有单独讨论两种任务各自的效果。个人认为抽取官能团样式这个任务，即graph层级的自监督任务比较有用。另外一个听起来不是非常convincing。dyMPN的贡献聊胜于无，在消融实验里提升不是很大。我一直在构思新的GNN模型，我们知道CNN为邻域赋不同的权重，然后重复地在不同邻域进行aggregation。但是GNN不是这样的，每个邻域节点其权重是一样的，即使GAT可以使权重不同，它的计算代价也太大了。GAT的赋权方式是动态，而不是diversity。目前CV和NLP的模型都已经统一到Transformer的框架上，图学习相对来说还是独立的。</p>
 
     </div>
 
@@ -394,9 +379,9 @@ L\left(\mathbf{z}\left(t_{1}\right)\right)=L\left(\int_{t_{0}}^{t_{1}} f(\mathbf
           
           <div class="post-tags">
             
-              <a href="/tags/Dynamic-System/" rel="tag"># Dynamic System</a>
+              <a href="/tags/Self-supervised-Learning/" rel="tag"># Self-supervised Learning</a>
             
-              <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+              <a href="/tags/Graph-Learning/" rel="tag"># Graph Learning</a>
             
           </div>
         
@@ -406,8 +391,8 @@ L\left(\mathbf{z}\left(t_{1}\right)\right)=L\left(\int_{t_{0}}^{t_{1}} f(\mathbf
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/05/26/Hydrangea after the Rain/" rel="next" title="hydrangea after the rain">
-                  <i class="fa fa-chevron-left"></i> hydrangea after the rain
+                <a href="/2020/09/14/strong_convexity/" rel="next" title="Strong Convexity">
+                  <i class="fa fa-chevron-left"></i> Strong Convexity
                 </a>
               
             </div>
@@ -415,10 +400,6 @@ L\left(\mathbf{z}\left(t_{1}\right)\right)=L\left(\int_{t_{0}}^{t_{1}} f(\mathbf
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/06/03/Adjoint State Method/" rel="prev" title="adjoint state method">
-                  adjoint state method <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -470,7 +451,7 @@ L\left(\mathbf{z}\left(t_{1}\right)\right)=L\left(\int_{t_{0}}^{t_{1}} f(\mathbf
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Notes-on-“FFJORD-Free-form-Continuous-Dynamics-for-Scable-Reversible-Generative-Models”"><span class="nav-number">1.</span> <span class="nav-text">Notes on “FFJORD: Free-form Continuous Dynamics for Scable Reversible Generative Models”</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.2.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可逆生成模型"><span class="nav-number">1.2.1.</span> <span class="nav-text">可逆生成模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连续标准化流"><span class="nav-number">1.2.2.</span> <span class="nav-text">连续标准化流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用ASM进行反向传播"><span class="nav-number">1.2.3.</span> <span class="nav-text">使用ASM进行反向传播</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用任意网络结构进行定量密度估计"><span class="nav-number">1.3.</span> <span class="nav-text">使用任意网络结构进行定量密度估计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无偏线性时间对数密度估计"><span class="nav-number">1.3.1.</span> <span class="nav-text">无偏线性时间对数密度估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Bottleneck增强稳定性"><span class="nav-number">1.3.2.</span> <span class="nav-text">使用Bottleneck增强稳定性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FFJORD"><span class="nav-number">1.3.3.</span> <span class="nav-text">FFJORD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验"><span class="nav-number">1.4.</span> <span class="nav-text">实验</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Self-Supervised-Graph-Transformer-on-Large-Scale-Molecular-Data"><span class="nav-number">1.</span> <span class="nav-text">Self-Supervised Graph Transformer on Large-Scale Molecular Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">1.3.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Self-supervised-Learning-on-Graphs"><span class="nav-number">1.3.1.</span> <span class="nav-text">Self-supervised Learning on Graphs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Molecular-Representation-learning"><span class="nav-number">1.3.2.</span> <span class="nav-text">Molecular Representation learning</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transformer和GNN的背景知识"><span class="nav-number">1.4.</span> <span class="nav-text">Transformer和GNN的背景知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-GROVER-Pre-training-Framework"><span class="nav-number">1.5.</span> <span class="nav-text">The GROVER Pre-training Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型结构细节"><span class="nav-number">1.5.1.</span> <span class="nav-text">模型结构细节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自监督任务"><span class="nav-number">1.5.2.</span> <span class="nav-text">自监督任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fine-tuning-for-Downstream-Tasks"><span class="nav-number">1.5.3.</span> <span class="nav-text">Fine-tuning for Downstream Tasks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验"><span class="nav-number">1.6.</span> <span class="nav-text">实验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.7.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->

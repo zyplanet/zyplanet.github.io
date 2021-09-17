@@ -54,21 +54,23 @@
   };
 </script>
 
-  <meta name="description" content="Secure Aggregation for Federated Learning引言本工作由keith等(google)完成发表在2016年nips上。对于联邦学习，隐私性与安全性是首要的，为此可以接受模型性能的轻微下降。Secure Aggregation（以下简称SA)是一类从分布式群体$u \in \mathcal{U}$中获取统计量而不泄露单用户信息$x_{u}$的方法。在这篇文章中，作">
-<meta name="keywords" content="Federated Learning,Cryptography">
+  <meta name="description" content="Strong Convexity and Its GeneralizationIntroductionThe convex condition of the objective function guarantees extrema uniqueness. It says that if $f$ is convex, we can discuss the convergence rate of o">
+<meta name="keywords" content="Optimization">
 <meta property="og:type" content="article">
-<meta property="og:title" content="secure aggregation for federated learning">
-<meta property="og:url" content="https://zyplanet.github.io/2019/09/01/Secure Aggregation/index.html">
+<meta property="og:title" content="Strong Convexity">
+<meta property="og:url" content="https://zyplanet.github.io/2020/09/14/Strong Convexity/index.html">
 <meta property="og:site_name" content="diphda">
-<meta property="og:description" content="Secure Aggregation for Federated Learning引言本工作由keith等(google)完成发表在2016年nips上。对于联邦学习，隐私性与安全性是首要的，为此可以接受模型性能的轻微下降。Secure Aggregation（以下简称SA)是一类从分布式群体$u \in \mathcal{U}$中获取统计量而不泄露单用户信息$x_{u}$的方法。在这篇文章中，作">
+<meta property="og:description" content="Strong Convexity and Its GeneralizationIntroductionThe convex condition of the objective function guarantees extrema uniqueness. It says that if $f$ is convex, we can discuss the convergence rate of o">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://zyplanethome.files.wordpress.com/2019/09/sap4.png">
-<meta property="og:updated_time" content="2021-09-17T08:43:43.617Z">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/14/wr25b4.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/14/wBb5Mn.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/14/wrM4B9.png">
+<meta property="og:updated_time" content="2021-09-17T11:09:31.624Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="secure aggregation for federated learning">
-<meta name="twitter:description" content="Secure Aggregation for Federated Learning引言本工作由keith等(google)完成发表在2016年nips上。对于联邦学习，隐私性与安全性是首要的，为此可以接受模型性能的轻微下降。Secure Aggregation（以下简称SA)是一类从分布式群体$u \in \mathcal{U}$中获取统计量而不泄露单用户信息$x_{u}$的方法。在这篇文章中，作">
-<meta name="twitter:image" content="https://zyplanethome.files.wordpress.com/2019/09/sap4.png">
-  <link rel="canonical" href="https://zyplanet.github.io/2019/09/01/Secure Aggregation/">
+<meta name="twitter:title" content="Strong Convexity">
+<meta name="twitter:description" content="Strong Convexity and Its GeneralizationIntroductionThe convex condition of the objective function guarantees extrema uniqueness. It says that if $f$ is convex, we can discuss the convergence rate of o">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/09/14/wr25b4.png">
+  <link rel="canonical" href="https://zyplanet.github.io/2020/09/14/Strong Convexity/">
 
 
 <script id="page-configurations">
@@ -82,7 +84,7 @@
   };
 </script>
 
-  <title>secure aggregation for federated learning | diphda</title>
+  <title>Strong Convexity | diphda</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -239,7 +241,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://zyplanet.github.io/2019/09/01/Secure Aggregation/">
+    <link itemprop="mainEntityOfPage" href="https://zyplanet.github.io/2020/09/14/Strong Convexity/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="diphda">
@@ -251,7 +253,7 @@
       <meta itemprop="name" content="diphda">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">secure aggregation for federated learning
+        <h1 class="post-title" itemprop="name headline">Strong Convexity
 
           
         </h1>
@@ -267,7 +269,7 @@
                 
               
 
-              <time title="Created: 2019-09-01 19:12:30" itemprop="dateCreated datePublished" datetime="2019-09-01T19:12:30+08:00">2019-09-01</time>
+              <time title="Created: 2020-09-14 19:15:00" itemprop="dateCreated datePublished" datetime="2020-09-14T19:15:00+08:00">2020-09-14</time>
             </span>
           
             
@@ -278,13 +280,13 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-09-17 16:43:43" itemprop="dateModified" datetime="2021-09-17T16:43:43+08:00">2021-09-17</time>
+                <time title="Modified: 2021-09-17 19:09:31" itemprop="dateModified" datetime="2021-09-17T19:09:31+08:00">2021-09-17</time>
               </span>
             
           
 
           
-            <span id="/2019/09/01/Secure Aggregation/" class="post-meta-item leancloud_visitors" data-flag-title="secure aggregation for federated learning" title="Views">
+            <span id="/2020/09/14/Strong Convexity/" class="post-meta-item leancloud_visitors" data-flag-title="Strong Convexity" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -302,7 +304,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/09/01/Secure Aggregation/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/01/Secure Aggregation/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/09/14/Strong Convexity/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/09/14/Strong Convexity/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -314,7 +316,7 @@
               
                 <span class="post-meta-item-text">Symbols count in article: </span>
               
-              <span>5.1k</span>
+              <span>6.5k</span>
             </span>
           
             <span class="post-meta-item" title="Reading time">
@@ -324,7 +326,7 @@
               
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               
-              <span>8 mins.</span>
+              <span>11 mins.</span>
             </span>
           
 
@@ -337,56 +339,106 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Secure-Aggregation-for-Federated-Learning"><a href="#Secure-Aggregation-for-Federated-Learning" class="headerlink" title="Secure Aggregation for Federated Learning"></a>Secure Aggregation for Federated Learning</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>本工作由keith等(google)完成发表在2016年nips上。对于联邦学习，隐私性与安全性是首要的，为此可以接受模型性能的轻微下降。Secure Aggregation（以下简称SA)是一类从分布式群体$u \in \mathcal{U}$中获取统计量而不泄露单用户信息$x_{u}$的方法。在这篇文章中，作者提出了用于保护联邦学习中分布式梯度更新的单个用户梯度的协议，这项协议在效率以及稳定性上都做了考虑，在至多三分之一用户未完成协议时仍然能保证安全性。</p><a id="more"></a>
-<h2 id="SA4FL"><a href="#SA4FL" class="headerlink" title="SA4FL"></a>SA4FL</h2><p>在标准的联邦学习算法中，客户端使用本地数据对本地模型参数计算一次梯度更新$\delta_{u}^{t}=\left|D_{u}\right| \nabla \mathcal{L}_{f}\left(D_{u}, \Theta^{t}\right)$，这里$D_{u}$为客户端$u$所持有的训练数据，服务器则汇总来自客户端的梯度计算平均值$\nabla \mathcal{L}_{f}(B, \Theta)=\frac{1}{|B|} \sum_{u \in \mathcal{U}^{\prime}} \delta_{u}^{t}$，$B=\bigcup_{u \in u^{\prime}} D_{u}$为从客户端群体子群包含训练集的并，并使用这个平均值更新全局模型。</p>
-<p>尽管客户端上传的参数相比数据包含有更强的隐私性，在一些工作中表明了我们仍然可以使用模型参数重构训练样例，使用SA协议可以保证我们至多能够从全局模型中重构数据，而无法知道数据与客户端的对应关系。</p>
-<h3 id="Protocol-0-单轮掩码保护"><a href="#Protocol-0-单轮掩码保护" class="headerlink" title="Protocol 0: 单轮掩码保护"></a>Protocol 0: 单轮掩码保护</h3><p>假定所有的客户端都完成协议，并且拥有充足带宽的成对安全交换通道，该协议分为如下几步：</p>
-<ol>
-<li>用户$u$对其余用户$v$生成$k$维整数均匀分布随机向量$s_{u,v}$，用户$u,v$在安全信道交换各自的$s_{u,v}$，并计算扰动$p_{u,v}=s_{u,v}-s_{v,u}$. 注意有$p_{u, v}=-p_{v, u}$并规定$u,v$相等时$p_{u,v}=0$;</li>
-<li>用户$u$计算$y_u=x_u+\Sigma_{v\in \mathcal{U}}p_{u,v}$，并上传至服务器;</li>
-<li>服务器汇总所有上传，计算$\bar{x}=\Sigma_{u\in \mathcal{U}}y_u$，正确性由以下等式保证：</li>
-</ol>
+        <h1 id="Strong-Convexity-and-Its-Generalization"><a href="#Strong-Convexity-and-Its-Generalization" class="headerlink" title="Strong Convexity and Its Generalization"></a>Strong Convexity and Its Generalization</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>The convex condition of the objective function guarantees extrema uniqueness. It says that if $f$ is convex, we can discuss the convergence rate of optimization methods by estimating $||f(w_t)-f^{opt}||$, where $f^{opt}$ is the global maximum/minimum (optimum). Otherwise, we know nothing about the distance and only discuss $\min_{t\in\{0,1,\dots,T\}}||\nabla f(w^t)||^{2}$. </p><a id="more"></a>
+<p>Intuitively, the convexity requires that the function graph is above its tangent line. A typical example is a quadratic function: $f(x) = ax^2+bx+c$. If $a&gt;0$, it is convex. One can validate this observation by sketch its tangent line.</p>
+<p><img src="https://s1.ax1x.com/2020/09/14/wr25b4.png" alt="img" style="zoom:150%;"></p>
+<p>However, there are lots of “flat” convex functions. Their graphs are above the corresponding tangent lines, but they are very close. The following figure draws a convex and flat basin:</p>
+<p><img src="https://s1.ax1x.com/2020/09/14/wBb5Mn.png" alt="flat basin"></p>
+<p>We can find that the graph coincides with its tangent line. The problem is that these functions provide low gradients, which lead to a sub-linear convergence rate of the gradient descent method. We hope to avoid discussing these cases; the strong convexity constrains the functions by requesting them to own a quadratic lower bound. The optimization is much more comfortable in the strong convex cases, and a global linear convergence rate can be achieved.</p>
+<p>The strong convexity is a strong assumption, and we want to discuss its generalization in this work.</p>
+<h2 id="Relation-Between-Conditions"><a href="#Relation-Between-Conditions" class="headerlink" title="Relation Between Conditions"></a>Relation Between Conditions</h2><p> Strong convexity is a strong assumption to guarantee the linear convergence rate in our discussion. We formulate it as follows:</p>
+<p><strong>Strong Convexity</strong>(SC): For all $x$ and $y$ we have</p>
 <script type="math/tex; mode=display">
-\bar{x}=\Sigma_{u\in \mathcal{U}}x_u+\Sigma_{u\in \mathcal{U}}\Sigma_{v\in \mathcal{U}}p_{u,v}=\Sigma_{u\in \mathcal{U}}x_u+\Sigma_{u\in \mathcal{U}}\Sigma_{v\in \mathcal{U}}s_{u,v}-\Sigma_{u\in \mathcal{U}}\Sigma_{v\in \mathcal{U}}s_{v,u}=\Sigma_{u\in \mathcal{U}}x_u.</script><p>以上为<strong>protocol 0</strong>的内容，它保证了用户$u$所拥有$x_u$的完全隐私性，因为用户实际上传的$y_u$包含了一项通过均匀采样产生的噪声，更重要地保证了服务器能够准确还原统计量$\bar{x}$. 实际上，即便服务器通过某些方式访问到部分$u$的$x_u$值，这项协议仍然能保证剩余用户的信息安全性。</p>
-<h3 id="Protocol-1-使用密信共享在含违协议用户情况还原统计量"><a href="#Protocol-1-使用密信共享在含违协议用户情况还原统计量" class="headerlink" title="Protocol 1: 使用密信共享在含违协议用户情况还原统计量"></a>Protocol 1: 使用密信共享在含违协议用户情况还原统计量</h3><p><strong>protocol 0</strong>的问题在于，如果含有未将$y_u$上传至客户端的用户，那么服务器将无法还原所需统计量。</p>
-<p>为了保证协议的稳定性，我们首先增加一个初始轮次，每个用户$u$都会生成一个公私钥对，并通过配对通道广播公钥给其余用户。之后所有由$u$传至$v$的信息都由服务器中转，但是首先会用$v$的公钥加密，形成一条安全认证信道。这使得服务器始终能观察哪些用户成功完成协议的各个轮次。</p>
-<p>在选定$s_{u,v}$后增加密信共享轮次，每个用户使用$(t,n)-threshold\ scheme$对每个$p_{u,v}$都计算$n$个share，$n$为用户总数。简单说明一下$(t,n)-threshold\ scheme$的功能是将一个信息分成$n$份，使用其中不少于$t$份都可以还原信息，规定$t&gt;\frac{n}{2}$.</p>
-<p>协议流程如下：</p>
-<ol>
-<li>用户$u$生成公私钥对，通过用户间配对通道向其余用户广播公钥;</li>
-<li>用户$u$对其余用户$v$生成$k$维整数均匀分布随机向量$s_{u,v}$，用户$u,v$在安全信道交换各自的$s_{u,v}$，并计算扰动$p_{u,v}=s_{u,v}-s_{v,u}$;</li>
-<li>用户$u$对拥有的每个secret，即$p_{u,v}($$v\in \mathcal{U}$)都计算其$n$个share，按照顺序依次用公钥加密后由服务器分发给其余用户$v$（每个$v$拿到的share都不同）。服务器记录参与secret share的用户群体，形成$\mathcal{U}$的子集$\mathcal{U}_1$，要求$|\mathcal{U}_1|\ge t$. 由于每个$\mathcal{U}_1$中的用户都收到了本集合中其它用户的share，故而知道$\mathcal{U}_1$所代表用户名单;</li>
-<li>用户$u$计算$y_u=x_u+\Sigma_{v\in \mathcal{U}_1}p_{u,v}$，并上传至服务器，服务器记录进行本次上传操作的用户，形成$\mathcal{U}_1$的子集$\mathcal{U}_2$（同样要求$|\mathcal{U}_2|\ge t$）;</li>
-<li>服务器要求$\mathcal{U}_2$的每个用户$u$提供由$\mathcal{U}_1\setminus \mathcal{U}_2$发送的share，若$\mathcal{U}_1,\mathcal{U}_2$相同那么无需进行，考虑不同的情况（即有一部分用户没有上传$y_u$），由于$|\mathcal{U}_2|\ge t$，所以服务器能够还原这些secret: $\{p_{u,v}|u\in \mathcal{U}_1\setminus \mathcal{U}_2,v\in \mathcal{U}_2\}$，计算$\bar{x}=\Sigma_{u\in \mathcal{U}_2}y_u-\Sigma_{u\in\mathcal{U}_2\Sigma_{v\in \mathcal{U}_1\setminus \mathcal{U}_2}p_{u,v}}$，正确性由以下等式保证：</li>
-</ol>
+f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2</script><p>Suppose you are curious about how to prove gradient descent (<strong>GD</strong>) and stochastic gradient descent (<strong>SGD</strong>) have linear convergence rate under strong convexity assumption. In that case, you can find them in this work: <a href="https://perso.telecom-paristech.fr/rgower/pdf/M2_statistique_optimisation/grad_conv.pdf" target="_blank" rel="noopener">Convergence Theorems for Gradient Descent</a>.</p>
+<p>We only concern about SC’s generalizations and theirs relation.</p>
+<p><strong>Essential Strong Convexity</strong>(ESC): For all $x$ and $y$ such that $x_p=y_p$, we have</p>
 <script type="math/tex; mode=display">
-\bar{x} = (\Sigma_{u\in \mathcal{U}_2}x_u+\Sigma_{u\in \mathcal{U}_2}\Sigma_{v\in \mathcal{U}_1}p_{u,v})-\Sigma_{u\in \mathcal{U}_2}\Sigma_{\mathcal{U}_1\setminus \mathcal{U}_2}p_{u,v}=\Sigma_{u\in \mathcal{U}_2}x_u+\Sigma_{u\in \mathcal{U}_2}\Sigma_{v\in \mathcal{U}_2}p_{u,v}=\Sigma_{u\in \mathcal{U}_2}x_u</script><p>然而当服务器谎报$\mathcal{U}_1\setminus \mathcal{U}_2$时，单个用户的隐私就会被泄露，如服务器向$\mathcal{U}_1\setminus \mathcal{U}_2$减少特定用户$u_k$，通过对比正确的$\bar{x}$与增加$u_k$后计算的$\bar{x}’$就可以知道$u_k$向$x_{u_k}$添加的噪声，从而获取$x_{u_k}$的值。</p>
-<h3 id="Protocol-2-针对恶意服务器的双掩码保护"><a href="#Protocol-2-针对恶意服务器的双掩码保护" class="headerlink" title="Protocol 2: 针对恶意服务器的双掩码保护"></a>Protocol 2: 针对恶意服务器的双掩码保护</h3><p>增加一轮掩码，服务器如果谎报则无法还原正确结果，也得不到任何有效信息。</p>
-<p>首先每个用户$u$在生成$s_{u,v}$时均匀采样一个额外的随机$k$维向量$b_u$，在secret share的阶段也将$b_u$的share用公钥加密后由服务器中转给其余用户。</p>
-<p>在产生$y_u$时，用户同样将其作为掩码加入$y_u=x_u+b_u+\Sigma_{v\in \mathcal{U}_1}p_{u,v}$，在去掩码阶段服务器必须明确选择让$\mathcal{U}_2$的用户提供$\mathcal{U}_1$发送的$s_{u,v}$或$b_u$的share其中之一，不能同时提供两者。</p>
-<p>以单个$\mathcal{U}_2$中的用户$u$来说，对于$u$拥有的来自$\mathcal{U}_1\setminus \mathcal{U}_2$的share对（$s_{u,v}$及$b_u$的share），服务器应该要求$u$提供$s_{u,v}$的share，剩余来自$\mathcal{U}_2$则应要求提供$b_u$的share.</p>
-<p>由于$|\mathcal{U}_2|\ge t$，故而sever能够还原$\{b_u,u\in \mathcal{U}_2\}$，以如下方式计算最终统计量：</p>
+f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2</script><p>Where $x_p$ is the projection of $x$ onto the solution set $\mathcal{X}^{opt}$.</p>
+<p>Obviously, ESC is weaker than SC: $SC\Rightarrow ESC$.</p>
+<p><strong>Weak Strong Convexity</strong>(WSC): For all $x$ we have</p>
 <script type="math/tex; mode=display">
-\bar{x} = \Sigma_{u\in \mathcal{U}_2}y_u-\Sigma_{u\in \mathcal{U}_2}b_u- \Sigma_{u\in \mathcal{U}_2}\Sigma_{\mathcal{U}_1\setminus  \mathcal{U}_2}p_{u,v}</script><p>若以其它方式选择share，如向$\mathcal{U}_1\setminus \mathcal{U}_2$增加用户，多获得一些$p_{u,v}$的信息的同时会损失$b_u$的信息，在结果上无法从别的选择方式中获得额外信息，并且不能正确还原统计量。</p>
-<h3 id="Protocol-3-高效交换密信"><a href="#Protocol-3-高效交换密信" class="headerlink" title="Protocol 3: 高效交换密信"></a>Protocol 3: 高效交换密信</h3><p>协议2虽然在正确选择$t$后可以保证稳定和安全，但需要$\mathcal{O}(kn^2)$的交流次数。</p>
-<p>注意到使用单个数值与安全伪随机生成器就可以生成伪随机向量，用户可以只交换标量值$s_{u,v},b_u$然后作为种子扩张成$k$维向量。</p>
-<p>这里使用钥协定来更有效率地建立这些secret，每个用户生成一个Diffie-Hellman密钥$s^{SK}$与公钥$s^{PK}$，然后将公钥上传至服务器，服务器将所有公钥广播给所有用户，并保留备份。</p>
-<p>用户$u,v$通过如下方式确定各自$s_{u,v}$:</p>
+f^*\ge f(x)+\nabla f(x)^T(x_p-x)+\frac{\mu}{2}||x_p-x||^2</script><p>Let $y=x_p$, then we can prove that $ESC\Rightarrow WSC$.</p>
+<p><strong>Restricted Secant Inequality</strong>(RSI): For all $x$ we have</p>
 <script type="math/tex; mode=display">
-s_{u,v}=s_{v,u}=AGREE(S_u^{SK},S_v^{PK})=AGREE(S_v^{SK},S_u^{PK})</script><p>这里$AGREE(\cdot)$为密钥协定算法。</p>
-<p>然后以如下方式计算扰动，假定$\mathcal{U}$拥有全排序：</p>
+\nabla f(x)^T(x-x_p)\ge\mu||x_p-x||^2</script><p>If we further assume function $f$ is convex, then the condition is called <strong>Restricted Strong Convexity</strong>(RSC).</p>
+<p>Re-order the WSC inequality:</p>
 <script type="math/tex; mode=display">
-\begin{aligned}p_{u,v}&=PRG(s_{u,v}),u<v\\p_{u,v}&=0,u=v\\p_{u,v}&=-PRG(s_{u,v}),u>v \end{aligned}</script><p>服务器只需要知道$s_u^{SK}$就可以重构出$u$的所有扰动，因此u在secret share阶段只需要分发$s_u^{SK},b_u$的share即可。</p>
-<p><strong>protocol 3</strong>的安全性可以被证明与<strong>protocol 2</strong>一致</p>
-<h3 id="Protocol-4-实践最小信任"><a href="#Protocol-4-实践最小信任" class="headerlink" title="Protocol 4: 实践最小信任"></a>Protocol 4: 实践最小信任</h3><p><img src="https://zyplanethome.files.wordpress.com/2019/09/sap4.png" alt="SA4FLP4"></p>
-<p>在上面的协议中，我们都假设用户间有安全的配对信道，需要给出更多细节。这里提出使用服务器中转密钥协议代替<strong>protocol 1</strong>描述的公私钥交换。</p>
-<p>每个用户都会生成一个Diffie-Hellman密钥$c^{SK}$以及公钥$c^{PK}$，并将后者与$s^{PK}$一起公布。</p>
-<p>这里指出服务器有可能进行中间者攻击，但出于几个理由这是可以容忍的：</p>
+\nabla f(x)^T(x-x_p)\ge f(x)-f^{opt}+\frac{\mu}{2}||x_p-x||^2</script><p>Because $f^{*}$ is the lower bound of $f(x)$, $f(x)-f^{opt}\ge0$.</p>
+<p>Therefore, $WSC\Rightarrow RSI$.</p>
+<p><strong>Error Bound</strong>(EB): For all $x$ we have</p>
+<script type="math/tex; mode=display">
+||\nabla f(x)||\ge\mu(x_p-x)</script><p>Since $||\nabla f(x)||||x-x_p||\ge\nabla f(x)^T(x-x_p)$, dividing both side of RSI by $||x-x_p||$ we can prove $RSI\Rightarrow EB$.</p>
+<p><strong>Polyak-Lojasiewicz</strong>(PL): For all x we have</p>
+<script type="math/tex; mode=display">
+\frac{1}{2}||\nabla f(x)||^2\ge\mu(f(x)-f^{opt})</script><p>PL inequality is commonly used in recent researches. This assumption is more general than Strong convexity and sufficient to guarantee linear convergence. Furthermore, we can prove that it is equivalent to the EB assumption.(Assumption on Lipschitz continuity of gradients is necessary.)</p>
+<p>We show that $EB\Rightarrow PL$:</p>
+<p>Lipschitz continuity is a strong assumption on function continuity. The $L$-Lipschitz continuity of $g(x)$ is defined by the following inequality:</p>
+<script type="math/tex; mode=display">
+||g(x)-g(y)||\le L||x-y||, \forall x,y\in \mathcal{D}_g</script><p>If $f(x)$ has $L$-Lipschitz continuous gradient, say, $||\nabla f(x)-\nabla f(y)||\le L||x-y||$. Then</p>
+<script type="math/tex; mode=display">
+f(x)\le f(x_p)+\nabla f(x_p)^T(x-x_p)+\frac{L}{2}||x_p-x||^2</script><p>Let $f(x_p)=f^*$, the corresponding gradients are equal to zero vector. We have</p>
+<script type="math/tex; mode=display">
+f(x)-f^{opt}\le\frac{L}{2}||x_p-x||^2</script><p>Applying EB, </p>
+<script type="math/tex; mode=display">
+f(x)-f^{opt}\le\frac{L}{2\mu}||\nabla f(x)||^2</script><p>For $PL\Rightarrow EB$,</p>
+<p>We firstly introduce another assumption weaker than PL.</p>
+<p><strong>Quadratic Growth</strong>(QG): For all $x$ we have</p>
+<script type="math/tex; mode=display">
+f(x)-f^{opt}\ge\frac{\mu}{2}||x_p-x||^2</script><p>If  we further assume $f(x)$ is convex, this case is called <strong>optimal strong convexity</strong>.</p>
+<p>We show that $PL\Rightarrow QG$,</p>
+<p>Define the following function:</p>
+<script type="math/tex; mode=display">
+g(x) = \sqrt{f(x)-f^{opt}}</script><p>If $f(\cdot)$ satisfies PL inequality, then for any $x\notin \mathcal{X}^{opt}$:</p>
+<script type="math/tex; mode=display">
+||\nabla g(x)||^2=\frac{||\nabla f(x)||^2}{f(x)-f^{opt}}\ge2\mu</script><p>For any point $x_0\notin\mathcal{X}^*$, consider solving the following differential equation:</p>
+<script type="math/tex; mode=display">
+\frac{d x(t)}{dt}=-\nabla g(x(t))\\
+x(t=0)=x_0</script><p>The solution defines a flow orbit starting at $x_0$ and flowing along the gradient of $g(\cdot)$. </p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+g(x_0)-g(x_t)&=\int_{x_t}^{x_0}\nabla g(x)^Tdx\\
+&=-\int_{x_0}^{x_t}\nabla g(x)^Tdx\\
+&=-\int_{0}^{T}\nabla g(x(t))^T\frac{d x(t)}{dt}dt\\
+&=\int_{0}^T||\nabla g(x(t))||^2dt\\
+&\ge\int_{0}^T2\mu dt\\
+&=2\mu T
+\end{aligned}
+\end{equation}</script><p>Notice that $g(x_t)\ge 0$, thus we know that $T\le\frac{g(x_0)}{2\mu}$, so there must be a $T$ with $x(T)\in\mathcal{X}^{opt}$.</p>
+<p>The length of the orbit can be calculated by the following integral,</p>
+<script type="math/tex; mode=display">
+\mathcal{L}(x_0)=\int_0^T||\frac{dx(t)}{dt}||dt=\int_0^T||\nabla g(x(t))||dt\ge||x_0-x_p||</script><p>$x_p$ is the projection of $x_0$ onto $\mathcal{X}^{opt}$</p>
+<p>Recall that:</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{aligned}
+g(x_0)-g(x_T)&=\int_0^T||\nabla g(x(t))||^2dt\\
+&\ge\sqrt{2\mu}\int_{0}^T||\nabla g(x(t))||dt\\
+&\ge\sqrt{2\mu}||x_0-x_p||
+\end{aligned}
+\end{equation}</script><p>Since $g(x_T)=0$, according to the definition of $g(\cdot)$:</p>
+<script type="math/tex; mode=display">
+f(x)-f^*\ge2\mu||x-x_p||^2</script><p>It is the QG inequality.</p>
+<p>Now, we turn to the proof of $PL\Rightarrow EB$,</p>
+<p>Using the above result. We denote the PL constant as $\mu_p$ and QG constant as $\mu_q$, </p>
+<script type="math/tex; mode=display">
+\frac{1}{2}||\nabla f(x)||^2\ge\mu_p(f(x)-f^*)\ge\frac{\mu_p\mu_q}{2}||x-x_p||^2</script><p>Thus, we derive the EB inequality:</p>
+<script type="math/tex; mode=display">
+||\nabla f(x)||\ge\sqrt{\mu_p\mu_q}||x-x_p||</script><p><strong>what if we assume $f(\cdot)$ is convex?</strong></p>
+<p>Actually, $RSI\Leftrightarrow EB\Leftrightarrow PL\Leftrightarrow QG$ hold in this case.</p>
+<p>We prove this observation by showing that $QG+Convex\Rightarrow RSI$,</p>
+<p>By convexity we have,</p>
+<script type="math/tex; mode=display">
+f(x_p)\ge f(x)+\nabla f(x)^T(x_p-x)</script><p>Applying QG inequality,</p>
+<script type="math/tex; mode=display">
+\nabla f(x)^T(x-x_P)\ge f(x)-f^{opt}\ge\frac{\mu}{2}||x_p-x||^2</script><p>Which is RSI inequality.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In the end, we finish our work by a relation graph:</p>
+<p><img src="https://s1.ax1x.com/2020/09/14/wrM4B9.png" alt="relation graph"></p>
+<p>Most of the content comes from the following work:</p>
 <ul>
-<li>对于缺少认证机制的用户和预先存在的公钥架构这是不可避免的。只依赖联络阶段的非恶意性同样构成了信任最小：这一阶段的代码实现较短并且可以被空开编辑，向可信任第三方开源，或者通过一个能提供远程认证的可信计算平台来实现。</li>
-<li>这项协议在其余层面提高了安全性（除了服务器进行中间攻击外），并且提供了正向保密性（在密钥交换后的任何时候入侵服务器，攻击者都不会得到有用信息，即便所有数据和会话都被记录下来）</li>
+<li><a href="https://arxiv.org/abs/1608.04636" target="_blank" rel="noopener">Linear Convergence of Gradient and Proximal-Gradient Methods Under the Polyak- Lojasiewicz Condition</a></li>
+<li><a href="https://arxiv.org/abs/1803.06573" target="_blank" rel="noopener">On the Fenchel Duality between Strong Convexity and Lipschitz Continuous Gradient</a></li>
 </ul>
-<p>图片给出了<strong>protocol 4</strong>各项复杂度以及流程</p>
 
     </div>
 
@@ -402,9 +454,7 @@ s_{u,v}=s_{v,u}=AGREE(S_u^{SK},S_v^{PK})=AGREE(S_v^{SK},S_u^{PK})</script><p>这
           
           <div class="post-tags">
             
-              <a href="/tags/Federated-Learning/" rel="tag"># Federated Learning</a>
-            
-              <a href="/tags/Cryptography/" rel="tag"># Cryptography</a>
+              <a href="/tags/Optimization/" rel="tag"># Optimization</a>
             
           </div>
         
@@ -414,8 +464,8 @@ s_{u,v}=s_{v,u}=AGREE(S_u^{SK},S_v^{PK})=AGREE(S_v^{SK},S_u^{PK})</script><p>这
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/06/29/Red Dragonfly/" rel="next" title="red dragonfly">
-                  <i class="fa fa-chevron-left"></i> red dragonfly
+                <a href="/2019/10/02/embedding as matrix factorizaiton/" rel="next" title="embedding as matrix factorizaiton">
+                  <i class="fa fa-chevron-left"></i> embedding as matrix factorizaiton
                 </a>
               
             </div>
@@ -424,8 +474,8 @@ s_{u,v}=s_{v,u}=AGREE(S_u^{SK},S_v^{PK})=AGREE(S_v^{SK},S_u^{PK})</script><p>这
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/10/02/Embedding as Matrix Factorization/" rel="prev" title="embedding as matrix factorizaiton">
-                  embedding as matrix factorizaiton <i class="fa fa-chevron-right"></i>
+                <a href="/2021/09/17/SSGTOLSMD/" rel="prev" title="Self-Supervised Graph Transformer on Large-Scale Molecular Data">
+                  Self-Supervised Graph Transformer on Large-Scale Molecular Data <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -478,7 +528,7 @@ s_{u,v}=s_{v,u}=AGREE(S_u^{SK},S_v^{PK})=AGREE(S_v^{SK},S_u^{PK})</script><p>这
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Secure-Aggregation-for-Federated-Learning"><span class="nav-number">1.</span> <span class="nav-text">Secure Aggregation for Federated Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SA4FL"><span class="nav-number">1.2.</span> <span class="nav-text">SA4FL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocol-0-单轮掩码保护"><span class="nav-number">1.2.1.</span> <span class="nav-text">Protocol 0: 单轮掩码保护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocol-1-使用密信共享在含违协议用户情况还原统计量"><span class="nav-number">1.2.2.</span> <span class="nav-text">Protocol 1: 使用密信共享在含违协议用户情况还原统计量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocol-2-针对恶意服务器的双掩码保护"><span class="nav-number">1.2.3.</span> <span class="nav-text">Protocol 2: 针对恶意服务器的双掩码保护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocol-3-高效交换密信"><span class="nav-number">1.2.4.</span> <span class="nav-text">Protocol 3: 高效交换密信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocol-4-实践最小信任"><span class="nav-number">1.2.5.</span> <span class="nav-text">Protocol 4: 实践最小信任</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Strong-Convexity-and-Its-Generalization"><span class="nav-number">1.</span> <span class="nav-text">Strong Convexity and Its Generalization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Relation-Between-Conditions"><span class="nav-number">1.2.</span> <span class="nav-text">Relation Between Conditions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.3.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->

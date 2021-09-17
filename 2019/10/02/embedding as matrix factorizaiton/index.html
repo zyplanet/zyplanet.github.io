@@ -54,23 +54,22 @@
   };
 </script>
 
-  <meta name="description" content="Strong Convexity and Its GeneralizationIntroductionThe convex condition of the objective function guarantees extrema uniqueness. It says that if $f$ is convex, we can discuss the convergence rate of o">
-<meta name="keywords" content="Optimization">
+  <meta name="description" content="Neural Word Embedding as Implicit Matrix Factorization前言尽管嵌入模型很明显是基于分布假设来进行优化，使常出现的word-context对向量内积极大化，并极小化随机word-context对内积。但对于这些优化指标的讨论很少，也不清楚为什么这样能够得到期望的结果。这篇文章对此进行了探讨，表明SGNS(skip-gram with negati">
+<meta name="keywords" content="Representation Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Strong Convexity">
-<meta property="og:url" content="https://zyplanet.github.io/2020/09/14/strong_convexity/index.html">
+<meta property="og:title" content="embedding as matrix factorizaiton">
+<meta property="og:url" content="https://zyplanet.github.io/2019/10/02/embedding as matrix factorizaiton/index.html">
 <meta property="og:site_name" content="diphda">
-<meta property="og:description" content="Strong Convexity and Its GeneralizationIntroductionThe convex condition of the objective function guarantees extrema uniqueness. It says that if $f$ is convex, we can discuss the convergence rate of o">
+<meta property="og:description" content="Neural Word Embedding as Implicit Matrix Factorization前言尽管嵌入模型很明显是基于分布假设来进行优化，使常出现的word-context对向量内积极大化，并极小化随机word-context对内积。但对于这些优化指标的讨论很少，也不清楚为什么这样能够得到期望的结果。这篇文章对此进行了探讨，表明SGNS(skip-gram with negati">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://s1.ax1x.com/2020/09/14/wr25b4.png">
-<meta property="og:image" content="https://s1.ax1x.com/2020/09/14/wBb5Mn.png">
-<meta property="og:image" content="https://s1.ax1x.com/2020/09/14/wrM4B9.png">
-<meta property="og:updated_time" content="2021-09-17T08:43:56.499Z">
+<meta property="og:image" content="https://zyplanethome.files.wordpress.com/2019/10/svd1.png">
+<meta property="og:image" content="https://zyplanethome.files.wordpress.com/2019/10/svd2.png">
+<meta property="og:updated_time" content="2021-09-17T11:08:04.277Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Strong Convexity">
-<meta name="twitter:description" content="Strong Convexity and Its GeneralizationIntroductionThe convex condition of the objective function guarantees extrema uniqueness. It says that if $f$ is convex, we can discuss the convergence rate of o">
-<meta name="twitter:image" content="https://s1.ax1x.com/2020/09/14/wr25b4.png">
-  <link rel="canonical" href="https://zyplanet.github.io/2020/09/14/strong_convexity/">
+<meta name="twitter:title" content="embedding as matrix factorizaiton">
+<meta name="twitter:description" content="Neural Word Embedding as Implicit Matrix Factorization前言尽管嵌入模型很明显是基于分布假设来进行优化，使常出现的word-context对向量内积极大化，并极小化随机word-context对内积。但对于这些优化指标的讨论很少，也不清楚为什么这样能够得到期望的结果。这篇文章对此进行了探讨，表明SGNS(skip-gram with negati">
+<meta name="twitter:image" content="https://zyplanethome.files.wordpress.com/2019/10/svd1.png">
+  <link rel="canonical" href="https://zyplanet.github.io/2019/10/02/embedding as matrix factorizaiton/">
 
 
 <script id="page-configurations">
@@ -84,7 +83,7 @@
   };
 </script>
 
-  <title>Strong Convexity | diphda</title>
+  <title>embedding as matrix factorizaiton | diphda</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -241,7 +240,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://zyplanet.github.io/2020/09/14/strong_convexity/">
+    <link itemprop="mainEntityOfPage" href="https://zyplanet.github.io/2019/10/02/embedding as matrix factorizaiton/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="diphda">
@@ -253,7 +252,7 @@
       <meta itemprop="name" content="diphda">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Strong Convexity
+        <h1 class="post-title" itemprop="name headline">embedding as matrix factorizaiton
 
           
         </h1>
@@ -269,7 +268,7 @@
                 
               
 
-              <time title="Created: 2020-09-14 19:15:00" itemprop="dateCreated datePublished" datetime="2020-09-14T19:15:00+08:00">2020-09-14</time>
+              <time title="Created: 2019-10-02 20:44:00" itemprop="dateCreated datePublished" datetime="2019-10-02T20:44:00+08:00">2019-10-02</time>
             </span>
           
             
@@ -280,13 +279,13 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-09-17 16:43:56" itemprop="dateModified" datetime="2021-09-17T16:43:56+08:00">2021-09-17</time>
+                <time title="Modified: 2021-09-17 19:08:04" itemprop="dateModified" datetime="2021-09-17T19:08:04+08:00">2021-09-17</time>
               </span>
             
           
 
           
-            <span id="/2020/09/14/strong_convexity/" class="post-meta-item leancloud_visitors" data-flag-title="Strong Convexity" title="Views">
+            <span id="/2019/10/02/embedding as matrix factorizaiton/" class="post-meta-item leancloud_visitors" data-flag-title="embedding as matrix factorizaiton" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -304,7 +303,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2020/09/14/strong_convexity/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/09/14/strong_convexity/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/10/02/embedding as matrix factorizaiton/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/10/02/embedding as matrix factorizaiton/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -316,7 +315,7 @@
               
                 <span class="post-meta-item-text">Symbols count in article: </span>
               
-              <span>6.5k</span>
+              <span>4k</span>
             </span>
           
             <span class="post-meta-item" title="Reading time">
@@ -326,7 +325,7 @@
               
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               
-              <span>11 mins.</span>
+              <span>7 mins.</span>
             </span>
           
 
@@ -339,106 +338,62 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Strong-Convexity-and-Its-Generalization"><a href="#Strong-Convexity-and-Its-Generalization" class="headerlink" title="Strong Convexity and Its Generalization"></a>Strong Convexity and Its Generalization</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>The convex condition of the objective function guarantees extrema uniqueness. It says that if $f$ is convex, we can discuss the convergence rate of optimization methods by estimating $||f(w_t)-f^{opt}||$, where $f^{opt}$ is the global maximum/minimum (optimum). Otherwise, we know nothing about the distance and only discuss $\min_{t\in\{0,1,\dots,T\}}||\nabla f(w^t)||^{2}$. </p><a id="more"></a>
-<p>Intuitively, the convexity requires that the function graph is above its tangent line. A typical example is a quadratic function: $f(x) = ax^2+bx+c$. If $a&gt;0$, it is convex. One can validate this observation by sketch its tangent line.</p>
-<p><img src="https://s1.ax1x.com/2020/09/14/wr25b4.png" alt="img" style="zoom:150%;"></p>
-<p>However, there are lots of “flat” convex functions. Their graphs are above the corresponding tangent lines, but they are very close. The following figure draws a convex and flat basin:</p>
-<p><img src="https://s1.ax1x.com/2020/09/14/wBb5Mn.png" alt="flat basin"></p>
-<p>We can find that the graph coincides with its tangent line. The problem is that these functions provide low gradients, which lead to a sub-linear convergence rate of the gradient descent method. We hope to avoid discussing these cases; the strong convexity constrains the functions by requesting them to own a quadratic lower bound. The optimization is much more comfortable in the strong convex cases, and a global linear convergence rate can be achieved.</p>
-<p>The strong convexity is a strong assumption, and we want to discuss its generalization in this work.</p>
-<h2 id="Relation-Between-Conditions"><a href="#Relation-Between-Conditions" class="headerlink" title="Relation Between Conditions"></a>Relation Between Conditions</h2><p> Strong convexity is a strong assumption to guarantee the linear convergence rate in our discussion. We formulate it as follows:</p>
-<p><strong>Strong Convexity</strong>(SC): For all $x$ and $y$ we have</p>
-<script type="math/tex; mode=display">
-f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2</script><p>Suppose you are curious about how to prove gradient descent (<strong>GD</strong>) and stochastic gradient descent (<strong>SGD</strong>) have linear convergence rate under strong convexity assumption. In that case, you can find them in this work: <a href="https://perso.telecom-paristech.fr/rgower/pdf/M2_statistique_optimisation/grad_conv.pdf" target="_blank" rel="noopener">Convergence Theorems for Gradient Descent</a>.</p>
-<p>We only concern about SC’s generalizations and theirs relation.</p>
-<p><strong>Essential Strong Convexity</strong>(ESC): For all $x$ and $y$ such that $x_p=y_p$, we have</p>
-<script type="math/tex; mode=display">
-f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2</script><p>Where $x_p$ is the projection of $x$ onto the solution set $\mathcal{X}^{opt}$.</p>
-<p>Obviously, ESC is weaker than SC: $SC\Rightarrow ESC$.</p>
-<p><strong>Weak Strong Convexity</strong>(WSC): For all $x$ we have</p>
-<script type="math/tex; mode=display">
-f^*\ge f(x)+\nabla f(x)^T(x_p-x)+\frac{\mu}{2}||x_p-x||^2</script><p>Let $y=x_p$, then we can prove that $ESC\Rightarrow WSC$.</p>
-<p><strong>Restricted Secant Inequality</strong>(RSI): For all $x$ we have</p>
-<script type="math/tex; mode=display">
-\nabla f(x)^T(x-x_p)\ge\mu||x_p-x||^2</script><p>If we further assume function $f$ is convex, then the condition is called <strong>Restricted Strong Convexity</strong>(RSC).</p>
-<p>Re-order the WSC inequality:</p>
-<script type="math/tex; mode=display">
-\nabla f(x)^T(x-x_p)\ge f(x)-f^{opt}+\frac{\mu}{2}||x_p-x||^2</script><p>Because $f^{*}$ is the lower bound of $f(x)$, $f(x)-f^{opt}\ge0$.</p>
-<p>Therefore, $WSC\Rightarrow RSI$.</p>
-<p><strong>Error Bound</strong>(EB): For all $x$ we have</p>
-<script type="math/tex; mode=display">
-||\nabla f(x)||\ge\mu(x_p-x)</script><p>Since $||\nabla f(x)||||x-x_p||\ge\nabla f(x)^T(x-x_p)$, dividing both side of RSI by $||x-x_p||$ we can prove $RSI\Rightarrow EB$.</p>
-<p><strong>Polyak-Lojasiewicz</strong>(PL): For all x we have</p>
-<script type="math/tex; mode=display">
-\frac{1}{2}||\nabla f(x)||^2\ge\mu(f(x)-f^{opt})</script><p>PL inequality is commonly used in recent researches. This assumption is more general than Strong convexity and sufficient to guarantee linear convergence. Furthermore, we can prove that it is equivalent to the EB assumption.(Assumption on Lipschitz continuity of gradients is necessary.)</p>
-<p>We show that $EB\Rightarrow PL$:</p>
-<p>Lipschitz continuity is a strong assumption on function continuity. The $L$-Lipschitz continuity of $g(x)$ is defined by the following inequality:</p>
-<script type="math/tex; mode=display">
-||g(x)-g(y)||\le L||x-y||, \forall x,y\in \mathcal{D}_g</script><p>If $f(x)$ has $L$-Lipschitz continuous gradient, say, $||\nabla f(x)-\nabla f(y)||\le L||x-y||$. Then</p>
-<script type="math/tex; mode=display">
-f(x)\le f(x_p)+\nabla f(x_p)^T(x-x_p)+\frac{L}{2}||x_p-x||^2</script><p>Let $f(x_p)=f^*$, the corresponding gradients are equal to zero vector. We have</p>
-<script type="math/tex; mode=display">
-f(x)-f^{opt}\le\frac{L}{2}||x_p-x||^2</script><p>Applying EB, </p>
-<script type="math/tex; mode=display">
-f(x)-f^{opt}\le\frac{L}{2\mu}||\nabla f(x)||^2</script><p>For $PL\Rightarrow EB$,</p>
-<p>We firstly introduce another assumption weaker than PL.</p>
-<p><strong>Quadratic Growth</strong>(QG): For all $x$ we have</p>
-<script type="math/tex; mode=display">
-f(x)-f^{opt}\ge\frac{\mu}{2}||x_p-x||^2</script><p>If  we further assume $f(x)$ is convex, this case is called <strong>optimal strong convexity</strong>.</p>
-<p>We show that $PL\Rightarrow QG$,</p>
-<p>Define the following function:</p>
-<script type="math/tex; mode=display">
-g(x) = \sqrt{f(x)-f^{opt}}</script><p>If $f(\cdot)$ satisfies PL inequality, then for any $x\notin \mathcal{X}^{opt}$:</p>
-<script type="math/tex; mode=display">
-||\nabla g(x)||^2=\frac{||\nabla f(x)||^2}{f(x)-f^{opt}}\ge2\mu</script><p>For any point $x_0\notin\mathcal{X}^*$, consider solving the following differential equation:</p>
-<script type="math/tex; mode=display">
-\frac{d x(t)}{dt}=-\nabla g(x(t))\\
-x(t=0)=x_0</script><p>The solution defines a flow orbit starting at $x_0$ and flowing along the gradient of $g(\cdot)$. </p>
-<script type="math/tex; mode=display">
-\begin{equation}
-\begin{aligned}
-g(x_0)-g(x_t)&=\int_{x_t}^{x_0}\nabla g(x)^Tdx\\
-&=-\int_{x_0}^{x_t}\nabla g(x)^Tdx\\
-&=-\int_{0}^{T}\nabla g(x(t))^T\frac{d x(t)}{dt}dt\\
-&=\int_{0}^T||\nabla g(x(t))||^2dt\\
-&\ge\int_{0}^T2\mu dt\\
-&=2\mu T
-\end{aligned}
-\end{equation}</script><p>Notice that $g(x_t)\ge 0$, thus we know that $T\le\frac{g(x_0)}{2\mu}$, so there must be a $T$ with $x(T)\in\mathcal{X}^{opt}$.</p>
-<p>The length of the orbit can be calculated by the following integral,</p>
-<script type="math/tex; mode=display">
-\mathcal{L}(x_0)=\int_0^T||\frac{dx(t)}{dt}||dt=\int_0^T||\nabla g(x(t))||dt\ge||x_0-x_p||</script><p>$x_p$ is the projection of $x_0$ onto $\mathcal{X}^{opt}$</p>
-<p>Recall that:</p>
-<script type="math/tex; mode=display">
-\begin{equation}
-\begin{aligned}
-g(x_0)-g(x_T)&=\int_0^T||\nabla g(x(t))||^2dt\\
-&\ge\sqrt{2\mu}\int_{0}^T||\nabla g(x(t))||dt\\
-&\ge\sqrt{2\mu}||x_0-x_p||
-\end{aligned}
-\end{equation}</script><p>Since $g(x_T)=0$, according to the definition of $g(\cdot)$:</p>
-<script type="math/tex; mode=display">
-f(x)-f^*\ge2\mu||x-x_p||^2</script><p>It is the QG inequality.</p>
-<p>Now, we turn to the proof of $PL\Rightarrow EB$,</p>
-<p>Using the above result. We denote the PL constant as $\mu_p$ and QG constant as $\mu_q$, </p>
-<script type="math/tex; mode=display">
-\frac{1}{2}||\nabla f(x)||^2\ge\mu_p(f(x)-f^*)\ge\frac{\mu_p\mu_q}{2}||x-x_p||^2</script><p>Thus, we derive the EB inequality:</p>
-<script type="math/tex; mode=display">
-||\nabla f(x)||\ge\sqrt{\mu_p\mu_q}||x-x_p||</script><p><strong>what if we assume $f(\cdot)$ is convex?</strong></p>
-<p>Actually, $RSI\Leftrightarrow EB\Leftrightarrow PL\Leftrightarrow QG$ hold in this case.</p>
-<p>We prove this observation by showing that $QG+Convex\Rightarrow RSI$,</p>
-<p>By convexity we have,</p>
-<script type="math/tex; mode=display">
-f(x_p)\ge f(x)+\nabla f(x)^T(x_p-x)</script><p>Applying QG inequality,</p>
-<script type="math/tex; mode=display">
-\nabla f(x)^T(x-x_P)\ge f(x)-f^{opt}\ge\frac{\mu}{2}||x_p-x||^2</script><p>Which is RSI inequality.</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In the end, we finish our work by a relation graph:</p>
-<p><img src="https://s1.ax1x.com/2020/09/14/wrM4B9.png" alt="relation graph"></p>
-<p>Most of the content comes from the following work:</p>
+        <h1 id="Neural-Word-Embedding-as-Implicit-Matrix-Factorization"><a href="#Neural-Word-Embedding-as-Implicit-Matrix-Factorization" class="headerlink" title="Neural Word Embedding as Implicit Matrix Factorization"></a>Neural Word Embedding as Implicit Matrix Factorization</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>尽管嵌入模型很明显是基于分布假设来进行优化，使常出现的word-context对向量内积极大化，并极小化随机word-context对内积。但对于这些优化指标的讨论很少，也不清楚为什么这样能够得到期望的结果。这篇文章对此进行了探讨，表明SGNS(skip-gram with negative-sampling)的训练方法实际上是加权矩阵分解，其目标函数在隐式地分解一个移动PMI矩阵，并基于此提出了更高效的优化方式。</p><a id="more"></a>
+<h2 id="SGNS"><a href="#SGNS" class="headerlink" title="SGNS"></a>SGNS</h2><p>关于skip-gram with negative-sampling，这里就不再赘述，请查看下面两篇文章：</p>
 <ul>
-<li><a href="https://arxiv.org/abs/1608.04636" target="_blank" rel="noopener">Linear Convergence of Gradient and Proximal-Gradient Methods Under the Polyak- Lojasiewicz Condition</a></li>
-<li><a href="https://arxiv.org/abs/1803.06573" target="_blank" rel="noopener">On the Fenchel Duality between Strong Convexity and Lipschitz Continuous Gradient</a></li>
+<li><a href="https://arxiv.org/abs/1301.3781" target="_blank" rel="noopener">Efficient estimation of word representations in vector space</a></li>
+<li><a href="https://arxiv.org/abs/1310.4546" target="_blank" rel="noopener">Distributed representations of words and phrases and their compositionality</a></li>
 </ul>
+<p>总的来说，SGNS的目标函数如下：</p>
+<script type="math/tex; mode=display">
+l=\Sigma_{w\in V_W}\Sigma_{c\in V_C}|(w,c)|(log\sigma(\vec{w}\cdot\vec{c})+k\cdot\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)])\tag{1}</script><p>这里$V_W$为单词集，$V_C$为上下文集，$P_D$为均匀测度满足$P_D(c)=\frac{|(c)|}{|D|}$.</p>
+<h2 id="隐式矩阵分解下的SGNS"><a href="#隐式矩阵分解下的SGNS" class="headerlink" title="隐式矩阵分解下的SGNS"></a>隐式矩阵分解下的SGNS</h2><p>SGNS将单词以及上下文嵌入为低维空间的向量，得到单词与上下文向量构成的矩阵$W$与$C$，这两者实际上是相同的。$W$的行元素（即单词嵌入向量）被直接提取使用，但原始SG模型会进行上下文预测，SGNS可以看作是对矩阵$M=W\cdot C^T$的分解。</p>
+<p>对于$M$，其分量$M_{i,j}$对应了$W_i,C_j$的向量积，这表示着特定单词与上下文的关联强度，而这种关联矩阵常常出现于NLP的研究中，但该矩阵并没有显式出现在SGNS的优化函数中，那么将SNGS看作对$M$的隐式分解说得通吗？如果不是，SGNS分解的是哪个矩阵呢？</p>
+<h3 id="刻画该隐式矩阵"><a href="#刻画该隐式矩阵" class="headerlink" title="刻画该隐式矩阵"></a>刻画该隐式矩阵</h3><p>重写式子$(1)$:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+l&=\Sigma_{w\in V_W}\Sigma_{c\in V_C}|(w,c)|(log\sigma(\vec{w}\cdot\vec{c}))+\Sigma_{w\in V_W}\Sigma_{c\in V_C}\|(w,c)|(k\cdot\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)])\\
+&=\Sigma_{w\in V_W}\Sigma_{c\in V_C}|(w,c)|(log\sigma(\vec{w}\cdot\vec{c}))+\Sigma_{w\in V_W}|(w)|(k\cdot\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)])
+\end{aligned}\tag{2}</script><p>然后显式地计算出期望项：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)]&=\Sigma_{c_N\in V_C }\frac{|(c_N)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c}_N)\\
+&=\frac{|(c)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c})+\Sigma_{c_N\in V_C\setminus \{c \}}\frac{|(c_N)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c}_N)
+\end{aligned}\tag{3}</script><p>结合两式并将$l$改写为局部形式：</p>
+<script type="math/tex; mode=display">
+l(w,c)=|(w,c)|log\sigma (\vec{w}\cdot \vec{c})+k\cdot |(w)|\cdot\frac{|(c)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c})\tag{4}</script><p>定义$x=\vec{w}\cdot \vec{c}$，并对其求导：</p>
+<script type="math/tex; mode=display">
+\frac{\partial{l}}{\partial{x}}=|(w,c)|\cdot\sigma(-x)-k\cdot|(w)|\frac{|(c)|}{|D|}\sigma(x)</script><p>令其为零得到：</p>
+<script type="math/tex; mode=display">
+e^{2x}-(\frac{|(w,c)|}{k\cdot|(w)|\cdot\frac{|(c)|}{|D|}}-1)e^x-\frac{|(w,c)|}{k\cdot|(w)|\cdot\frac{|(c)|}{|D|}}=0</script><p>我们可以直接给出显式解：</p>
+<script type="math/tex; mode=display">
+\vec{w}\cdot \vec{c}=log(\frac{|(w,c)|\cdot|D|}{|(w)|\cdot |(c)|})-logk\tag{5}</script><p>这里指出$log(\frac{|(w,c)|\cdot|D|}{|(w)|\cdot |(c)|})$即$(w,c)$的PMI(pointwise mutual information)，PMI常见于nlp的研究中，可以进一步将上式写为：</p>
+<script type="math/tex; mode=display">
+M_{i,j}^{SGNS}=W_i\cdot C_j=\vec{w}_i\cdot\vec{c}_j=PMI(w_i,c_j)-logk\tag{6}</script><p>SGNS实际上在分解上述的矩阵，当$k=1$即负采样率为1时，SGNS的目标函数其实在分解由单词与上下文构成的关联矩阵，并且关联强度由PMI给出，这里将其定义为PMI阵，$M^{PMI}$. 当$k$变化时，对应的PMI阵会有所偏移，$M^{PMIk}=M^{PMI}-logk$.</p>
+<p>其它的嵌入算法也可以相应理解，如noise-contrastive estimation模型分解的矩阵为：</p>
+<script type="math/tex; mode=display">
+M_{i,j}^{NCE}=\vec{w}_i\cdot \vec{c}_j=log(\frac{|(w,c)|}{|(c)|})-logk=logP(w|c)-logk\tag{7}</script><h3 id="PMI"><a href="#PMI" class="headerlink" title="PMI"></a>PMI</h3><p>PMI是信息理论中用于度量一对离散输出$x,y$的度量函数：</p>
+<script type="math/tex; mode=display">
+PMI(x,y) = log\frac{P(x,y)}{P(x)P(y)}\tag{8}</script><p>在进行词嵌入时，上面的概率完全是由计数来估计的：</p>
+<script type="math/tex; mode=display">
+PMI(w,c)=log\frac{|(w,c)|\cdot|D|}{|(w)|\cdot |(c)|}\tag{9}</script><p>上面所给的PMI估计并不是定义良好的，当不存在某个$(w,c)$对时，对应的估计将为负无穷，一个修改方式是将负无穷的分量重整为0。但考虑PMI的语义，这并不合理，更好的做法是将负值全都置为零，这称为postive PMI(PPMI)：</p>
+<script type="math/tex; mode=display">
+PPMI(w,c)=\max(PMI(w,c),0)\tag{10}</script><h2 id="词嵌入的其它选择"><a href="#词嵌入的其它选择" class="headerlink" title="词嵌入的其它选择"></a>词嵌入的其它选择</h2><p>首先由前面的推导，很容易得到下面的shifted PPMI:</p>
+<script type="math/tex; mode=display">
+SPPMI_k(w,c)=\max (PMI(w,c)-logk,0)\tag{11}</script><h3 id="谱降维：SVD-over-Shifted-PPMI"><a href="#谱降维：SVD-over-Shifted-PPMI" class="headerlink" title="谱降维：SVD over Shifted PPMI"></a>谱降维：SVD over Shifted PPMI</h3><p>如果将SGNS理解为矩阵分解，那么通常的矩阵分解也可以直接用于求解词嵌入，这里使用truncated SVD.</p>
+<p>SVD将M分解为三个矩阵的乘积$U\cdot \Sigma \cdot V^T$，这里$U$和$V$是正交阵，$\Sigma$为奇异值构成的对角阵。令$\Sigma_d$为前$d$个奇异值构成的对角阵，$U_d$和$V_d$为从$U,V$对应列抽出的子阵。$M_d=U_d\cdot \Sigma_d \cdot V_d^T$为$M$的秩$d$最佳估计，即有$M_d=\mathop{\arg\min}\limits_{Rank(M’)=d}||M’-M||_2$成立.</p>
+<p>如果使用SVD，那么$W=U_d \cdot \Sigma_d$行间的向量积等于$M_D$行间的向量积，使用$W$足够作为$M_D$的低维稠密表示。在NLP的研究中，一个常见方法是对PPMI矩阵$M^{PPMI}$进行SVD分解，并使用$W^{SVD}=U_d\cdot \Sigma_d$以及$C^{SVD}=V_D$的行元素分别作为单词与上下文表示。但这种方法得到的结果在语义任务上总是达不到SGNS的性能。</p>
+<p><strong>对称SVD</strong></p>
+<p>如果直接使用SVD来分解，那么最终得到的单词、上下文嵌入阵会相当不同，仅$C^{SVD}$为正交的，SGNS方法相比显得更加对称，故而这里使用如下的分解：</p>
+<script type="math/tex; mode=display">
+W^{SVD_{1/2}}=U_D\cdot \sqrt{\Sigma_d}\quad C^{SVD_{1/2}}=V_d\cdot \sqrt{\Sigma_d}\tag{12}</script><p>尽管缺乏理论解释，但在实践中进行对称化后能得到更好的性能。</p>
+<p><strong>SVD versus SGNS</strong></p>
+<p>SVD不需要训练以及超参数的调整，对任何$\{(w,c,|(w,c)|)\}$形式的数据都可以使用，泛用性更高。</p>
+<p>而SGNS可以更好地处理观察，未观察事件；除此之外， SGNS对不同$(w,c)$对分配了不同权重，这对于SVD来说是相当困难的，对于非稀疏的矩阵SGNS拥有更高的分解效率。</p>
+<p>一个有趣的想法是使用随机矩阵分解，作者将其放在未来工作中。</p>
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p>个人觉得理论仍然不太充分，有些地方还是有点自圆其说，实验结果还过得去。</p>
+<p><img src="https://zyplanethome.files.wordpress.com/2019/10/svd1.png" alt="table1"></p>
+<p><img src="https://zyplanethome.files.wordpress.com/2019/10/svd2.png" alt="table2"></p>
 
     </div>
 
@@ -454,7 +409,7 @@ f(x_p)\ge f(x)+\nabla f(x)^T(x_p-x)</script><p>Applying QG inequality,</p>
           
           <div class="post-tags">
             
-              <a href="/tags/Optimization/" rel="tag"># Optimization</a>
+              <a href="/tags/Representation-Learning/" rel="tag"># Representation Learning</a>
             
           </div>
         
@@ -464,8 +419,8 @@ f(x_p)\ge f(x)+\nabla f(x)^T(x_p-x)</script><p>Applying QG inequality,</p>
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/10/02/Embedding as Matrix Factorization/" rel="next" title="embedding as matrix factorizaiton">
-                  <i class="fa fa-chevron-left"></i> embedding as matrix factorizaiton
+                <a href="/2019/09/01/secure aggregation for federated learning/" rel="next" title="secure aggregation for federated learning">
+                  <i class="fa fa-chevron-left"></i> secure aggregation for federated learning
                 </a>
               
             </div>
@@ -474,8 +429,8 @@ f(x_p)\ge f(x)+\nabla f(x)^T(x_p-x)</script><p>Applying QG inequality,</p>
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2021/09/17/Self-Supervised Graph Transformer on Large-Scale Molecular Data/" rel="prev" title="Self-Supervised Graph Transformer on Large-Scale Molecular Data">
-                  Self-Supervised Graph Transformer on Large-Scale Molecular Data <i class="fa fa-chevron-right"></i>
+                <a href="/2020/09/14/Strong Convexity/" rel="prev" title="Strong Convexity">
+                  Strong Convexity <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -528,7 +483,7 @@ f(x_p)\ge f(x)+\nabla f(x)^T(x_p-x)</script><p>Applying QG inequality,</p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Strong-Convexity-and-Its-Generalization"><span class="nav-number">1.</span> <span class="nav-text">Strong Convexity and Its Generalization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Relation-Between-Conditions"><span class="nav-number">1.2.</span> <span class="nav-text">Relation Between Conditions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.3.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Word-Embedding-as-Implicit-Matrix-Factorization"><span class="nav-number">1.</span> <span class="nav-text">Neural Word Embedding as Implicit Matrix Factorization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SGNS"><span class="nav-number">1.2.</span> <span class="nav-text">SGNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐式矩阵分解下的SGNS"><span class="nav-number">1.3.</span> <span class="nav-text">隐式矩阵分解下的SGNS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#刻画该隐式矩阵"><span class="nav-number">1.3.1.</span> <span class="nav-text">刻画该隐式矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PMI"><span class="nav-number">1.3.2.</span> <span class="nav-text">PMI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词嵌入的其它选择"><span class="nav-number">1.4.</span> <span class="nav-text">词嵌入的其它选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#谱降维：SVD-over-Shifted-PPMI"><span class="nav-number">1.4.1.</span> <span class="nav-text">谱降维：SVD over Shifted PPMI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">1.5.</span> <span class="nav-text">实验结果</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->

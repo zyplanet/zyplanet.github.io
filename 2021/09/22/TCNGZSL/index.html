@@ -54,13 +54,13 @@
   };
 </script>
 
-  <meta name="description" content="Transferable Contrasive Network for Generalized Zero-Shot Learning前言：What?Why?How?零样本学习（zero-shot learning/ZSL)的定义">
+  <meta name="description" content="Transferable Contrasive Network for Generalized Zero-Shot Learning前言与半监督图像学习、小样本学习等领域不同的是，零样本学习开始引入一些语义信息，可以理解为同时利用图像与文本信息。在前言部分，我们从零样本学习的定义(what)、具体的用途(why)、以及实际方法(how)来简要介绍该研究领域。">
 <meta name="keywords" content="Zero-shot Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Transferable Contrasive Network for Generalized Zero-Shot Learning">
 <meta property="og:url" content="https://zyplanet.github.io/2021/09/22/TCNGZSL/index.html">
 <meta property="og:site_name" content="diphda">
-<meta property="og:description" content="Transferable Contrasive Network for Generalized Zero-Shot Learning前言：What?Why?How?零样本学习（zero-shot learning/ZSL)的定义">
+<meta property="og:description" content="Transferable Contrasive Network for Generalized Zero-Shot Learning前言与半监督图像学习、小样本学习等领域不同的是，零样本学习开始引入一些语义信息，可以理解为同时利用图像与文本信息。在前言部分，我们从零样本学习的定义(what)、具体的用途(why)、以及实际方法(how)来简要介绍该研究领域。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://z3.ax1x.com/2021/09/22/4Uv88s.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/09/22/4UvtK0.md.png">
@@ -76,10 +76,10 @@
 <meta property="og:image" content="https://z3.ax1x.com/2021/09/22/4UvrG9.md.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/09/22/4Uvs2R.md.png">
 <meta property="og:image" content="https://z3.ax1x.com/2021/09/22/4UvcKx.md.png">
-<meta property="og:updated_time" content="2021-09-22T13:39:30.028Z">
+<meta property="og:updated_time" content="2021-09-22T13:49:25.306Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Transferable Contrasive Network for Generalized Zero-Shot Learning">
-<meta name="twitter:description" content="Transferable Contrasive Network for Generalized Zero-Shot Learning前言：What?Why?How?零样本学习（zero-shot learning/ZSL)的定义">
+<meta name="twitter:description" content="Transferable Contrasive Network for Generalized Zero-Shot Learning前言与半监督图像学习、小样本学习等领域不同的是，零样本学习开始引入一些语义信息，可以理解为同时利用图像与文本信息。在前言部分，我们从零样本学习的定义(what)、具体的用途(why)、以及实际方法(how)来简要介绍该研究领域。">
 <meta name="twitter:image" content="https://z3.ax1x.com/2021/09/22/4Uv88s.png">
   <link rel="canonical" href="https://zyplanet.github.io/2021/09/22/TCNGZSL/">
 
@@ -280,7 +280,7 @@
                 
               
 
-              <time title="Created: 2021-09-22 21:40:00 / Modified: 21:39:30" itemprop="dateCreated datePublished" datetime="2021-09-22T21:40:00+08:00">2021-09-22</time>
+              <time title="Created: 2021-09-22 21:40:00 / Modified: 21:49:25" itemprop="dateCreated datePublished" datetime="2021-09-22T21:40:00+08:00">2021-09-22</time>
             </span>
           
             
@@ -319,7 +319,7 @@
               
                 <span class="post-meta-item-text">Symbols count in article: </span>
               
-              <span>3.6k</span>
+              <span>3.7k</span>
             </span>
           
             <span class="post-meta-item" title="Reading time">
@@ -342,7 +342,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Transferable-Contrasive-Network-for-Generalized-Zero-Shot-Learning"><a href="#Transferable-Contrasive-Network-for-Generalized-Zero-Shot-Learning" class="headerlink" title="Transferable Contrasive Network for Generalized Zero-Shot Learning"></a>Transferable Contrasive Network for Generalized Zero-Shot Learning</h1><h2 id="前言：What-Why-How"><a href="#前言：What-Why-How" class="headerlink" title="前言：What?Why?How?"></a>前言：What?Why?How?</h2><h3 id="零样本学习（zero-shot-learning-ZSL-的定义"><a href="#零样本学习（zero-shot-learning-ZSL-的定义" class="headerlink" title="零样本学习（zero-shot learning/ZSL)的定义"></a>零样本学习（zero-shot learning/ZSL)的定义</h3><a id="more"></a><p><a href="https://imgtu.com/i/4Uv88s" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/22/4Uv88s.png" alt="4Uv88s.png"></a><br>零样本学习的目的是为一个样本不可见的类别构建模型。举一个例子来说：拥有0-7的数字图像和对应标签，但是没有8, 9的样本，现在需要为8, 9去构建一个分类模型。</p>
+        <h1 id="Transferable-Contrasive-Network-for-Generalized-Zero-Shot-Learning"><a href="#Transferable-Contrasive-Network-for-Generalized-Zero-Shot-Learning" class="headerlink" title="Transferable Contrasive Network for Generalized Zero-Shot Learning"></a>Transferable Contrasive Network for Generalized Zero-Shot Learning</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>与半监督图像学习、小样本学习等领域不同的是，零样本学习开始引入一些语义信息，可以理解为同时利用图像与文本信息。在前言部分，我们从零样本学习的定义(what)、具体的用途(why)、以及实际方法(how)来简要介绍该研究领域。</p><a id="more"></a>
+<h3 id="零样本学习（zero-shot-learning-ZSL-的定义"><a href="#零样本学习（zero-shot-learning-ZSL-的定义" class="headerlink" title="零样本学习（zero-shot learning/ZSL)的定义"></a>零样本学习（zero-shot learning/ZSL)的定义</h3><p><a href="https://imgtu.com/i/4Uv88s" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/22/4Uv88s.png" alt="4Uv88s.png"></a><br>零样本学习的目的是为一个样本不可见的类别构建模型。举一个例子来说：拥有0-7的数字图像和对应标签，但是没有8, 9的样本，现在需要为8, 9去构建一个分类模型。</p>
 <h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>1.新类别的图像合成。ZSL的学习目标是识别新事物，一些新类别的图像合成，完全可以通过ZSL被创造出来。比如还原已经灭绝的物种。也许未来你在《侏罗纪》系列中看到的恐龙，就是机器“画”出来的。<br>2.多模态学习。ZSL基本上是依靠类别名称的语义来完成这种零样本的知识迁移的：虽然没有对应类别的样本，但是我们知道类别的名字，比如斑马。而斑马的词向量（可以由Bert来获取）与黑白、马等概念接近，我们就可以通过已有的马的图像来构建斑马分类器。越来越多的数据是视觉与文本信号共同出现，比如综合性视频网站，视频、音频、字幕、弹幕、评论等多模态信息都有，想要挖掘它们之间的相关性，就依赖于ZSL的宏观预测能力。</p>
 <h3 id="如何做"><a href="#如何做" class="headerlink" title="如何做"></a>如何做</h3><p>本篇论文提供了一个简单直接的方式去完成这一任务，它通过语义的相似性去构建伪标签、并用多类别学习来进行ZSL。</p>
 <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>ZSL需要模型识别一个没有可见样本的目标类别，它利用语义信息去迁移一些源类别的知识。目前ZSL很容易在generalized ZSL任务上对源类别过拟合。本工作提出了transferable contrasive network，它直接从源类别迁移知识到目标类别。该方法自动地对比一张图片和几个类别是否一致，达到了更鲁棒的识别性能。<br><a href="https://imgtu.com/i/4UvtK0" target="_blank" rel="noopener"><img src="https://z3.ax1x.com/2021/09/22/4UvtK0.md.png" alt="4UvtK0.md.png"></a></p>
@@ -463,7 +464,7 @@ L_T=-\Sigma_{i=1}^N\Sigma_{j=K+1}^{K+L}s_{y_ij}\log v_{ij}+(1-s_{y_ij})log(1-v_{
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Transferable-Contrasive-Network-for-Generalized-Zero-Shot-Learning"><span class="nav-number">1.</span> <span class="nav-text">Transferable Contrasive Network for Generalized Zero-Shot Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言：What-Why-How"><span class="nav-number">1.1.</span> <span class="nav-text">前言：What?Why?How?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#零样本学习（zero-shot-learning-ZSL-的定义"><span class="nav-number">1.1.1.</span> <span class="nav-text">零样本学习（zero-shot learning/ZSL)的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用"><span class="nav-number">1.1.2.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何做"><span class="nav-number">1.1.3.</span> <span class="nav-text">如何做</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.2.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.3.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-work"><span class="nav-number">1.4.</span> <span class="nav-text">Related work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Semantic-Information"><span class="nav-number">1.4.1.</span> <span class="nav-text">Semantic Information</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Visual-Sematntic-Transformations"><span class="nav-number">1.4.2.</span> <span class="nav-text">Visual-Sematntic Transformations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zero-Shot-Recognition"><span class="nav-number">1.4.3.</span> <span class="nav-text">Zero-Shot Recognition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Approach"><span class="nav-number">1.5.</span> <span class="nav-text">Approach</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题设定"><span class="nav-number">1.5.1.</span> <span class="nav-text">问题设定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Contrasive-Network"><span class="nav-number">1.5.2.</span> <span class="nav-text">Contrasive Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zero-Shot-Recoginition"><span class="nav-number">1.5.3.</span> <span class="nav-text">Zero-Shot Recoginition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验"><span class="nav-number">1.6.</span> <span class="nav-text">实验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.7.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Transferable-Contrasive-Network-for-Generalized-Zero-Shot-Learning"><span class="nav-number">1.</span> <span class="nav-text">Transferable Contrasive Network for Generalized Zero-Shot Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#零样本学习（zero-shot-learning-ZSL-的定义"><span class="nav-number">1.1.1.</span> <span class="nav-text">零样本学习（zero-shot learning/ZSL)的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用"><span class="nav-number">1.1.2.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何做"><span class="nav-number">1.1.3.</span> <span class="nav-text">如何做</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.2.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.3.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-work"><span class="nav-number">1.4.</span> <span class="nav-text">Related work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Semantic-Information"><span class="nav-number">1.4.1.</span> <span class="nav-text">Semantic Information</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Visual-Sematntic-Transformations"><span class="nav-number">1.4.2.</span> <span class="nav-text">Visual-Sematntic Transformations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zero-Shot-Recognition"><span class="nav-number">1.4.3.</span> <span class="nav-text">Zero-Shot Recognition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Approach"><span class="nav-number">1.5.</span> <span class="nav-text">Approach</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题设定"><span class="nav-number">1.5.1.</span> <span class="nav-text">问题设定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Contrasive-Network"><span class="nav-number">1.5.2.</span> <span class="nav-text">Contrasive Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zero-Shot-Recoginition"><span class="nav-number">1.5.3.</span> <span class="nav-text">Zero-Shot Recoginition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验"><span class="nav-number">1.6.</span> <span class="nav-text">实验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.7.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -595,7 +596,7 @@ L_T=-\Sigma_{i=1}^N\Sigma_{j=K+1}^{K+L}s_{y_ij}\log v_{ij}+(1-s_{y_ij})log(1-v_{
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1:24</span>
+    <span title="Reading time total">1:25</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
   <span class="post-meta-divider">|</span>

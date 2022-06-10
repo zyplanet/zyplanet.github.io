@@ -54,20 +54,20 @@
   };
 </script>
 
-  <meta name="description" content="Notes on “Neural Ordinary Differential Equations”前言这篇18年Neurlps的bestpaper，主要的卖点在于改进了以往网络随着深度增加所需求的内存不断增多的问题，通过求解常微分方程的形式，在不储存中间状态的情况下，计算出网络的最终输出，将神经网络控制在了常数级的内存消耗(与网络深浅无关）。">
+  <meta name="description" content="Notes on &quot;Neural Ordinary Differential Equations&quot;前言这篇18年Neurlps的bestpaper，主要的卖点在于改进了以往网络随着深度增加所需求的内存不断增多的问题，通过求解常微分方程的形式，在不储存中间状态的情况下，计算出网络的最终输出，将神经网络控制在了常数级的内存消耗(与网络深浅无关）。">
 <meta name="keywords" content="Dynamic System,Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="neural ode">
 <meta property="og:url" content="https://zyplanet.github.io/2019/05/07/neural ode/index.html">
 <meta property="og:site_name" content="diphda">
-<meta property="og:description" content="Notes on “Neural Ordinary Differential Equations”前言这篇18年Neurlps的bestpaper，主要的卖点在于改进了以往网络随着深度增加所需求的内存不断增多的问题，通过求解常微分方程的形式，在不储存中间状态的情况下，计算出网络的最终输出，将神经网络控制在了常数级的内存消耗(与网络深浅无关）。">
+<meta property="og:description" content="Notes on &quot;Neural Ordinary Differential Equations&quot;前言这篇18年Neurlps的bestpaper，主要的卖点在于改进了以往网络随着深度增加所需求的内存不断增多的问题，通过求解常微分方程的形式，在不储存中间状态的情况下，计算出网络的最终输出，将神经网络控制在了常数级的内存消耗(与网络深浅无关）。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://zyplanethome.files.wordpress.com/2019/05/piecewise.png">
 <meta property="og:image" content="https://zyplanethome.files.wordpress.com/2019/05/proof.png">
 <meta property="og:updated_time" content="2021-09-17T11:08:49.399Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="neural ode">
-<meta name="twitter:description" content="Notes on “Neural Ordinary Differential Equations”前言这篇18年Neurlps的bestpaper，主要的卖点在于改进了以往网络随着深度增加所需求的内存不断增多的问题，通过求解常微分方程的形式，在不储存中间状态的情况下，计算出网络的最终输出，将神经网络控制在了常数级的内存消耗(与网络深浅无关）。">
+<meta name="twitter:description" content="Notes on &quot;Neural Ordinary Differential Equations&quot;前言这篇18年Neurlps的bestpaper，主要的卖点在于改进了以往网络随着深度增加所需求的内存不断增多的问题，通过求解常微分方程的形式，在不储存中间状态的情况下，计算出网络的最终输出，将神经网络控制在了常数级的内存消耗(与网络深浅无关）。">
 <meta name="twitter:image" content="https://zyplanethome.files.wordpress.com/2019/05/piecewise.png">
   <link rel="canonical" href="https://zyplanet.github.io/2019/05/07/neural ode/">
 
@@ -338,36 +338,47 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Notes-on-“Neural-Ordinary-Differential-Equations”"><a href="#Notes-on-“Neural-Ordinary-Differential-Equations”" class="headerlink" title="Notes on “Neural Ordinary Differential Equations”"></a>Notes on “Neural Ordinary Differential Equations”</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇18年Neurlps的bestpaper，主要的卖点在于改进了以往网络随着深度增加所需求的内存不断增多的问题，通过求解常微分方程的形式，在不储存中间状态的情况下，计算出网络的最终输出，将神经网络控制在了常数级的内存消耗(与网络深浅无关）。</p><a id="more"></a>
-<h2 id="Insight"><a href="#Insight" class="headerlink" title="Insight"></a>Insight</h2><p>常微分方程我们都学过，怎么解析求解、存在性定理、唯一性定理、渐近性质等等，在数值计算课上也学过一些数值求解算法。无论做什么，想法都很重要。</p>
-<p>许多网络模型中，前馈过程都使用了迭代形式，如残差网络：</p>
-<script type="math/tex; mode=display">
-\mathbf{h}_{t+1}=\mathbf{h}_{t}+f\left(\mathbf{h}_{t}, \theta_{t}\right)</script><p>这可以看作前向欧拉迭代求解微分方程的过程，将层数作为变量，取步距为一。如果还原为最原始的形式，即允许连续层数：</p>
-<script type="math/tex; mode=display">
-\frac{d \mathbf{h}(t)}{d t}=f(\mathbf{h}(t), t, \theta)</script><p>那么这篇文章的标题NeuralODE就很好理解了，整个神经网络表示了一个微分方程，求解微分方程的过程即为推理过程。同时，$\textbf{h}(0)$即为网络的输入，给定了微分方程的初值，一个黑盒求解器可以为我们求出方程解在任意时刻T的函数值$\textbf{h}(T)$.</p>
-<h2 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h2><p>文章的insight并不难以理解，这个想法是完全可行的，剩下的问题集中在如何对网络进行训练，使方程的解正好是我们想要的结果。由于在处理方程求解器时，作者完全将其作为黑盒，所以这一步操作是不可微的，无法计算梯度。作者这里使用了adjoint sensitivity method，用于计算梯度，它是线性规模的算法，消耗内存较小。</p>
-<p>考虑给定的损失函数$L(\cdot)$，它对方程解在最终时刻的函数值进行度量（即推断结果）：</p>
-<script type="math/tex; mode=display">
-L\left(\mathbf{z}\left(t_{1}\right)\right)=L\left(\mathbf{z}\left(t_{0}\right)+\int_{t_{0}}^{t_{1}} f(\mathbf{z}(t), t, \theta) d t\right)=L\left(\text { ODESolve }\left(\mathbf{z}\left(t_{0}\right), f, t_{0}, t_{1}, \theta\right)\right)</script><p>我们的目的是求解 $\frac{\partial L}{\partial<br>\theta}$ . 按照adjoint sensitivity method的流程，我们需要先求解一个叫adjoint的函数$\mathbf{a}(t)=\partial L / \partial \mathbf{z}(t)$，它被定义为损失对隐藏状态$\mathbf{z}(t)$的梯度，这听起来好像更困难了一些，好在adjoint满足另一个微分方程：</p>
-<script type="math/tex; mode=display">
-\frac{d \mathbf{a}(t)}{d t}=-\mathbf{a}(t)^{\top} \frac{\partial f(\mathbf{z}(t), t, \theta)}{\partial \mathbf{z}}</script><p>证明先省略，只要求解这个ODE，我们就能够得到adjoint. 考虑反向传播的流程，只有终值是知道的，这个方程需要从$<br>t_1$开始求解。除此之外，求解这个ODE还需要知道 $<br>\textbf{z}(t)$ 的数值，但我们知道网络最终的输出$<br>\textbf{z}(t_1)$，以此为初值，重新求解神经网络构成的微分方程即可。</p>
-<p>知道adjoint后，最后的一步就是求解 $\frac{\partial<br>L}{\partial \theta}$ ，这需要再次计算一个积分，它与 $<br>\textbf{a}(t),\textbf{z}(t)$ 都有关：</p>
-<script type="math/tex; mode=display">
-\frac{d L}{d \theta}=\int_{t_{1}}^{t_{0}} \mathbf{a}(t)^{\top} \frac{\partial f(\mathbf{z}(t), t, \theta)}{\partial \theta} d t</script><p>证明先省略，上面过程中出现的 $\textbf{a}(t)^T\frac{\partial<br>f}{\partial z}，\textbf{a}(t)^T\frac{\partial f}{\partial<br>\theta}$都可以由深度学习框架的自动微分快速计算。最后一个问题是，最终的损失可能与$<br>\textbf{z}(t)$某个特定的中间状态相关。这也很容易解决，只要逐段地进行上面的流程即可，以上次的结果作为初值，如下图所示：<br><img src="https://zyplanethome.files.wordpress.com/2019/05/piecewise.png" alt="逐段进行的adjoint sensitivity method.\
-">{.wp-image-70}后面的我不准备仔细展开，说一下大致的实验结果。在MNIST上达到了0.42%的错误率，作为对比的ResNET错误率为0.41%.</p>
-<h2 id="证明环节"><a href="#证明环节" class="headerlink" title="证明环节"></a>证明环节</h2><p>第一个要证明adjoint确实满足另一个微分方程。为简易起见，这里的向量都为行向量，正文中的是列向量。</p>
-<script type="math/tex; mode=display">
-\frac{d \mathbf{z}(t)}{d t}=f(\mathbf{z}(t), t, \theta)</script><script type="math/tex; mode=display">
-\mathbf{a}(t)=\frac{d L}{d \mathbf{z}(t)}</script><p>需证：</p>
-<script type="math/tex; mode=display">
-\frac{d \mathbf{a}(t)}{d t}=-\mathbf{a}(t)^{T} \frac{\partial f(\mathbf{z}(t), t, \theta)}{\partial z}</script><p>在 $\epsilon$时刻后，隐状态的改变如下：</p>
-<script type="math/tex; mode=display">
-\mathbf{z}(t+\epsilon)=\int_{t}^{t+\epsilon} f(\mathbf{z}(t), t, \theta) d t+\mathbf{z}(t)=T_{\epsilon}(\mathbf{z}(t), t)</script><p>由链式法则：</p>
-<script type="math/tex; mode=display">
-\frac{d L}{d \mathbf{z}(t)}=\frac{d L}{d \mathbf{z}(t+\epsilon)} \frac{d \mathbf{z}(t+\epsilon)}{d \mathbf{z}(t)}, \mathbf{a}(t)=\mathbf{a}(t+\epsilon) \frac{d T_{\epsilon}(\mathbf{z}(t), t)}{d \mathbf{z}(t)}</script><p>由导数定义</p>
-<script type="math/tex; mode=display">
-\begin{aligned} \frac{d \mathbf{a}(t)}{d t} &=\lim _{\varepsilon \rightarrow 0^{+}} \frac{\mathbf{a}(t+\varepsilon)-\mathbf{a}(t)}{\varepsilon} \\ &=\lim _{\varepsilon \rightarrow 0^{+}} \frac{\mathbf{a}(t+\varepsilon)-\mathbf{a}(t+\varepsilon) \frac{\partial}{\partial \mathbf{z}(t)} T_{\varepsilon}(\mathbf{z}(t))}{\varepsilon} \\ &=\lim _{\varepsilon \rightarrow 0^{+}} \frac{\mathbf{a}(t+\varepsilon)-\mathbf{a}(t+\varepsilon) \frac{\partial}{\partial \mathbf{z}(t)}\left(\mathbf{z}(t)+\varepsilon f(\mathbf{z}(t), t, \theta)+\mathcal{O}\left(\varepsilon^{2}\right)\right)}{\varepsilon} \\ &=\lim _{\varepsilon \rightarrow 0^{+}} \frac{\mathbf{a}(t+\varepsilon)-\mathbf{a}(t+\varepsilon)\left(I+\varepsilon \frac{\partial f(\mathbf{z}(t), t, \theta)}{\partial z(t)}+\mathcal{O}\left(\varepsilon^{2}\right)\right)}{\varepsilon} \\ &=\lim _{\varepsilon \rightarrow 0^{+}} \frac{-\varepsilon \mathbf{a}(t+\varepsilon) \frac{\partial f(\mathbf{z}(t), t, \theta)}{\varepsilon \mathbf{z}(t)}+\mathcal{O}(\varepsilon)}{\partial \mathbf{z}(t)}+\mathcal{O}(\varepsilon) \\ &=-\mathbf{a}(t) \frac{\partial f(\mathbf{z}(t), t, \theta)}{\partial \mathbf{z}(t)} \end{aligned}</script><p>即证得</p>
-<p>下一个证明使用了上面的结论，即最后求解 $<br>\frac{\partial L}{\partial\theta}$所用的积分等式。简单来说这里新定义了一个$<br>\textbf{a}_{aug}(t)$，使用上面的结果得到一个关于 $<br>\textbf{a}_{aug}(t)$的微分方程，再对t进行积分，即证明了该积分等式。<br><img src="https://zyplanethome.files.wordpress.com/2019/05/proof.png" alt>{.wp-image-98}</p>
+        <h1 id="notes-on-neural-ordinary-differential-equations">Notes on "Neural Ordinary Differential Equations"</h1><h2 id="前言">前言</h2><p>这篇18年Neurlps的bestpaper，主要的卖点在于改进了以往网络随着深度增加所需求的内存不断增多的问题，通过求解常微分方程的形式，在不储存中间状态的情况下，计算出网络的最终输出，将神经网络控制在了常数级的内存消耗(与网络深浅无关）。</p><a id="more"></a>
+
+
+<h2 id="insight">Insight</h2>
+<p>常微分方程我们都学过，怎么解析求解、存在性定理、唯一性定理、渐近性质等等，在数值计算课上也学过一些数值求解算法。无论做什么，想法都很重要。</p>
+<p>许多网络模型中，前馈过程都使用了迭代形式，如残差网络： <span class="math display">\[
+\mathbf{h}_{t+1}=\mathbf{h}_{t}+f\left(\mathbf{h}_{t}, \theta_{t}\right)
+\]</span> 这可以看作前向欧拉迭代求解微分方程的过程，将层数作为变量，取步距为一。如果还原为最原始的形式，即允许连续层数： <span class="math display">\[
+\frac{d \mathbf{h}(t)}{d t}=f(\mathbf{h}(t), t, \theta)
+\]</span> 那么这篇文章的标题NeuralODE就很好理解了，整个神经网络表示了一个微分方程，求解微分方程的过程即为推理过程。同时，<span class="math inline">\(\textbf{h}(0)\)</span>即为网络的输入，给定了微分方程的初值，一个黑盒求解器可以为我们求出方程解在任意时刻T的函数值<span class="math inline">\(\textbf{h}(T)\)</span>.</p>
+<h2 id="细节">细节</h2>
+<p>文章的insight并不难以理解，这个想法是完全可行的，剩下的问题集中在如何对网络进行训练，使方程的解正好是我们想要的结果。由于在处理方程求解器时，作者完全将其作为黑盒，所以这一步操作是不可微的，无法计算梯度。作者这里使用了adjoint sensitivity method，用于计算梯度，它是线性规模的算法，消耗内存较小。</p>
+<p>考虑给定的损失函数<span class="math inline">\(L(\cdot)\)</span>，它对方程解在最终时刻的函数值进行度量（即推断结果）：</p>
+<p><span class="math display">\[
+L\left(\mathbf{z}\left(t_{1}\right)\right)=L\left(\mathbf{z}\left(t_{0}\right)+\int_{t_{0}}^{t_{1}} f(\mathbf{z}(t), t, \theta) d t\right)=L\left(\text { ODESolve }\left(\mathbf{z}\left(t_{0}\right), f, t_{0}, t_{1}, \theta\right)\right)
+\]</span> 我们的目的是求解 <span class="math inline">\(\frac{\partial L}{\partial \theta}\)</span> . 按照adjoint sensitivity method的流程，我们需要先求解一个叫adjoint的函数<span class="math inline">\(\mathbf{a}(t)=\partial L / \partial \mathbf{z}(t)\)</span>，它被定义为损失对隐藏状态<span class="math inline">\(\mathbf{z}(t)\)</span>的梯度，这听起来好像更困难了一些，好在adjoint满足另一个微分方程： <span class="math display">\[
+\frac{d \mathbf{a}(t)}{d t}=-\mathbf{a}(t)^{\top} \frac{\partial f(\mathbf{z}(t), t, \theta)}{\partial \mathbf{z}}
+\]</span> 证明先省略，只要求解这个ODE，我们就能够得到adjoint. 考虑反向传播的流程，只有终值是知道的，这个方程需要从$ t_1$开始求解。除此之外，求解这个ODE还需要知道 $ (t)$ 的数值，但我们知道网络最终的输出$ (t_1)$，以此为初值，重新求解神经网络构成的微分方程即可。</p>
+<p>知道adjoint后，最后的一步就是求解 <span class="math inline">\(\frac{\partial L}{\partial \theta}\)</span> ，这需要再次计算一个积分，它与 $ (t),(t)$ 都有关： <span class="math display">\[
+\frac{d L}{d \theta}=\int_{t_{1}}^{t_{0}} \mathbf{a}(t)^{\top} \frac{\partial f(\mathbf{z}(t), t, \theta)}{\partial \theta} d t
+\]</span> 证明先省略，上面过程中出现的 <span class="math inline">\(\textbf{a}(t)^T\frac{\partial f}{\partial z}，\textbf{a}(t)^T\frac{\partial f}{\partial \theta}\)</span>都可以由深度学习框架的自动微分快速计算。最后一个问题是，最终的损失可能与$ (t)$某个特定的中间状态相关。这也很容易解决，只要逐段地进行上面的流程即可，以上次的结果作为初值，如下图所示： <img src="https://zyplanethome.files.wordpress.com/2019/05/piecewise.png" class="wp-image-70" alt="逐段进行的adjoint sensitivity method. ">后面的我不准备仔细展开，说一下大致的实验结果。在MNIST上达到了0.42%的错误率，作为对比的ResNET错误率为0.41%.</p>
+<h2 id="证明环节">证明环节</h2>
+<p>第一个要证明adjoint确实满足另一个微分方程。为简易起见，这里的向量都为行向量，正文中的是列向量。</p>
+<p><span class="math display">\[
+\frac{d \mathbf{z}(t)}{d t}=f(\mathbf{z}(t), t, \theta)
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{a}(t)=\frac{d L}{d \mathbf{z}(t)}
+\]</span></p>
+<p>需证： <span class="math display">\[
+\frac{d \mathbf{a}(t)}{d t}=-\mathbf{a}(t)^{T} \frac{\partial f(\mathbf{z}(t), t, \theta)}{\partial z}
+\]</span> 在 <span class="math inline">\(\epsilon\)</span>时刻后，隐状态的改变如下：</p>
+<p><span class="math display">\[
+\mathbf{z}(t+\epsilon)=\int_{t}^{t+\epsilon} f(\mathbf{z}(t), t, \theta) d t+\mathbf{z}(t)=T_{\epsilon}(\mathbf{z}(t), t)
+\]</span> 由链式法则：</p>
+<p><span class="math display">\[
+\frac{d L}{d \mathbf{z}(t)}=\frac{d L}{d \mathbf{z}(t+\epsilon)} \frac{d \mathbf{z}(t+\epsilon)}{d \mathbf{z}(t)}, \mathbf{a}(t)=\mathbf{a}(t+\epsilon) \frac{d T_{\epsilon}(\mathbf{z}(t), t)}{d \mathbf{z}(t)}
+\]</span> 由导数定义 <span class="math display">\[
+\begin{aligned} \frac{d \mathbf{a}(t)}{d t} &amp;=\lim _{\varepsilon \rightarrow 0^{+}} \frac{\mathbf{a}(t+\varepsilon)-\mathbf{a}(t)}{\varepsilon} \\ &amp;=\lim _{\varepsilon \rightarrow 0^{+}} \frac{\mathbf{a}(t+\varepsilon)-\mathbf{a}(t+\varepsilon) \frac{\partial}{\partial \mathbf{z}(t)} T_{\varepsilon}(\mathbf{z}(t))}{\varepsilon} \\ &amp;=\lim _{\varepsilon \rightarrow 0^{+}} \frac{\mathbf{a}(t+\varepsilon)-\mathbf{a}(t+\varepsilon) \frac{\partial}{\partial \mathbf{z}(t)}\left(\mathbf{z}(t)+\varepsilon f(\mathbf{z}(t), t, \theta)+\mathcal{O}\left(\varepsilon^{2}\right)\right)}{\varepsilon} \\ &amp;=\lim _{\varepsilon \rightarrow 0^{+}} \frac{\mathbf{a}(t+\varepsilon)-\mathbf{a}(t+\varepsilon)\left(I+\varepsilon \frac{\partial f(\mathbf{z}(t), t, \theta)}{\partial z(t)}+\mathcal{O}\left(\varepsilon^{2}\right)\right)}{\varepsilon} \\ &amp;=\lim _{\varepsilon \rightarrow 0^{+}} \frac{-\varepsilon \mathbf{a}(t+\varepsilon) \frac{\partial f(\mathbf{z}(t), t, \theta)}{\varepsilon \mathbf{z}(t)}+\mathcal{O}(\varepsilon)}{\partial \mathbf{z}(t)}+\mathcal{O}(\varepsilon) \\ &amp;=-\mathbf{a}(t) \frac{\partial f(\mathbf{z}(t), t, \theta)}{\partial \mathbf{z}(t)} \end{aligned}
+\]</span> 即证得</p>
+<p>下一个证明使用了上面的结论，即最后求解 $ <span class="math inline">\(所用的积分等式。简单来说这里新定义了一个\)</span> <em>{aug}(t)$，使用上面的结果得到一个关于 $ </em>{aug}(t)$的微分方程，再对t进行积分，即证明了该积分等式。 <img src="https://zyplanethome.files.wordpress.com/2019/05/proof.png" class="wp-image-98"></p>
 
     </div>
 
@@ -455,7 +466,7 @@ L\left(\mathbf{z}\left(t_{1}\right)\right)=L\left(\mathbf{z}\left(t_{0}\right)+\
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Notes-on-“Neural-Ordinary-Differential-Equations”"><span class="nav-number">1.</span> <span class="nav-text">Notes on “Neural Ordinary Differential Equations”</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Insight"><span class="nav-number">1.2.</span> <span class="nav-text">Insight</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#细节"><span class="nav-number">1.3.</span> <span class="nav-text">细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#证明环节"><span class="nav-number">1.4.</span> <span class="nav-text">证明环节</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#notes-on-neural-ordinary-differential-equations"><span class="nav-number">1.</span> <span class="nav-text">Notes on &quot;Neural Ordinary Differential Equations&quot;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#insight"><span class="nav-number">1.2.</span> <span class="nav-text">Insight</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#细节"><span class="nav-number">1.3.</span> <span class="nav-text">细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#证明环节"><span class="nav-number">1.4.</span> <span class="nav-text">证明环节</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -582,12 +593,12 @@ L\left(\mathbf{z}\left(t_{1}\right)\right)=L\left(\mathbf{z}\left(t_{0}\right)+\
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">60k</span>
+    <span title="Symbols count total">74k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1:40</span>
+    <span title="Reading time total">2:03</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
   <span class="post-meta-divider">|</span>

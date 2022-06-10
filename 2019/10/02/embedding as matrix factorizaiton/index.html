@@ -315,7 +315,7 @@
               
                 <span class="post-meta-item-text">Symbols count in article: </span>
               
-              <span>4k</span>
+              <span>4.3k</span>
             </span>
           
             <span class="post-meta-item" title="Reading time">
@@ -338,62 +338,79 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Neural-Word-Embedding-as-Implicit-Matrix-Factorization"><a href="#Neural-Word-Embedding-as-Implicit-Matrix-Factorization" class="headerlink" title="Neural Word Embedding as Implicit Matrix Factorization"></a>Neural Word Embedding as Implicit Matrix Factorization</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>尽管嵌入模型很明显是基于分布假设来进行优化，使常出现的word-context对向量内积极大化，并极小化随机word-context对内积。但对于这些优化指标的讨论很少，也不清楚为什么这样能够得到期望的结果。这篇文章对此进行了探讨，表明SGNS(skip-gram with negative-sampling)的训练方法实际上是加权矩阵分解，其目标函数在隐式地分解一个移动PMI矩阵，并基于此提出了更高效的优化方式。</p><a id="more"></a>
-<h2 id="SGNS"><a href="#SGNS" class="headerlink" title="SGNS"></a>SGNS</h2><p>关于skip-gram with negative-sampling，这里就不再赘述，请查看下面两篇文章：</p>
+        <h1 id="neural-word-embedding-as-implicit-matrix-factorization">Neural Word Embedding as Implicit Matrix Factorization</h1><h2 id="前言">前言</h2><p>尽管嵌入模型很明显是基于分布假设来进行优化，使常出现的word-context对向量内积极大化，并极小化随机word-context对内积。但对于这些优化指标的讨论很少，也不清楚为什么这样能够得到期望的结果。这篇文章对此进行了探讨，表明SGNS(skip-gram with negative-sampling)的训练方法实际上是加权矩阵分解，其目标函数在隐式地分解一个移动PMI矩阵，并基于此提出了更高效的优化方式。</p><a id="more"></a>
+
+
+<h2 id="sgns">SGNS</h2>
+<p>关于skip-gram with negative-sampling，这里就不再赘述，请查看下面两篇文章：</p>
 <ul>
 <li><a href="https://arxiv.org/abs/1301.3781" target="_blank" rel="noopener">Efficient estimation of word representations in vector space</a></li>
 <li><a href="https://arxiv.org/abs/1310.4546" target="_blank" rel="noopener">Distributed representations of words and phrases and their compositionality</a></li>
 </ul>
-<p>总的来说，SGNS的目标函数如下：</p>
-<script type="math/tex; mode=display">
-l=\Sigma_{w\in V_W}\Sigma_{c\in V_C}|(w,c)|(log\sigma(\vec{w}\cdot\vec{c})+k\cdot\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)])\tag{1}</script><p>这里$V_W$为单词集，$V_C$为上下文集，$P_D$为均匀测度满足$P_D(c)=\frac{|(c)|}{|D|}$.</p>
-<h2 id="隐式矩阵分解下的SGNS"><a href="#隐式矩阵分解下的SGNS" class="headerlink" title="隐式矩阵分解下的SGNS"></a>隐式矩阵分解下的SGNS</h2><p>SGNS将单词以及上下文嵌入为低维空间的向量，得到单词与上下文向量构成的矩阵$W$与$C$，这两者实际上是相同的。$W$的行元素（即单词嵌入向量）被直接提取使用，但原始SG模型会进行上下文预测，SGNS可以看作是对矩阵$M=W\cdot C^T$的分解。</p>
-<p>对于$M$，其分量$M_{i,j}$对应了$W_i,C_j$的向量积，这表示着特定单词与上下文的关联强度，而这种关联矩阵常常出现于NLP的研究中，但该矩阵并没有显式出现在SGNS的优化函数中，那么将SNGS看作对$M$的隐式分解说得通吗？如果不是，SGNS分解的是哪个矩阵呢？</p>
-<h3 id="刻画该隐式矩阵"><a href="#刻画该隐式矩阵" class="headerlink" title="刻画该隐式矩阵"></a>刻画该隐式矩阵</h3><p>重写式子$(1)$:</p>
-<script type="math/tex; mode=display">
+<p>总的来说，SGNS的目标函数如下： <span class="math display">\[
+l=\Sigma_{w\in V_W}\Sigma_{c\in V_C}|(w,c)|(log\sigma(\vec{w}\cdot\vec{c})+k\cdot\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)])\tag{1}
+\]</span> 这里<span class="math inline">\(V_W\)</span>为单词集，<span class="math inline">\(V_C\)</span>为上下文集，<span class="math inline">\(P_D\)</span>为均匀测度满足<span class="math inline">\(P_D(c)=\frac{|(c)|}{|D|}\)</span>.</p>
+<h2 id="隐式矩阵分解下的sgns">隐式矩阵分解下的SGNS</h2>
+<p>SGNS将单词以及上下文嵌入为低维空间的向量，得到单词与上下文向量构成的矩阵<span class="math inline">\(W\)</span>与<span class="math inline">\(C\)</span>，这两者实际上是相同的。<span class="math inline">\(W\)</span>的行元素（即单词嵌入向量）被直接提取使用，但原始SG模型会进行上下文预测，SGNS可以看作是对矩阵<span class="math inline">\(M=W\cdot C^T\)</span>的分解。</p>
+<p>对于<span class="math inline">\(M\)</span>，其分量<span class="math inline">\(M_{i,j}\)</span>对应了<span class="math inline">\(W_i,C_j\)</span>的向量积，这表示着特定单词与上下文的关联强度，而这种关联矩阵常常出现于NLP的研究中，但该矩阵并没有显式出现在SGNS的优化函数中，那么将SNGS看作对<span class="math inline">\(M\)</span>的隐式分解说得通吗？如果不是，SGNS分解的是哪个矩阵呢？</p>
+<h3 id="刻画该隐式矩阵">刻画该隐式矩阵</h3>
+<p>重写式子<span class="math inline">\((1)\)</span>: <span class="math display">\[
 \begin{aligned}
-l&=\Sigma_{w\in V_W}\Sigma_{c\in V_C}|(w,c)|(log\sigma(\vec{w}\cdot\vec{c}))+\Sigma_{w\in V_W}\Sigma_{c\in V_C}\|(w,c)|(k\cdot\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)])\\
-&=\Sigma_{w\in V_W}\Sigma_{c\in V_C}|(w,c)|(log\sigma(\vec{w}\cdot\vec{c}))+\Sigma_{w\in V_W}|(w)|(k\cdot\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)])
-\end{aligned}\tag{2}</script><p>然后显式地计算出期望项：</p>
-<script type="math/tex; mode=display">
+l&amp;=\Sigma_{w\in V_W}\Sigma_{c\in V_C}|(w,c)|(log\sigma(\vec{w}\cdot\vec{c}))+\Sigma_{w\in V_W}\Sigma_{c\in V_C}\|(w,c)|(k\cdot\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)])\\
+&amp;=\Sigma_{w\in V_W}\Sigma_{c\in V_C}|(w,c)|(log\sigma(\vec{w}\cdot\vec{c}))+\Sigma_{w\in V_W}|(w)|(k\cdot\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)])
+\end{aligned}\tag{2}
+\]</span> 然后显式地计算出期望项： <span class="math display">\[
 \begin{aligned}
-\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)]&=\Sigma_{c_N\in V_C }\frac{|(c_N)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c}_N)\\
-&=\frac{|(c)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c})+\Sigma_{c_N\in V_C\setminus \{c \}}\frac{|(c_N)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c}_N)
-\end{aligned}\tag{3}</script><p>结合两式并将$l$改写为局部形式：</p>
-<script type="math/tex; mode=display">
-l(w,c)=|(w,c)|log\sigma (\vec{w}\cdot \vec{c})+k\cdot |(w)|\cdot\frac{|(c)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c})\tag{4}</script><p>定义$x=\vec{w}\cdot \vec{c}$，并对其求导：</p>
-<script type="math/tex; mode=display">
-\frac{\partial{l}}{\partial{x}}=|(w,c)|\cdot\sigma(-x)-k\cdot|(w)|\frac{|(c)|}{|D|}\sigma(x)</script><p>令其为零得到：</p>
-<script type="math/tex; mode=display">
-e^{2x}-(\frac{|(w,c)|}{k\cdot|(w)|\cdot\frac{|(c)|}{|D|}}-1)e^x-\frac{|(w,c)|}{k\cdot|(w)|\cdot\frac{|(c)|}{|D|}}=0</script><p>我们可以直接给出显式解：</p>
-<script type="math/tex; mode=display">
-\vec{w}\cdot \vec{c}=log(\frac{|(w,c)|\cdot|D|}{|(w)|\cdot |(c)|})-logk\tag{5}</script><p>这里指出$log(\frac{|(w,c)|\cdot|D|}{|(w)|\cdot |(c)|})$即$(w,c)$的PMI(pointwise mutual information)，PMI常见于nlp的研究中，可以进一步将上式写为：</p>
-<script type="math/tex; mode=display">
-M_{i,j}^{SGNS}=W_i\cdot C_j=\vec{w}_i\cdot\vec{c}_j=PMI(w_i,c_j)-logk\tag{6}</script><p>SGNS实际上在分解上述的矩阵，当$k=1$即负采样率为1时，SGNS的目标函数其实在分解由单词与上下文构成的关联矩阵，并且关联强度由PMI给出，这里将其定义为PMI阵，$M^{PMI}$. 当$k$变化时，对应的PMI阵会有所偏移，$M^{PMIk}=M^{PMI}-logk$.</p>
-<p>其它的嵌入算法也可以相应理解，如noise-contrastive estimation模型分解的矩阵为：</p>
-<script type="math/tex; mode=display">
-M_{i,j}^{NCE}=\vec{w}_i\cdot \vec{c}_j=log(\frac{|(w,c)|}{|(c)|})-logk=logP(w|c)-logk\tag{7}</script><h3 id="PMI"><a href="#PMI" class="headerlink" title="PMI"></a>PMI</h3><p>PMI是信息理论中用于度量一对离散输出$x,y$的度量函数：</p>
-<script type="math/tex; mode=display">
-PMI(x,y) = log\frac{P(x,y)}{P(x)P(y)}\tag{8}</script><p>在进行词嵌入时，上面的概率完全是由计数来估计的：</p>
-<script type="math/tex; mode=display">
-PMI(w,c)=log\frac{|(w,c)|\cdot|D|}{|(w)|\cdot |(c)|}\tag{9}</script><p>上面所给的PMI估计并不是定义良好的，当不存在某个$(w,c)$对时，对应的估计将为负无穷，一个修改方式是将负无穷的分量重整为0。但考虑PMI的语义，这并不合理，更好的做法是将负值全都置为零，这称为postive PMI(PPMI)：</p>
-<script type="math/tex; mode=display">
-PPMI(w,c)=\max(PMI(w,c),0)\tag{10}</script><h2 id="词嵌入的其它选择"><a href="#词嵌入的其它选择" class="headerlink" title="词嵌入的其它选择"></a>词嵌入的其它选择</h2><p>首先由前面的推导，很容易得到下面的shifted PPMI:</p>
-<script type="math/tex; mode=display">
-SPPMI_k(w,c)=\max (PMI(w,c)-logk,0)\tag{11}</script><h3 id="谱降维：SVD-over-Shifted-PPMI"><a href="#谱降维：SVD-over-Shifted-PPMI" class="headerlink" title="谱降维：SVD over Shifted PPMI"></a>谱降维：SVD over Shifted PPMI</h3><p>如果将SGNS理解为矩阵分解，那么通常的矩阵分解也可以直接用于求解词嵌入，这里使用truncated SVD.</p>
-<p>SVD将M分解为三个矩阵的乘积$U\cdot \Sigma \cdot V^T$，这里$U$和$V$是正交阵，$\Sigma$为奇异值构成的对角阵。令$\Sigma_d$为前$d$个奇异值构成的对角阵，$U_d$和$V_d$为从$U,V$对应列抽出的子阵。$M_d=U_d\cdot \Sigma_d \cdot V_d^T$为$M$的秩$d$最佳估计，即有$M_d=\mathop{\arg\min}\limits_{Rank(M’)=d}||M’-M||_2$成立.</p>
-<p>如果使用SVD，那么$W=U_d \cdot \Sigma_d$行间的向量积等于$M_D$行间的向量积，使用$W$足够作为$M_D$的低维稠密表示。在NLP的研究中，一个常见方法是对PPMI矩阵$M^{PPMI}$进行SVD分解，并使用$W^{SVD}=U_d\cdot \Sigma_d$以及$C^{SVD}=V_D$的行元素分别作为单词与上下文表示。但这种方法得到的结果在语义任务上总是达不到SGNS的性能。</p>
+\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)]&amp;=\Sigma_{c_N\in V_C }\frac{|(c_N)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c}_N)\\
+&amp;=\frac{|(c)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c})+\Sigma_{c_N\in V_C\setminus \{c \}}\frac{|(c_N)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c}_N)
+\end{aligned}\tag{3}
+\]</span> 结合两式并将<span class="math inline">\(l\)</span>改写为局部形式： <span class="math display">\[
+l(w,c)=|(w,c)|log\sigma (\vec{w}\cdot \vec{c})+k\cdot |(w)|\cdot\frac{|(c)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c})\tag{4}
+\]</span> 定义<span class="math inline">\(x=\vec{w}\cdot \vec{c}\)</span>，并对其求导： <span class="math display">\[
+\frac{\partial{l}}{\partial{x}}=|(w,c)|\cdot\sigma(-x)-k\cdot|(w)|\frac{|(c)|}{|D|}\sigma(x)
+\]</span> 令其为零得到： <span class="math display">\[
+e^{2x}-(\frac{|(w,c)|}{k\cdot|(w)|\cdot\frac{|(c)|}{|D|}}-1)e^x-\frac{|(w,c)|}{k\cdot|(w)|\cdot\frac{|(c)|}{|D|}}=0
+\]</span> 我们可以直接给出显式解： <span class="math display">\[
+\vec{w}\cdot \vec{c}=log(\frac{|(w,c)|\cdot|D|}{|(w)|\cdot |(c)|})-logk\tag{5}
+\]</span> 这里指出<span class="math inline">\(log(\frac{|(w,c)|\cdot|D|}{|(w)|\cdot |(c)|})\)</span>即<span class="math inline">\((w,c)\)</span>的PMI(pointwise mutual information)，PMI常见于nlp的研究中，可以进一步将上式写为： <span class="math display">\[
+M_{i,j}^{SGNS}=W_i\cdot C_j=\vec{w}_i\cdot\vec{c}_j=PMI(w_i,c_j)-logk\tag{6}
+\]</span> SGNS实际上在分解上述的矩阵，当<span class="math inline">\(k=1\)</span>即负采样率为1时，SGNS的目标函数其实在分解由单词与上下文构成的关联矩阵，并且关联强度由PMI给出，这里将其定义为PMI阵，<span class="math inline">\(M^{PMI}\)</span>. 当<span class="math inline">\(k\)</span>变化时，对应的PMI阵会有所偏移，<span class="math inline">\(M^{PMIk}=M^{PMI}-logk\)</span>.</p>
+<p>其它的嵌入算法也可以相应理解，如noise-contrastive estimation模型分解的矩阵为： <span class="math display">\[
+M_{i,j}^{NCE}=\vec{w}_i\cdot \vec{c}_j=log(\frac{|(w,c)|}{|(c)|})-logk=logP(w|c)-logk\tag{7}
+\]</span></p>
+<h3 id="pmi">PMI</h3>
+<p>PMI是信息理论中用于度量一对离散输出<span class="math inline">\(x,y\)</span>的度量函数： <span class="math display">\[
+PMI(x,y) = log\frac{P(x,y)}{P(x)P(y)}\tag{8}
+\]</span> 在进行词嵌入时，上面的概率完全是由计数来估计的： <span class="math display">\[
+PMI(w,c)=log\frac{|(w,c)|\cdot|D|}{|(w)|\cdot |(c)|}\tag{9}
+\]</span></p>
+<p>上面所给的PMI估计并不是定义良好的，当不存在某个<span class="math inline">\((w,c)\)</span>对时，对应的估计将为负无穷，一个修改方式是将负无穷的分量重整为0。但考虑PMI的语义，这并不合理，更好的做法是将负值全都置为零，这称为postive PMI(PPMI)： <span class="math display">\[
+PPMI(w,c)=\max(PMI(w,c),0)\tag{10}
+\]</span></p>
+<h2 id="词嵌入的其它选择">词嵌入的其它选择</h2>
+<p>首先由前面的推导，很容易得到下面的shifted PPMI: <span class="math display">\[
+SPPMI_k(w,c)=\max (PMI(w,c)-logk,0)\tag{11}
+\]</span></p>
+<h3 id="谱降维svd-over-shifted-ppmi">谱降维：SVD over Shifted PPMI</h3>
+<p>如果将SGNS理解为矩阵分解，那么通常的矩阵分解也可以直接用于求解词嵌入，这里使用truncated SVD.</p>
+<p>SVD将M分解为三个矩阵的乘积<span class="math inline">\(U\cdot \Sigma \cdot V^T\)</span>，这里<span class="math inline">\(U\)</span>和<span class="math inline">\(V\)</span>是正交阵，<span class="math inline">\(\Sigma\)</span>为奇异值构成的对角阵。令<span class="math inline">\(\Sigma_d\)</span>为前<span class="math inline">\(d\)</span>个奇异值构成的对角阵，<span class="math inline">\(U_d\)</span>和<span class="math inline">\(V_d\)</span>为从<span class="math inline">\(U,V\)</span>对应列抽出的子阵。<span class="math inline">\(M_d=U_d\cdot \Sigma_d \cdot V_d^T\)</span>为<span class="math inline">\(M\)</span>的秩<span class="math inline">\(d\)</span>最佳估计，即有<span class="math inline">\(M_d=\mathop{\arg\min}\limits_{Rank(M&#39;)=d}||M&#39;-M||_2\)</span>成立.</p>
+<p>如果使用SVD，那么<span class="math inline">\(W=U_d \cdot \Sigma_d\)</span>行间的向量积等于<span class="math inline">\(M_D\)</span>行间的向量积，使用<span class="math inline">\(W\)</span>足够作为<span class="math inline">\(M_D\)</span>的低维稠密表示。在NLP的研究中，一个常见方法是对PPMI矩阵<span class="math inline">\(M^{PPMI}\)</span>进行SVD分解，并使用<span class="math inline">\(W^{SVD}=U_d\cdot \Sigma_d\)</span>以及<span class="math inline">\(C^{SVD}=V_D\)</span>的行元素分别作为单词与上下文表示。但这种方法得到的结果在语义任务上总是达不到SGNS的性能。</p>
 <p><strong>对称SVD</strong></p>
-<p>如果直接使用SVD来分解，那么最终得到的单词、上下文嵌入阵会相当不同，仅$C^{SVD}$为正交的，SGNS方法相比显得更加对称，故而这里使用如下的分解：</p>
-<script type="math/tex; mode=display">
-W^{SVD_{1/2}}=U_D\cdot \sqrt{\Sigma_d}\quad C^{SVD_{1/2}}=V_d\cdot \sqrt{\Sigma_d}\tag{12}</script><p>尽管缺乏理论解释，但在实践中进行对称化后能得到更好的性能。</p>
+<p>如果直接使用SVD来分解，那么最终得到的单词、上下文嵌入阵会相当不同，仅<span class="math inline">\(C^{SVD}\)</span>为正交的，SGNS方法相比显得更加对称，故而这里使用如下的分解： <span class="math display">\[
+W^{SVD_{1/2}}=U_D\cdot \sqrt{\Sigma_d}\quad C^{SVD_{1/2}}=V_d\cdot \sqrt{\Sigma_d}\tag{12}
+\]</span> 尽管缺乏理论解释，但在实践中进行对称化后能得到更好的性能。</p>
 <p><strong>SVD versus SGNS</strong></p>
-<p>SVD不需要训练以及超参数的调整，对任何$\{(w,c,|(w,c)|)\}$形式的数据都可以使用，泛用性更高。</p>
-<p>而SGNS可以更好地处理观察，未观察事件；除此之外， SGNS对不同$(w,c)$对分配了不同权重，这对于SVD来说是相当困难的，对于非稀疏的矩阵SGNS拥有更高的分解效率。</p>
+<p>SVD不需要训练以及超参数的调整，对任何<span class="math inline">\(\{(w,c,|(w,c)|)\}\)</span>形式的数据都可以使用，泛用性更高。</p>
+<p>而SGNS可以更好地处理观察，未观察事件；除此之外， SGNS对不同<span class="math inline">\((w,c)\)</span>对分配了不同权重，这对于SVD来说是相当困难的，对于非稀疏的矩阵SGNS拥有更高的分解效率。</p>
 <p>一个有趣的想法是使用随机矩阵分解，作者将其放在未来工作中。</p>
-<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p>个人觉得理论仍然不太充分，有些地方还是有点自圆其说，实验结果还过得去。</p>
-<p><img src="https://zyplanethome.files.wordpress.com/2019/10/svd1.png" alt="table1"></p>
-<p><img src="https://zyplanethome.files.wordpress.com/2019/10/svd2.png" alt="table2"></p>
+<h2 id="实验结果">实验结果</h2>
+<p>个人觉得理论仍然不太充分，有些地方还是有点自圆其说，实验结果还过得去。</p>
+<figure>
+<img src="https://zyplanethome.files.wordpress.com/2019/10/svd1.png" alt><figcaption>table1</figcaption>
+</figure>
+<figure>
+<img src="https://zyplanethome.files.wordpress.com/2019/10/svd2.png" alt><figcaption>table2</figcaption>
+</figure>
 
     </div>
 
@@ -483,7 +500,7 @@ W^{SVD_{1/2}}=U_D\cdot \sqrt{\Sigma_d}\quad C^{SVD_{1/2}}=V_d\cdot \sqrt{\Sigma_
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Word-Embedding-as-Implicit-Matrix-Factorization"><span class="nav-number">1.</span> <span class="nav-text">Neural Word Embedding as Implicit Matrix Factorization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SGNS"><span class="nav-number">1.2.</span> <span class="nav-text">SGNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐式矩阵分解下的SGNS"><span class="nav-number">1.3.</span> <span class="nav-text">隐式矩阵分解下的SGNS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#刻画该隐式矩阵"><span class="nav-number">1.3.1.</span> <span class="nav-text">刻画该隐式矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PMI"><span class="nav-number">1.3.2.</span> <span class="nav-text">PMI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词嵌入的其它选择"><span class="nav-number">1.4.</span> <span class="nav-text">词嵌入的其它选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#谱降维：SVD-over-Shifted-PPMI"><span class="nav-number">1.4.1.</span> <span class="nav-text">谱降维：SVD over Shifted PPMI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">1.5.</span> <span class="nav-text">实验结果</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#neural-word-embedding-as-implicit-matrix-factorization"><span class="nav-number">1.</span> <span class="nav-text">Neural Word Embedding as Implicit Matrix Factorization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sgns"><span class="nav-number">1.2.</span> <span class="nav-text">SGNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐式矩阵分解下的sgns"><span class="nav-number">1.3.</span> <span class="nav-text">隐式矩阵分解下的SGNS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#刻画该隐式矩阵"><span class="nav-number">1.3.1.</span> <span class="nav-text">刻画该隐式矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pmi"><span class="nav-number">1.3.2.</span> <span class="nav-text">PMI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词嵌入的其它选择"><span class="nav-number">1.4.</span> <span class="nav-text">词嵌入的其它选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#谱降维svd-over-shifted-ppmi"><span class="nav-number">1.4.1.</span> <span class="nav-text">谱降维：SVD over Shifted PPMI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">1.5.</span> <span class="nav-text">实验结果</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -610,12 +627,12 @@ W^{SVD_{1/2}}=U_D\cdot \sqrt{\Sigma_d}\quad C^{SVD_{1/2}}=V_d\cdot \sqrt{\Sigma_
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">60k</span>
+    <span title="Symbols count total">74k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1:40</span>
+    <span title="Reading time total">2:03</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
   <span class="post-meta-divider">|</span>

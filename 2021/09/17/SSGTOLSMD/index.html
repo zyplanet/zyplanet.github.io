@@ -313,7 +313,7 @@
               
                 <span class="post-meta-item-text">Symbols count in article: </span>
               
-              <span>3.3k</span>
+              <span>3.4k</span>
             </span>
           
             <span class="post-meta-item" title="Reading time">
@@ -336,31 +336,56 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Self-Supervised-Graph-Transformer-on-Large-Scale-Molecular-Data"><a href="#Self-Supervised-Graph-Transformer-on-Large-Scale-Molecular-Data" class="headerlink" title="Self-Supervised Graph Transformer on Large-Scale Molecular Data"></a>Self-Supervised Graph Transformer on Large-Scale Molecular Data</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>研究分子的表示学习，最近的工作直接使用GNN来进行。然而有两点问题：1.分子标注量不够2.对新合成分子泛化性不够。这篇工作提出了GROVER，graph representation from self-supervised message passing transformer. GROVER设计了node/edge/graph层级的自监督任务，并将message passing network与transformer融合，获得更好的分子编码。GROVER含有一亿参数在千万分子上进行无监督训练，在11个benchmark上达到了平均6%的精度提升。</p><a id="more"></a>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>GNNs在分子数据上有很好表现，比如分子性质预测、虚拟筛选。虽然但是，还有摘要中提到的两点缺陷。因为分子的标注获取是比图像困难很多的，现有benchmark的标注都是远远不够的。NLP中自监督学习可以带来很大泛化能力的提升，<strong>SMILE</strong>将分子转化为序列化表示，并使用Bert风格的模型来进行分子表示预训练，N-gram graph: Simple unsupervised representation for graphs, with applications to molecules.用Ngram的方法得到边表示。但这些方法没有关注拓扑结构。</p>
+        <h1 id="self-supervised-graph-transformer-on-large-scale-molecular-data">Self-Supervised Graph Transformer on Large-Scale Molecular Data</h1><h2 id="abstract">Abstract</h2><p>研究分子的表示学习，最近的工作直接使用GNN来进行。然而有两点问题：1.分子标注量不够2.对新合成分子泛化性不够。这篇工作提出了GROVER，graph representation from self-supervised message passing transformer. GROVER设计了node/edge/graph层级的自监督任务，并将message passing network与transformer融合，获得更好的分子编码。GROVER含有一亿参数在千万分子上进行无监督训练，在11个benchmark上达到了平均6%的精度提升。</p><a id="more"></a>
+
+
+<h2 id="introduction">Introduction</h2>
+<p>GNNs在分子数据上有很好表现，比如分子性质预测、虚拟筛选。虽然但是，还有摘要中提到的两点缺陷。因为分子的标注获取是比图像困难很多的，现有benchmark的标注都是远远不够的。NLP中自监督学习可以带来很大泛化能力的提升，<strong>SMILE</strong>将分子转化为序列化表示，并使用Bert风格的模型来进行分子表示预训练，N-gram graph: Simple unsupervised representation for graphs, with applications to molecules.用Ngram的方法得到边表示。但这些方法没有关注拓扑结构。</p>
 <p>也有构建三个自监督任务来做分子预训练的，contex prediction，node masking，graph property prediction. 这些任务并不是最优的，mask任务中它们将atom种类作为label，但比起NLP的词库，atom的种类太少，频率高的atom将会极大影响编码。在graph层级的任务则是有监督的。这对下游任务造成了负迁移的可能。</p>
 <p>GROVER设计了两种自监督任务，node层级GROVER随机掩码目标node/edge的局部子图然后用graph嵌入预测语义性质，graph层级GROVER根据领域知识抽取语义样式，然后根据graph嵌入预测这些样式是否出现。</p>
 <p>在下游任务中，GROVER在分类任务上相对N-gram替身了22.4%，相对之前的自监督框架提升了7.4%。进一步在11个常见的benchmark上GROVER提升了平均6%.</p>
-<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><h3 id="Self-supervised-Learning-on-Graphs"><a href="#Self-supervised-Learning-on-Graphs" class="headerlink" title="Self-supervised Learning on Graphs"></a>Self-supervised Learning on Graphs</h3><p>最近在分子数据集上的是N-gram和Pre-training graph neural networks。N-gram用短距离游走以及节点嵌入来获取图表示。Pre-training则分离了node/edge上高相关的context预测任务，造成难以保持局部结构和节点特征的领域信息。（这说的什么寄吧，反正就是效果不好呗）其次它graph层级的任务是有监督，这已经说过了。</p>
-<h3 id="Molecular-Representation-learning"><a href="#Molecular-Representation-learning" class="headerlink" title="Molecular Representation learning"></a>Molecular Representation learning</h3><p>新的工作基本都是基于GNN的。</p>
-<h2 id="Transformer和GNN的背景知识"><a href="#Transformer和GNN的背景知识" class="headerlink" title="Transformer和GNN的背景知识"></a>Transformer和GNN的背景知识</h2><p>这个不懂的自己查阅，GNN相比NN会用到一个邻接矩阵，Transformer是做sequence to sequence的，整体是一个encoder-decoder的结构，encoder对序列进行编码，decoder从编码中不断生成新的预测，形成预测序列。这个过程还用到自回归的机制，后面的预测依赖于先前的预测。</p>
-<p><img src="https://z3.ax1x.com/2021/09/17/4MKtzR.png" alt="img"></p>
-<p>message passing neural networks包含了两个参数层数L和hop数$K_l,l=1,\cdots,L$，L决定了readout中的表示数量，hop数决定了每个L会编码几阶邻域的信息。</p>
-<h2 id="The-GROVER-Pre-training-Framework"><a href="#The-GROVER-Pre-training-Framework" class="headerlink" title="The GROVER Pre-training Framework"></a>The GROVER Pre-training Framework</h2><p><img src="https://z3.ax1x.com/2021/09/17/4MK0eK.png" alt="img">  </p>
-<h3 id="模型结构细节"><a href="#模型结构细节" class="headerlink" title="模型结构细节"></a>模型结构细节</h3><p> GROVER包含两个模块，node/edge两块，这里只介绍node部分。重点是dyMPN模块，mesage passing有两个参数：迭代次数L和跳跃次数$K_l,l=1,\cdots,L$跳跃次数与图卷积的感受域有很大相关。对于给定的层数L，作者发现事先决定好的跳跃次数无法对多个数据集有效。因此，GROVER在训练时对每一层使用了随机的跳跃次数。有两种随机策略是有效的1.(a,b)间的均匀分布2.由(a,b)区间规范的正态分布。改动其实只有这里而已，其余部分都和transformer的模块一样，看Figure 1即可。</p>
-<h3 id="自监督任务"><a href="#自监督任务" class="headerlink" title="自监督任务"></a>自监督任务</h3><p>自监督的核心就是设计好的自监督任务，在这篇工作不使用任何有监督，以免引入不够通用的先验，而造成负迁移。这里有两种自监督任务，contextual property prediction和graph-level motif prediction，Figure2展示了这两个任务。</p>
-<p><img src="https://z3.ax1x.com/2021/09/17/4MKDoD.png" alt="img"></p>
-<p><strong>Contexual Property Prediction.</strong> 自监督任务需要满足两个条件：1.任务标签要易于获取2.任务需要反映node/edge的上下文信息。以Figure 3为例，1.给定一个目标节点（碳原子），提取它的局部子图作为k-hop邻nodes/edges，k=1时包含氮原子和氧原子，双键和单键。2.抽取子图的统计信息，具体来说，数center node的（node,edge)对，然后以字母顺序列出所有node-edge对：C_N-DOUBLE1_O-SINGLE1. 这相当于按照pair构成的Attirbute进行聚类。得到这些任务标签后，给定一个分子图，我们用GROVER抽取所有node/edge的嵌入。假定随机选择一个原子v，对应嵌入为$h_v$。GROVER不去预测v的种类，而是用嵌入预测v的上下文信息（即上面定义的任务标签）</p>
-<p><img src="https://z3.ax1x.com/2021/09/17/4MK6Wd.png" alt="img"></p>
+<h2 id="related-work">Related Work</h2>
+<h3 id="self-supervised-learning-on-graphs">Self-supervised Learning on Graphs</h3>
+<p>最近在分子数据集上的是N-gram和Pre-training graph neural networks。N-gram用短距离游走以及节点嵌入来获取图表示。Pre-training则分离了node/edge上高相关的context预测任务，造成难以保持局部结构和节点特征的领域信息。（这说的什么寄吧，反正就是效果不好呗）其次它graph层级的任务是有监督，这已经说过了。</p>
+<h3 id="molecular-representation-learning">Molecular Representation learning</h3>
+<p>新的工作基本都是基于GNN的。</p>
+<h2 id="transformer和gnn的背景知识">Transformer和GNN的背景知识</h2>
+<p>这个不懂的自己查阅，GNN相比NN会用到一个邻接矩阵，Transformer是做sequence to sequence的，整体是一个encoder-decoder的结构，encoder对序列进行编码，decoder从编码中不断生成新的预测，形成预测序列。这个过程还用到自回归的机制，后面的预测依赖于先前的预测。</p>
+<figure>
+<img src="https://z3.ax1x.com/2021/09/17/4MKtzR.png" alt><figcaption>img</figcaption>
+</figure>
+<p>message passing neural networks包含了两个参数层数L和hop数<span class="math inline">\(K_l,l=1,\cdots,L\)</span>，L决定了readout中的表示数量，hop数决定了每个L会编码几阶邻域的信息。</p>
+<h2 id="the-grover-pre-training-framework">The GROVER Pre-training Framework</h2>
+<figure>
+<img src="https://z3.ax1x.com/2021/09/17/4MK0eK.png" alt><figcaption>img</figcaption>
+</figure>
+<h3 id="模型结构细节">模型结构细节</h3>
+<p>GROVER包含两个模块，node/edge两块，这里只介绍node部分。重点是dyMPN模块，mesage passing有两个参数：迭代次数L和跳跃次数<span class="math inline">\(K_l,l=1,\cdots,L\)</span>跳跃次数与图卷积的感受域有很大相关。对于给定的层数L，作者发现事先决定好的跳跃次数无法对多个数据集有效。因此，GROVER在训练时对每一层使用了随机的跳跃次数。有两种随机策略是有效的1.(a,b)间的均匀分布2.由(a,b)区间规范的正态分布。改动其实只有这里而已，其余部分都和transformer的模块一样，看Figure 1即可。</p>
+<h3 id="自监督任务">自监督任务</h3>
+<p>自监督的核心就是设计好的自监督任务，在这篇工作不使用任何有监督，以免引入不够通用的先验，而造成负迁移。这里有两种自监督任务，contextual property prediction和graph-level motif prediction，Figure2展示了这两个任务。</p>
+<figure>
+<img src="https://z3.ax1x.com/2021/09/17/4MKDoD.png" alt><figcaption>img</figcaption>
+</figure>
+<p><strong>Contexual Property Prediction.</strong> 自监督任务需要满足两个条件：1.任务标签要易于获取2.任务需要反映node/edge的上下文信息。以Figure 3为例，1.给定一个目标节点（碳原子），提取它的局部子图作为k-hop邻nodes/edges，k=1时包含氮原子和氧原子，双键和单键。2.抽取子图的统计信息，具体来说，数center node的（node,edge)对，然后以字母顺序列出所有node-edge对：C_N-DOUBLE1_O-SINGLE1. 这相当于按照pair构成的Attirbute进行聚类。得到这些任务标签后，给定一个分子图，我们用GROVER抽取所有node/edge的嵌入。假定随机选择一个原子v，对应嵌入为<span class="math inline">\(h_v\)</span>。GROVER不去预测v的种类，而是用嵌入预测v的上下文信息（即上面定义的任务标签）</p>
+<figure>
+<img src="https://z3.ax1x.com/2021/09/17/4MK6Wd.png" alt><figcaption>img</figcaption>
+</figure>
 <p><strong>Graph-level Motif Prediction.</strong> 对于分子来说，最重要的样式之一是官能团，它编码了重要的领域知识，并且可以轻易地由专业工具获取。这个任务是一个多标签分类，即判断多个样式在分子中的出现情况。</p>
-<h3 id="Fine-tuning-for-Downstream-Tasks"><a href="#Fine-tuning-for-Downstream-Tasks" class="headerlink" title="Fine-tuning for Downstream Tasks"></a>Fine-tuning for Downstream Tasks</h3><p>下游任务大致可以分成三种，node/edge/graph层级。以graph层级为例，用GROVER抽取node/edge嵌入，然后用readout去得到整张图的嵌入，最后用一个额外的MLP去预测分子性质。也可以使用有监督数据去微调几轮整个encoder和readout,MLP.</p>
-<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p><img src="https://z3.ax1x.com/2021/09/17/4MKRyt.png" alt="img"></p>
-<p>有两个GROVER模型: $GROVER_{base},GROVER_{large}$base有48M参数，large有100M参数，在11个任务上都效果很好。</p>
+<h3 id="fine-tuning-for-downstream-tasks">Fine-tuning for Downstream Tasks</h3>
+<p>下游任务大致可以分成三种，node/edge/graph层级。以graph层级为例，用GROVER抽取node/edge嵌入，然后用readout去得到整张图的嵌入，最后用一个额外的MLP去预测分子性质。也可以使用有监督数据去微调几轮整个encoder和readout,MLP.</p>
+<h2 id="实验">实验</h2>
+<figure>
+<img src="https://z3.ax1x.com/2021/09/17/4MKRyt.png" alt><figcaption>img</figcaption>
+</figure>
+<p>有两个GROVER模型: <span class="math inline">\(GROVER_{base},GROVER_{large}\)</span>base有48M参数，large有100M参数，在11个任务上都效果很好。</p>
 <p><img src="https://z3.ax1x.com/2021/09/17/4MKoFg.png" alt="img"><img src="https://z3.ax1x.com/2021/09/17/4MKjmV.png" alt="img"></p>
 <p>Table2对比了是否进行预训练的模型性能，在六个benchmark上进行的实验，平均分类精度会降低3.8%. Figure4对比几个backbone的性能区别，使用了一个toydataset，差不多600k未标注分子，然后保证差不多参数量(38M)，GTransformer能够获得更低的训练/验证损失。</p>
-<p><img src="https://z3.ax1x.com/2021/09/17/4MMpY4.png" alt="img"></p>
+<figure>
+<img src="https://z3.ax1x.com/2021/09/17/4MMpY4.png" alt><figcaption>img</figcaption>
+</figure>
 <p>Figure5仍然是消融实验，w/o dyMPN表示用固定hop数，w/o GTrans表示用原始的Transformer。w/o GTrans的效果很差，w/o dyMPN在验证损失上稍微好一点。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇工作主要的贡献在于设计两个自监督任务，但是实验部分没有单独讨论两种任务各自的效果。个人认为抽取官能团样式这个任务，即graph层级的自监督任务比较有用。另外一个听起来不是非常convincing。dyMPN的贡献聊胜于无，在消融实验里提升不是很大。我一直在构思新的GNN模型，我们知道CNN为邻域赋不同的权重，然后重复地在不同邻域进行aggregation。但是GNN不是这样的，每个邻域节点其权重是一样的，即使GAT可以使权重不同，它的计算代价也太大了。GAT的赋权方式是动态，而不是diversity。目前CV和NLP的模型都已经统一到Transformer的框架上，图学习相对来说还是独立的。</p>
+<h2 id="总结">总结</h2>
+<p>这篇工作主要的贡献在于设计两个自监督任务，但是实验部分没有单独讨论两种任务各自的效果。个人认为抽取官能团样式这个任务，即graph层级的自监督任务比较有用。另外一个听起来不是非常convincing。dyMPN的贡献聊胜于无，在消融实验里提升不是很大。我一直在构思新的GNN模型，我们知道CNN为邻域赋不同的权重，然后重复地在不同邻域进行aggregation。但是GNN不是这样的，每个邻域节点其权重是一样的，即使GAT可以使权重不同，它的计算代价也太大了。GAT的赋权方式是动态，而不是diversity。目前CV和NLP的模型都已经统一到Transformer的框架上，图学习相对来说还是独立的。</p>
 
     </div>
 
@@ -452,7 +477,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Self-Supervised-Graph-Transformer-on-Large-Scale-Molecular-Data"><span class="nav-number">1.</span> <span class="nav-text">Self-Supervised Graph Transformer on Large-Scale Molecular Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">1.3.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Self-supervised-Learning-on-Graphs"><span class="nav-number">1.3.1.</span> <span class="nav-text">Self-supervised Learning on Graphs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Molecular-Representation-learning"><span class="nav-number">1.3.2.</span> <span class="nav-text">Molecular Representation learning</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transformer和GNN的背景知识"><span class="nav-number">1.4.</span> <span class="nav-text">Transformer和GNN的背景知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-GROVER-Pre-training-Framework"><span class="nav-number">1.5.</span> <span class="nav-text">The GROVER Pre-training Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型结构细节"><span class="nav-number">1.5.1.</span> <span class="nav-text">模型结构细节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自监督任务"><span class="nav-number">1.5.2.</span> <span class="nav-text">自监督任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fine-tuning-for-Downstream-Tasks"><span class="nav-number">1.5.3.</span> <span class="nav-text">Fine-tuning for Downstream Tasks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验"><span class="nav-number">1.6.</span> <span class="nav-text">实验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.7.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#self-supervised-graph-transformer-on-large-scale-molecular-data"><span class="nav-number">1.</span> <span class="nav-text">Self-Supervised Graph Transformer on Large-Scale Molecular Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#abstract"><span class="nav-number">1.1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#related-work"><span class="nav-number">1.3.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#self-supervised-learning-on-graphs"><span class="nav-number">1.3.1.</span> <span class="nav-text">Self-supervised Learning on Graphs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#molecular-representation-learning"><span class="nav-number">1.3.2.</span> <span class="nav-text">Molecular Representation learning</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#transformer和gnn的背景知识"><span class="nav-number">1.4.</span> <span class="nav-text">Transformer和GNN的背景知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-grover-pre-training-framework"><span class="nav-number">1.5.</span> <span class="nav-text">The GROVER Pre-training Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型结构细节"><span class="nav-number">1.5.1.</span> <span class="nav-text">模型结构细节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自监督任务"><span class="nav-number">1.5.2.</span> <span class="nav-text">自监督任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fine-tuning-for-downstream-tasks"><span class="nav-number">1.5.3.</span> <span class="nav-text">Fine-tuning for Downstream Tasks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验"><span class="nav-number">1.6.</span> <span class="nav-text">实验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.7.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -579,12 +604,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">60k</span>
+    <span title="Symbols count total">74k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1:40</span>
+    <span title="Reading time total">2:03</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
   <span class="post-meta-divider">|</span>

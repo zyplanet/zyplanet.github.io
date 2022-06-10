@@ -54,13 +54,13 @@
   };
 </script>
 
-  <meta name="description" content="Strong Convexity and Its GeneralizationIntroductionThe convex condition of the objective function guarantees extrema uniqueness. It says that if $f$ is convex, we can discuss the convergence rate of o">
+  <meta name="description" content="Strong Convexity and Its GeneralizationIntroductionThe convex condition of the objective function guarantees extrema uniqueness. It says that if \(f\) is convex, we can discuss the convergence rate of">
 <meta name="keywords" content="Optimization">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Strong Convexity">
 <meta property="og:url" content="https://zyplanet.github.io/2020/09/14/Strong Convexity/index.html">
 <meta property="og:site_name" content="diphda">
-<meta property="og:description" content="Strong Convexity and Its GeneralizationIntroductionThe convex condition of the objective function guarantees extrema uniqueness. It says that if $f$ is convex, we can discuss the convergence rate of o">
+<meta property="og:description" content="Strong Convexity and Its GeneralizationIntroductionThe convex condition of the objective function guarantees extrema uniqueness. It says that if \(f\) is convex, we can discuss the convergence rate of">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://s1.ax1x.com/2020/09/14/wr25b4.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/09/14/wBb5Mn.png">
@@ -68,7 +68,7 @@
 <meta property="og:updated_time" content="2021-09-17T11:09:31.624Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Strong Convexity">
-<meta name="twitter:description" content="Strong Convexity and Its GeneralizationIntroductionThe convex condition of the objective function guarantees extrema uniqueness. It says that if $f$ is convex, we can discuss the convergence rate of o">
+<meta name="twitter:description" content="Strong Convexity and Its GeneralizationIntroductionThe convex condition of the objective function guarantees extrema uniqueness. It says that if \(f\) is convex, we can discuss the convergence rate of">
 <meta name="twitter:image" content="https://s1.ax1x.com/2020/09/14/wr25b4.png">
   <link rel="canonical" href="https://zyplanet.github.io/2020/09/14/Strong Convexity/">
 
@@ -316,7 +316,7 @@
               
                 <span class="post-meta-item-text">Symbols count in article: </span>
               
-              <span>6.5k</span>
+              <span>6.9k</span>
             </span>
           
             <span class="post-meta-item" title="Reading time">
@@ -326,7 +326,7 @@
               
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               
-              <span>11 mins.</span>
+              <span>12 mins.</span>
             </span>
           
 
@@ -339,101 +339,109 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Strong-Convexity-and-Its-Generalization"><a href="#Strong-Convexity-and-Its-Generalization" class="headerlink" title="Strong Convexity and Its Generalization"></a>Strong Convexity and Its Generalization</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>The convex condition of the objective function guarantees extrema uniqueness. It says that if $f$ is convex, we can discuss the convergence rate of optimization methods by estimating $||f(w_t)-f^{opt}||$, where $f^{opt}$ is the global maximum/minimum (optimum). Otherwise, we know nothing about the distance and only discuss $\min_{t\in\{0,1,\dots,T\}}||\nabla f(w^t)||^{2}$. </p><a id="more"></a>
-<p>Intuitively, the convexity requires that the function graph is above its tangent line. A typical example is a quadratic function: $f(x) = ax^2+bx+c$. If $a&gt;0$, it is convex. One can validate this observation by sketch its tangent line.</p>
+        <h1 id="strong-convexity-and-its-generalization">Strong Convexity and Its Generalization</h1><h2 id="introduction">Introduction</h2><p>The convex condition of the objective function guarantees extrema uniqueness. It says that if <span class="math inline">\(f\)</span> is convex, we can discuss the convergence rate of optimization methods by estimating <span class="math inline">\(||f(w_t)-f^{opt}||\)</span>, where <span class="math inline">\(f^{opt}\)</span> is the global maximum/minimum (optimum). Otherwise, we know nothing about the distance and only discuss <span class="math inline">\(\min_{t\in\{0,1,\dots,T\}}||\nabla f(w^t)||^{2}\)</span>.</p><a id="more"></a>
+
+
+<p>Intuitively, the convexity requires that the function graph is above its tangent line. A typical example is a quadratic function: <span class="math inline">\(f(x) = ax^2+bx+c\)</span>. If <span class="math inline">\(a&gt;0\)</span>, it is convex. One can validate this observation by sketch its tangent line.</p>
 <p><img src="https://s1.ax1x.com/2020/09/14/wr25b4.png" alt="img" style="zoom:150%;"></p>
-<p>However, there are lots of “flat” convex functions. Their graphs are above the corresponding tangent lines, but they are very close. The following figure draws a convex and flat basin:</p>
-<p><img src="https://s1.ax1x.com/2020/09/14/wBb5Mn.png" alt="flat basin"></p>
+<p>However, there are lots of "flat" convex functions. Their graphs are above the corresponding tangent lines, but they are very close. The following figure draws a convex and flat basin:</p>
+<figure>
+<img src="https://s1.ax1x.com/2020/09/14/wBb5Mn.png" alt><figcaption>flat basin</figcaption>
+</figure>
 <p>We can find that the graph coincides with its tangent line. The problem is that these functions provide low gradients, which lead to a sub-linear convergence rate of the gradient descent method. We hope to avoid discussing these cases; the strong convexity constrains the functions by requesting them to own a quadratic lower bound. The optimization is much more comfortable in the strong convex cases, and a global linear convergence rate can be achieved.</p>
 <p>The strong convexity is a strong assumption, and we want to discuss its generalization in this work.</p>
-<h2 id="Relation-Between-Conditions"><a href="#Relation-Between-Conditions" class="headerlink" title="Relation Between Conditions"></a>Relation Between Conditions</h2><p> Strong convexity is a strong assumption to guarantee the linear convergence rate in our discussion. We formulate it as follows:</p>
-<p><strong>Strong Convexity</strong>(SC): For all $x$ and $y$ we have</p>
-<script type="math/tex; mode=display">
-f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2</script><p>Suppose you are curious about how to prove gradient descent (<strong>GD</strong>) and stochastic gradient descent (<strong>SGD</strong>) have linear convergence rate under strong convexity assumption. In that case, you can find them in this work: <a href="https://perso.telecom-paristech.fr/rgower/pdf/M2_statistique_optimisation/grad_conv.pdf" target="_blank" rel="noopener">Convergence Theorems for Gradient Descent</a>.</p>
-<p>We only concern about SC’s generalizations and theirs relation.</p>
-<p><strong>Essential Strong Convexity</strong>(ESC): For all $x$ and $y$ such that $x_p=y_p$, we have</p>
-<script type="math/tex; mode=display">
-f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2</script><p>Where $x_p$ is the projection of $x$ onto the solution set $\mathcal{X}^{opt}$.</p>
-<p>Obviously, ESC is weaker than SC: $SC\Rightarrow ESC$.</p>
-<p><strong>Weak Strong Convexity</strong>(WSC): For all $x$ we have</p>
-<script type="math/tex; mode=display">
-f^*\ge f(x)+\nabla f(x)^T(x_p-x)+\frac{\mu}{2}||x_p-x||^2</script><p>Let $y=x_p$, then we can prove that $ESC\Rightarrow WSC$.</p>
-<p><strong>Restricted Secant Inequality</strong>(RSI): For all $x$ we have</p>
-<script type="math/tex; mode=display">
-\nabla f(x)^T(x-x_p)\ge\mu||x_p-x||^2</script><p>If we further assume function $f$ is convex, then the condition is called <strong>Restricted Strong Convexity</strong>(RSC).</p>
-<p>Re-order the WSC inequality:</p>
-<script type="math/tex; mode=display">
-\nabla f(x)^T(x-x_p)\ge f(x)-f^{opt}+\frac{\mu}{2}||x_p-x||^2</script><p>Because $f^{*}$ is the lower bound of $f(x)$, $f(x)-f^{opt}\ge0$.</p>
-<p>Therefore, $WSC\Rightarrow RSI$.</p>
-<p><strong>Error Bound</strong>(EB): For all $x$ we have</p>
-<script type="math/tex; mode=display">
-||\nabla f(x)||\ge\mu(x_p-x)</script><p>Since $||\nabla f(x)||||x-x_p||\ge\nabla f(x)^T(x-x_p)$, dividing both side of RSI by $||x-x_p||$ we can prove $RSI\Rightarrow EB$.</p>
-<p><strong>Polyak-Lojasiewicz</strong>(PL): For all x we have</p>
-<script type="math/tex; mode=display">
-\frac{1}{2}||\nabla f(x)||^2\ge\mu(f(x)-f^{opt})</script><p>PL inequality is commonly used in recent researches. This assumption is more general than Strong convexity and sufficient to guarantee linear convergence. Furthermore, we can prove that it is equivalent to the EB assumption.(Assumption on Lipschitz continuity of gradients is necessary.)</p>
-<p>We show that $EB\Rightarrow PL$:</p>
-<p>Lipschitz continuity is a strong assumption on function continuity. The $L$-Lipschitz continuity of $g(x)$ is defined by the following inequality:</p>
-<script type="math/tex; mode=display">
-||g(x)-g(y)||\le L||x-y||, \forall x,y\in \mathcal{D}_g</script><p>If $f(x)$ has $L$-Lipschitz continuous gradient, say, $||\nabla f(x)-\nabla f(y)||\le L||x-y||$. Then</p>
-<script type="math/tex; mode=display">
-f(x)\le f(x_p)+\nabla f(x_p)^T(x-x_p)+\frac{L}{2}||x_p-x||^2</script><p>Let $f(x_p)=f^*$, the corresponding gradients are equal to zero vector. We have</p>
-<script type="math/tex; mode=display">
-f(x)-f^{opt}\le\frac{L}{2}||x_p-x||^2</script><p>Applying EB, </p>
-<script type="math/tex; mode=display">
-f(x)-f^{opt}\le\frac{L}{2\mu}||\nabla f(x)||^2</script><p>For $PL\Rightarrow EB$,</p>
+<h2 id="relation-between-conditions">Relation Between Conditions</h2>
+<p>Strong convexity is a strong assumption to guarantee the linear convergence rate in our discussion. We formulate it as follows:</p>
+<p><strong>Strong Convexity</strong>(SC): For all <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> we have <span class="math display">\[
+f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2
+\]</span> Suppose you are curious about how to prove gradient descent (<strong>GD</strong>) and stochastic gradient descent (<strong>SGD</strong>) have linear convergence rate under strong convexity assumption. In that case, you can find them in this work: <a href="https://perso.telecom-paristech.fr/rgower/pdf/M2_statistique_optimisation/grad_conv.pdf" target="_blank" rel="noopener">Convergence Theorems for Gradient Descent</a>.</p>
+<p>We only concern about SC's generalizations and theirs relation.</p>
+<p><strong>Essential Strong Convexity</strong>(ESC): For all <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> such that <span class="math inline">\(x_p=y_p\)</span>, we have <span class="math display">\[
+f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2
+\]</span> Where <span class="math inline">\(x_p\)</span> is the projection of <span class="math inline">\(x\)</span> onto the solution set <span class="math inline">\(\mathcal{X}^{opt}\)</span>.</p>
+<p>Obviously, ESC is weaker than SC: <span class="math inline">\(SC\Rightarrow ESC\)</span>.</p>
+<p><strong>Weak Strong Convexity</strong>(WSC): For all <span class="math inline">\(x\)</span> we have <span class="math display">\[
+f^*\ge f(x)+\nabla f(x)^T(x_p-x)+\frac{\mu}{2}||x_p-x||^2
+\]</span> Let <span class="math inline">\(y=x_p\)</span>, then we can prove that <span class="math inline">\(ESC\Rightarrow WSC\)</span>.</p>
+<p><strong>Restricted Secant Inequality</strong>(RSI): For all <span class="math inline">\(x\)</span> we have <span class="math display">\[
+\nabla f(x)^T(x-x_p)\ge\mu||x_p-x||^2
+\]</span> If we further assume function <span class="math inline">\(f\)</span> is convex, then the condition is called <strong>Restricted Strong Convexity</strong>(RSC).</p>
+<p>Re-order the WSC inequality: <span class="math display">\[
+\nabla f(x)^T(x-x_p)\ge f(x)-f^{opt}+\frac{\mu}{2}||x_p-x||^2
+\]</span> Because <span class="math inline">\(f^{*}\)</span> is the lower bound of <span class="math inline">\(f(x)\)</span>, <span class="math inline">\(f(x)-f^{opt}\ge0\)</span>.</p>
+<p>Therefore, <span class="math inline">\(WSC\Rightarrow RSI\)</span>.</p>
+<p><strong>Error Bound</strong>(EB): For all <span class="math inline">\(x\)</span> we have <span class="math display">\[
+||\nabla f(x)||\ge\mu(x_p-x)
+\]</span> Since <span class="math inline">\(||\nabla f(x)||||x-x_p||\ge\nabla f(x)^T(x-x_p)\)</span>, dividing both side of RSI by <span class="math inline">\(||x-x_p||\)</span> we can prove <span class="math inline">\(RSI\Rightarrow EB\)</span>.</p>
+<p><strong>Polyak-Lojasiewicz</strong>(PL): For all x we have <span class="math display">\[
+\frac{1}{2}||\nabla f(x)||^2\ge\mu(f(x)-f^{opt})
+\]</span> PL inequality is commonly used in recent researches. This assumption is more general than Strong convexity and sufficient to guarantee linear convergence. Furthermore, we can prove that it is equivalent to the EB assumption.(Assumption on Lipschitz continuity of gradients is necessary.)</p>
+<p>We show that <span class="math inline">\(EB\Rightarrow PL\)</span>:</p>
+<p>Lipschitz continuity is a strong assumption on function continuity. The <span class="math inline">\(L\)</span>-Lipschitz continuity of <span class="math inline">\(g(x)\)</span> is defined by the following inequality: <span class="math display">\[
+||g(x)-g(y)||\le L||x-y||, \forall x,y\in \mathcal{D}_g
+\]</span> If <span class="math inline">\(f(x)\)</span> has <span class="math inline">\(L\)</span>-Lipschitz continuous gradient, say, <span class="math inline">\(||\nabla f(x)-\nabla f(y)||\le L||x-y||\)</span>. Then <span class="math display">\[
+f(x)\le f(x_p)+\nabla f(x_p)^T(x-x_p)+\frac{L}{2}||x_p-x||^2
+\]</span> Let <span class="math inline">\(f(x_p)=f^*\)</span>, the corresponding gradients are equal to zero vector. We have <span class="math display">\[
+f(x)-f^{opt}\le\frac{L}{2}||x_p-x||^2
+\]</span> Applying EB, <span class="math display">\[
+f(x)-f^{opt}\le\frac{L}{2\mu}||\nabla f(x)||^2
+\]</span> For <span class="math inline">\(PL\Rightarrow EB\)</span>,</p>
 <p>We firstly introduce another assumption weaker than PL.</p>
-<p><strong>Quadratic Growth</strong>(QG): For all $x$ we have</p>
-<script type="math/tex; mode=display">
-f(x)-f^{opt}\ge\frac{\mu}{2}||x_p-x||^2</script><p>If  we further assume $f(x)$ is convex, this case is called <strong>optimal strong convexity</strong>.</p>
-<p>We show that $PL\Rightarrow QG$,</p>
-<p>Define the following function:</p>
-<script type="math/tex; mode=display">
-g(x) = \sqrt{f(x)-f^{opt}}</script><p>If $f(\cdot)$ satisfies PL inequality, then for any $x\notin \mathcal{X}^{opt}$:</p>
-<script type="math/tex; mode=display">
-||\nabla g(x)||^2=\frac{||\nabla f(x)||^2}{f(x)-f^{opt}}\ge2\mu</script><p>For any point $x_0\notin\mathcal{X}^*$, consider solving the following differential equation:</p>
-<script type="math/tex; mode=display">
+<p><strong>Quadratic Growth</strong>(QG): For all <span class="math inline">\(x\)</span> we have <span class="math display">\[
+f(x)-f^{opt}\ge\frac{\mu}{2}||x_p-x||^2
+\]</span> If we further assume <span class="math inline">\(f(x)\)</span> is convex, this case is called <strong>optimal strong convexity</strong>.</p>
+<p>We show that <span class="math inline">\(PL\Rightarrow QG\)</span>,</p>
+<p>Define the following function: <span class="math display">\[
+g(x) = \sqrt{f(x)-f^{opt}}
+\]</span> If <span class="math inline">\(f(\cdot)\)</span> satisfies PL inequality, then for any <span class="math inline">\(x\notin \mathcal{X}^{opt}\)</span>: <span class="math display">\[
+||\nabla g(x)||^2=\frac{||\nabla f(x)||^2}{f(x)-f^{opt}}\ge2\mu
+\]</span> For any point <span class="math inline">\(x_0\notin\mathcal{X}^*\)</span>, consider solving the following differential equation: <span class="math display">\[
 \frac{d x(t)}{dt}=-\nabla g(x(t))\\
-x(t=0)=x_0</script><p>The solution defines a flow orbit starting at $x_0$ and flowing along the gradient of $g(\cdot)$. </p>
-<script type="math/tex; mode=display">
+x(t=0)=x_0
+\]</span> The solution defines a flow orbit starting at <span class="math inline">\(x_0\)</span> and flowing along the gradient of <span class="math inline">\(g(\cdot)\)</span>. <span class="math display">\[
 \begin{equation}
 \begin{aligned}
-g(x_0)-g(x_t)&=\int_{x_t}^{x_0}\nabla g(x)^Tdx\\
-&=-\int_{x_0}^{x_t}\nabla g(x)^Tdx\\
-&=-\int_{0}^{T}\nabla g(x(t))^T\frac{d x(t)}{dt}dt\\
-&=\int_{0}^T||\nabla g(x(t))||^2dt\\
-&\ge\int_{0}^T2\mu dt\\
-&=2\mu T
+g(x_0)-g(x_t)&amp;=\int_{x_t}^{x_0}\nabla g(x)^Tdx\\
+&amp;=-\int_{x_0}^{x_t}\nabla g(x)^Tdx\\
+&amp;=-\int_{0}^{T}\nabla g(x(t))^T\frac{d x(t)}{dt}dt\\
+&amp;=\int_{0}^T||\nabla g(x(t))||^2dt\\
+&amp;\ge\int_{0}^T2\mu dt\\
+&amp;=2\mu T
 \end{aligned}
-\end{equation}</script><p>Notice that $g(x_t)\ge 0$, thus we know that $T\le\frac{g(x_0)}{2\mu}$, so there must be a $T$ with $x(T)\in\mathcal{X}^{opt}$.</p>
-<p>The length of the orbit can be calculated by the following integral,</p>
-<script type="math/tex; mode=display">
-\mathcal{L}(x_0)=\int_0^T||\frac{dx(t)}{dt}||dt=\int_0^T||\nabla g(x(t))||dt\ge||x_0-x_p||</script><p>$x_p$ is the projection of $x_0$ onto $\mathcal{X}^{opt}$</p>
-<p>Recall that:</p>
-<script type="math/tex; mode=display">
+\end{equation}
+\]</span> Notice that <span class="math inline">\(g(x_t)\ge 0\)</span>, thus we know that <span class="math inline">\(T\le\frac{g(x_0)}{2\mu}\)</span>, so there must be a <span class="math inline">\(T\)</span> with <span class="math inline">\(x(T)\in\mathcal{X}^{opt}\)</span>.</p>
+<p>The length of the orbit can be calculated by the following integral, <span class="math display">\[
+\mathcal{L}(x_0)=\int_0^T||\frac{dx(t)}{dt}||dt=\int_0^T||\nabla g(x(t))||dt\ge||x_0-x_p||
+\]</span> <span class="math inline">\(x_p\)</span> is the projection of <span class="math inline">\(x_0\)</span> onto <span class="math inline">\(\mathcal{X}^{opt}\)</span></p>
+<p>Recall that: <span class="math display">\[
 \begin{equation}
 \begin{aligned}
-g(x_0)-g(x_T)&=\int_0^T||\nabla g(x(t))||^2dt\\
-&\ge\sqrt{2\mu}\int_{0}^T||\nabla g(x(t))||dt\\
-&\ge\sqrt{2\mu}||x_0-x_p||
+g(x_0)-g(x_T)&amp;=\int_0^T||\nabla g(x(t))||^2dt\\
+&amp;\ge\sqrt{2\mu}\int_{0}^T||\nabla g(x(t))||dt\\
+&amp;\ge\sqrt{2\mu}||x_0-x_p||
 \end{aligned}
-\end{equation}</script><p>Since $g(x_T)=0$, according to the definition of $g(\cdot)$:</p>
-<script type="math/tex; mode=display">
-f(x)-f^*\ge2\mu||x-x_p||^2</script><p>It is the QG inequality.</p>
-<p>Now, we turn to the proof of $PL\Rightarrow EB$,</p>
-<p>Using the above result. We denote the PL constant as $\mu_p$ and QG constant as $\mu_q$, </p>
-<script type="math/tex; mode=display">
-\frac{1}{2}||\nabla f(x)||^2\ge\mu_p(f(x)-f^*)\ge\frac{\mu_p\mu_q}{2}||x-x_p||^2</script><p>Thus, we derive the EB inequality:</p>
-<script type="math/tex; mode=display">
-||\nabla f(x)||\ge\sqrt{\mu_p\mu_q}||x-x_p||</script><p><strong>what if we assume $f(\cdot)$ is convex?</strong></p>
-<p>Actually, $RSI\Leftrightarrow EB\Leftrightarrow PL\Leftrightarrow QG$ hold in this case.</p>
-<p>We prove this observation by showing that $QG+Convex\Rightarrow RSI$,</p>
-<p>By convexity we have,</p>
-<script type="math/tex; mode=display">
-f(x_p)\ge f(x)+\nabla f(x)^T(x_p-x)</script><p>Applying QG inequality,</p>
-<script type="math/tex; mode=display">
-\nabla f(x)^T(x-x_P)\ge f(x)-f^{opt}\ge\frac{\mu}{2}||x_p-x||^2</script><p>Which is RSI inequality.</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In the end, we finish our work by a relation graph:</p>
-<p><img src="https://s1.ax1x.com/2020/09/14/wrM4B9.png" alt="relation graph"></p>
+\end{equation}
+\]</span> Since <span class="math inline">\(g(x_T)=0\)</span>, according to the definition of <span class="math inline">\(g(\cdot)\)</span>: <span class="math display">\[
+f(x)-f^*\ge2\mu||x-x_p||^2
+\]</span> It is the QG inequality.</p>
+<p>Now, we turn to the proof of <span class="math inline">\(PL\Rightarrow EB\)</span>,</p>
+<p>Using the above result. We denote the PL constant as <span class="math inline">\(\mu_p\)</span> and QG constant as <span class="math inline">\(\mu_q\)</span>, <span class="math display">\[
+\frac{1}{2}||\nabla f(x)||^2\ge\mu_p(f(x)-f^*)\ge\frac{\mu_p\mu_q}{2}||x-x_p||^2
+\]</span> Thus, we derive the EB inequality: <span class="math display">\[
+||\nabla f(x)||\ge\sqrt{\mu_p\mu_q}||x-x_p||
+\]</span> <strong>what if we assume <span class="math inline">\(f(\cdot)\)</span> is convex?</strong></p>
+<p>Actually, <span class="math inline">\(RSI\Leftrightarrow EB\Leftrightarrow PL\Leftrightarrow QG\)</span> hold in this case.</p>
+<p>We prove this observation by showing that <span class="math inline">\(QG+Convex\Rightarrow RSI\)</span>,</p>
+<p>By convexity we have, <span class="math display">\[
+f(x_p)\ge f(x)+\nabla f(x)^T(x_p-x)
+\]</span> Applying QG inequality, <span class="math display">\[
+\nabla f(x)^T(x-x_P)\ge f(x)-f^{opt}\ge\frac{\mu}{2}||x_p-x||^2
+\]</span> Which is RSI inequality.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In the end, we finish our work by a relation graph:</p>
+<figure>
+<img src="https://s1.ax1x.com/2020/09/14/wrM4B9.png" alt><figcaption>relation graph</figcaption>
+</figure>
 <p>Most of the content comes from the following work:</p>
 <ul>
 <li><a href="https://arxiv.org/abs/1608.04636" target="_blank" rel="noopener">Linear Convergence of Gradient and Proximal-Gradient Methods Under the Polyak- Lojasiewicz Condition</a></li>
@@ -528,7 +536,7 @@ f(x_p)\ge f(x)+\nabla f(x)^T(x_p-x)</script><p>Applying QG inequality,</p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Strong-Convexity-and-Its-Generalization"><span class="nav-number">1.</span> <span class="nav-text">Strong Convexity and Its Generalization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Relation-Between-Conditions"><span class="nav-number">1.2.</span> <span class="nav-text">Relation Between Conditions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.3.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#strong-convexity-and-its-generalization"><span class="nav-number">1.</span> <span class="nav-text">Strong Convexity and Its Generalization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#relation-between-conditions"><span class="nav-number">1.2.</span> <span class="nav-text">Relation Between Conditions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">1.3.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -655,12 +663,12 @@ f(x_p)\ge f(x)+\nabla f(x)^T(x_p-x)</script><p>Applying QG inequality,</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">60k</span>
+    <span title="Symbols count total">74k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1:40</span>
+    <span title="Reading time total">2:03</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
   <span class="post-meta-divider">|</span>

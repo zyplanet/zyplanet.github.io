@@ -54,22 +54,27 @@
   };
 </script>
 
-  <meta name="description" content="Neural Word Embedding as Implicit Matrix Factorization前言尽管嵌入模型很明显是基于分布假设来进行优化，使常出现的word-context对向量内积极大化，并极小化随机word-context对内积。但对于这些优化指标的讨论很少，也不清楚为什么这样能够得到期望的结果。这篇文章对此进行了探讨，表明SGNS(skip-gram with negati">
-<meta name="keywords" content="Representation Learning">
+  <meta name="description" content="这篇文章大部分理论贡献都来自其它文章，刻画了目前GNN对于同构判定的能力边界，总结得很好可以当综述看。这篇文章还提出了一个改进模型，能够在保持scalability的同时，在理论和实践上都更加优越：原文链接。">
+<meta name="keywords" content="Graph Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="embedding as matrix factorizaiton">
-<meta property="og:url" content="https://zyplanet.github.io/2019/10/02/embedding as matrix factorizaiton/index.html">
+<meta property="og:title" content="突破MPNN模型的能力边界">
+<meta property="og:url" content="https://zyplanet.github.io/2022/06/22/BTLOMPNN/index.html">
 <meta property="og:site_name" content="diphda">
-<meta property="og:description" content="Neural Word Embedding as Implicit Matrix Factorization前言尽管嵌入模型很明显是基于分布假设来进行优化，使常出现的word-context对向量内积极大化，并极小化随机word-context对内积。但对于这些优化指标的讨论很少，也不清楚为什么这样能够得到期望的结果。这篇文章对此进行了探讨，表明SGNS(skip-gram with negati">
+<meta property="og:description" content="这篇文章大部分理论贡献都来自其它文章，刻画了目前GNN对于同构判定的能力边界，总结得很好可以当综述看。这篇文章还提出了一个改进模型，能够在保持scalability的同时，在理论和实践上都更加优越：原文链接。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://zyplanethome.files.wordpress.com/2019/10/svd1.png">
-<meta property="og:image" content="https://zyplanethome.files.wordpress.com/2019/10/svd2.png">
-<meta property="og:updated_time" content="2021-09-17T11:08:04.277Z">
+<meta property="og:image" content="https://s2.loli.net/2022/06/22/w2Vqy18ohgZQtMA.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/22/YhtOC8p51u7J6UL.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/22/Kun2vQdfSHsc3AY.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/22/O3ioW1DBJ5uPKgL.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/22/XdLxvZiumk9UfYN.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/22/3kHZrQ8mewd4YS6.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/22/kKq1SOcXAgE5Mal.png">
+<meta property="og:updated_time" content="2022-06-22T08:27:28.726Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="embedding as matrix factorizaiton">
-<meta name="twitter:description" content="Neural Word Embedding as Implicit Matrix Factorization前言尽管嵌入模型很明显是基于分布假设来进行优化，使常出现的word-context对向量内积极大化，并极小化随机word-context对内积。但对于这些优化指标的讨论很少，也不清楚为什么这样能够得到期望的结果。这篇文章对此进行了探讨，表明SGNS(skip-gram with negati">
-<meta name="twitter:image" content="https://zyplanethome.files.wordpress.com/2019/10/svd1.png">
-  <link rel="canonical" href="https://zyplanet.github.io/2019/10/02/embedding as matrix factorizaiton/">
+<meta name="twitter:title" content="突破MPNN模型的能力边界">
+<meta name="twitter:description" content="这篇文章大部分理论贡献都来自其它文章，刻画了目前GNN对于同构判定的能力边界，总结得很好可以当综述看。这篇文章还提出了一个改进模型，能够在保持scalability的同时，在理论和实践上都更加优越：原文链接。">
+<meta name="twitter:image" content="https://s2.loli.net/2022/06/22/w2Vqy18ohgZQtMA.png">
+  <link rel="canonical" href="https://zyplanet.github.io/2022/06/22/BTLOMPNN/">
 
 
 <script id="page-configurations">
@@ -83,7 +88,7 @@
   };
 </script>
 
-  <title>embedding as matrix factorizaiton | diphda</title>
+  <title>突破MPNN模型的能力边界 | diphda</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -240,7 +245,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://zyplanet.github.io/2019/10/02/embedding as matrix factorizaiton/">
+    <link itemprop="mainEntityOfPage" href="https://zyplanet.github.io/2022/06/22/BTLOMPNN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="diphda">
@@ -252,7 +257,7 @@
       <meta itemprop="name" content="diphda">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">embedding as matrix factorizaiton
+        <h1 class="post-title" itemprop="name headline">突破MPNN模型的能力边界
 
           
         </h1>
@@ -268,24 +273,16 @@
                 
               
 
-              <time title="Created: 2019-10-02 20:44:00" itemprop="dateCreated datePublished" datetime="2019-10-02T20:44:00+08:00">2019-10-02</time>
+              <time title="Created: 2022-06-22 16:30:00 / Modified: 16:27:28" itemprop="dateCreated datePublished" datetime="2022-06-22T16:30:00+08:00">2022-06-22</time>
             </span>
           
             
 
             
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-09-17 19:08:04" itemprop="dateModified" datetime="2021-09-17T19:08:04+08:00">2021-09-17</time>
-              </span>
-            
           
 
           
-            <span id="/2019/10/02/embedding as matrix factorizaiton/" class="post-meta-item leancloud_visitors" data-flag-title="embedding as matrix factorizaiton" title="Views">
+            <span id="/2022/06/22/BTLOMPNN/" class="post-meta-item leancloud_visitors" data-flag-title="突破MPNN模型的能力边界" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -303,7 +300,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/10/02/embedding as matrix factorizaiton/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/10/02/embedding as matrix factorizaiton/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2022/06/22/BTLOMPNN/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2022/06/22/BTLOMPNN/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -315,7 +312,7 @@
               
                 <span class="post-meta-item-text">Symbols count in article: </span>
               
-              <span>4.3k</span>
+              <span>4.2k</span>
             </span>
           
             <span class="post-meta-item" title="Reading time">
@@ -338,79 +335,82 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="neural-word-embedding-as-implicit-matrix-factorization">Neural Word Embedding as Implicit Matrix Factorization</h1><h2 id="前言">前言</h2><p>尽管嵌入模型很明显是基于分布假设来进行优化，使常出现的word-context对向量内积极大化，并极小化随机word-context对内积。但对于这些优化指标的讨论很少，也不清楚为什么这样能够得到期望的结果。这篇文章对此进行了探讨，表明SGNS(skip-gram with negative-sampling)的训练方法实际上是加权矩阵分解，其目标函数在隐式地分解一个移动PMI矩阵，并基于此提出了更高效的优化方式。</p><a id="more"></a>
-
-
-<h2 id="sgns">SGNS</h2>
-<p>关于skip-gram with negative-sampling，这里就不再赘述，请查看下面两篇文章：</p>
+        <p>这篇文章大部分理论贡献都来自其它文章，刻画了目前GNN对于同构判定的能力边界，总结得很好可以当综述看。这篇文章还提出了一个改进模型，能够在保持scalability的同时，在理论和实践上都更加优越：<a href="https://arxiv.org/pdf/2106.04319.pdf" target="_blank" rel="noopener">原文链接</a>。</p><a id="more"></a>
+<h2 id="动机和贡献">动机和贡献</h2>
+<ol type="1">
+<li>目前的模型大多都不比1-WL test更强，因此表示能力非常有限。</li>
+<li>能够达到2-WL test或者3-WL test的模型在复杂度上又很高。</li>
+</ol>
+<p>因此，这篇文章提出了新的图卷积方式，有如下的特点：</p>
+<ol type="1">
+<li>仅在局部更新。</li>
+<li>线性的时间、空间复杂度。</li>
+<li>在理论和实践上都强于1-WL test。</li>
+</ol>
+<h2 id="对weisfeiler-lehman测试的刻画">对Weisfeiler-Lehman测试的刻画</h2>
+<p>这一章节的理论基本上都来自于别的工作，但是对于理解GNN的表示能力很重要。首先，我们介绍一下WL测试。</p>
+<p>WL测试将图转化成为一个间接的形式，如果两个图的转换后形式不同，那么他们一定不是同构的（给出了同构的必要条件）。在第i次迭代时，每个节点都会被分配一个元组<span class="math inline">\(L_{i,n}\)</span>，包含节点老的压缩标签，以及所有邻居的压缩标签。每次迭代中，都会对节点分配一个压缩标签，两个拥有相同<span class="math inline">\(L_{i,n}\)</span>的节点会得到相同的压缩标签。</p>
+<ol type="1">
+<li>初始化，对每个节点<span class="math inline">\(n\)</span>分配标签<span class="math inline">\(C_{0,n}=1\)</span></li>
+<li>在第<span class="math inline">\(i\)</span>次迭代中，对于节点<span class="math inline">\(n\)</span>，设置<span class="math inline">\(L_{i,n}\)</span>为一个元组包含旧标签<span class="math inline">\(C_{i-1,n}\)</span>以及所有邻居<span class="math inline">\(C_{i-1,m}\)</span>的可重复集合。</li>
+<li>得到<span class="math inline">\(L_{i,n}\)</span>进行hash，得到<span class="math inline">\(C_{i,n}\)</span></li>
+<li>根据压缩标签去划分节点。重复2和3共<span class="math inline">\(N\)</span>次（总节点数），或者直到迭代不会改变节点划分。</li>
+</ol>
+<p>这上面的算法叫做1-WL测试，也叫节点涂色。在初始阶段，所有节点都被涂成相同的颜色<span class="math inline">\(H_v^{(0)}=1\)</span>。然后颜色按照下面的规则更新： <span class="math display">\[
+H_v^{(t+1)}=\sigma(H_v^{(t)}|\{H_u^{(t)}:u\in\mathcal{N}(v)\}),
+\]</span> 高阶的WL测试基本上是相似的，但更新方式有一些不同。2-WL测试使用二阶节点元组，即所有节点对的排列，因此需要<span class="math inline">\(\mathbf{H}\in\mathbb{R}^{n\times n}\)</span>矩阵。初始阶段有额外的两种颜色：</p>
+<p><img src="https://s2.loli.net/2022/06/22/w2Vqy18ohgZQtMA.png" alt="image-20220621153105160" style="zoom:33%;"></p>
+<p>然后按照如下的方式进行更新： <span class="math display">\[
+\mathbf{H}_{v,u}^{(t+1)}=\sigma(\mathbf{H}_{v,u}^{(t)}|\{\mathbf{H}_{v,k}^{(t)}:k\in[n]\}|\mathbf{H}_{k,u}^{(t)}:k\in[n]|)
+\]</span> 但根据最近的结果<a href="https://arxiv.org/pdf/1905.11136.pdf" target="_blank" rel="noopener">Provably powerful graph networks</a>，2-WL测试并不比1-WL更有效。只有<span class="math inline">\(k\ge 2\)</span>时，(k+1)-WL测试才比k-WL更有效。他们进一步提出了Folkore WL测试，1-WL=1-FWL测试，但是当<span class="math inline">\(k\ge 2\)</span>时，(k+1)-WL测试约等于<span class="math inline">\(k\)</span>-FWL测试。2-FWL测试的迭代方式如下： <span class="math display">\[
+\mathbf{H}_{v,u}^{(t+1)}=\sigma(\mathbf{H}_{v,u}^{(t)}|\{(\mathbf{H}_{v,k}^{(t)}|\mathbf{H}_{k,u}^{(t)}):k\in[n]\})
+\]</span> 另外的一项研究<a href="https://sigmodrecord.org/publications/sigmodRecord/1903/pdfs/16_mmo-brijder.pdf" target="_blank" rel="noopener">MATLANG</a>，则将矩阵运算与WL测试关联起来，用更清晰的方式刻画了WL测试的判别能力。同时由于神经网络就是基于矩阵运算，MATLANG实际上也刻画了GNN的判别能力。我们首先给出两个定义：</p>
+<p><strong>定义1.</strong> <span class="math inline">\(ML(\mathcal{L})\)</span>由一系列矩阵运算构成，<span class="math inline">\(\mathcal{L}\)</span>限定了运算的种类，比如<span class="math inline">\(\mathcal{L}=\{.,+,\operatorname{diag},\operatorname{tr},\times\}\)</span></p>
+<p><strong>定义2.</strong> <span class="math inline">\(e(X)\in\mathbb{R}\)</span>是<span class="math inline">\(ML(\mathcal{L})\)</span>中的一个句子，它指定了顺序执行的一系列矩阵操作，并产生一个标量值。</p>
+<p>举个例子，<span class="math inline">\(e(X)=\mathbf{1}^TX^2\mathbf{1}\)</span>就是<span class="math inline">\(\mathcal{L}=\{.,^T,\mathbf{1}\}\)</span>中的一个句子。下面给出了与1-WL，2-WL，3-WL测试等价的三个matlang：</p>
 <ul>
-<li><a href="https://arxiv.org/abs/1301.3781" target="_blank" rel="noopener">Efficient estimation of word representations in vector space</a></li>
-<li><a href="https://arxiv.org/abs/1310.4546" target="_blank" rel="noopener">Distributed representations of words and phrases and their compositionality</a></li>
+<li><span class="math inline">\(\mathcal{L}_1=\{.,^T,\mathbf{1},\operatorname{diag}\}\)</span>产生的<span class="math inline">\(ML(\mathcal{L}_1)\)</span>和1-WL测试是等价的。</li>
+<li><span class="math inline">\(\mathcal{L}_2=\{.,^T,\mathbf{1},\operatorname{diag},\operatorname{tr}\}\)</span>产生的<span class="math inline">\(ML(\mathcal{L}_2)\)</span>比1-WL测试更强，但是比3-WL测试弱。</li>
+<li><span class="math inline">\(\mathcal{L}_3=\{.,^T,\mathbf{1},\operatorname{diag},\operatorname{tr},\odot\}\)</span>产生的<span class="math inline">\(ML(\mathcal{L}_3)\)</span>和3-WL测试是等价的。</li>
+<li>对上面的三个运算集增加<span class="math inline">\(\{+,\times,f\}\)</span>不会提升判定能力，记为<span class="math inline">\(\mathcal{L}^{+}\)</span>。</li>
 </ul>
-<p>总的来说，SGNS的目标函数如下： <span class="math display">\[
-l=\Sigma_{w\in V_W}\Sigma_{c\in V_C}|(w,c)|(log\sigma(\vec{w}\cdot\vec{c})+k\cdot\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)])\tag{1}
-\]</span> 这里<span class="math inline">\(V_W\)</span>为单词集，<span class="math inline">\(V_C\)</span>为上下文集，<span class="math inline">\(P_D\)</span>为均匀测度满足<span class="math inline">\(P_D(c)=\frac{|(c)|}{|D|}\)</span>.</p>
-<h2 id="隐式矩阵分解下的sgns">隐式矩阵分解下的SGNS</h2>
-<p>SGNS将单词以及上下文嵌入为低维空间的向量，得到单词与上下文向量构成的矩阵<span class="math inline">\(W\)</span>与<span class="math inline">\(C\)</span>，这两者实际上是相同的。<span class="math inline">\(W\)</span>的行元素（即单词嵌入向量）被直接提取使用，但原始SG模型会进行上下文预测，SGNS可以看作是对矩阵<span class="math inline">\(M=W\cdot C^T\)</span>的分解。</p>
-<p>对于<span class="math inline">\(M\)</span>，其分量<span class="math inline">\(M_{i,j}\)</span>对应了<span class="math inline">\(W_i,C_j\)</span>的向量积，这表示着特定单词与上下文的关联强度，而这种关联矩阵常常出现于NLP的研究中，但该矩阵并没有显式出现在SGNS的优化函数中，那么将SNGS看作对<span class="math inline">\(M\)</span>的隐式分解说得通吗？如果不是，SGNS分解的是哪个矩阵呢？</p>
-<h3 id="刻画该隐式矩阵">刻画该隐式矩阵</h3>
-<p>重写式子<span class="math inline">\((1)\)</span>: <span class="math display">\[
-\begin{aligned}
-l&amp;=\Sigma_{w\in V_W}\Sigma_{c\in V_C}|(w,c)|(log\sigma(\vec{w}\cdot\vec{c}))+\Sigma_{w\in V_W}\Sigma_{c\in V_C}\|(w,c)|(k\cdot\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)])\\
-&amp;=\Sigma_{w\in V_W}\Sigma_{c\in V_C}|(w,c)|(log\sigma(\vec{w}\cdot\vec{c}))+\Sigma_{w\in V_W}|(w)|(k\cdot\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)])
-\end{aligned}\tag{2}
-\]</span> 然后显式地计算出期望项： <span class="math display">\[
-\begin{aligned}
-\mathbb{E}_{c_N\sim P_D}[log\sigma(-\vec{w}\cdot\vec{c}_N)]&amp;=\Sigma_{c_N\in V_C }\frac{|(c_N)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c}_N)\\
-&amp;=\frac{|(c)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c})+\Sigma_{c_N\in V_C\setminus \{c \}}\frac{|(c_N)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c}_N)
-\end{aligned}\tag{3}
-\]</span> 结合两式并将<span class="math inline">\(l\)</span>改写为局部形式： <span class="math display">\[
-l(w,c)=|(w,c)|log\sigma (\vec{w}\cdot \vec{c})+k\cdot |(w)|\cdot\frac{|(c)|}{|D|}log\sigma(-\vec{w}\cdot\vec{c})\tag{4}
-\]</span> 定义<span class="math inline">\(x=\vec{w}\cdot \vec{c}\)</span>，并对其求导： <span class="math display">\[
-\frac{\partial{l}}{\partial{x}}=|(w,c)|\cdot\sigma(-x)-k\cdot|(w)|\frac{|(c)|}{|D|}\sigma(x)
-\]</span> 令其为零得到： <span class="math display">\[
-e^{2x}-(\frac{|(w,c)|}{k\cdot|(w)|\cdot\frac{|(c)|}{|D|}}-1)e^x-\frac{|(w,c)|}{k\cdot|(w)|\cdot\frac{|(c)|}{|D|}}=0
-\]</span> 我们可以直接给出显式解： <span class="math display">\[
-\vec{w}\cdot \vec{c}=log(\frac{|(w,c)|\cdot|D|}{|(w)|\cdot |(c)|})-logk\tag{5}
-\]</span> 这里指出<span class="math inline">\(log(\frac{|(w,c)|\cdot|D|}{|(w)|\cdot |(c)|})\)</span>即<span class="math inline">\((w,c)\)</span>的PMI(pointwise mutual information)，PMI常见于nlp的研究中，可以进一步将上式写为： <span class="math display">\[
-M_{i,j}^{SGNS}=W_i\cdot C_j=\vec{w}_i\cdot\vec{c}_j=PMI(w_i,c_j)-logk\tag{6}
-\]</span> SGNS实际上在分解上述的矩阵，当<span class="math inline">\(k=1\)</span>即负采样率为1时，SGNS的目标函数其实在分解由单词与上下文构成的关联矩阵，并且关联强度由PMI给出，这里将其定义为PMI阵，<span class="math inline">\(M^{PMI}\)</span>. 当<span class="math inline">\(k\)</span>变化时，对应的PMI阵会有所偏移，<span class="math inline">\(M^{PMIk}=M^{PMI}-logk\)</span>.</p>
-<p>其它的嵌入算法也可以相应理解，如noise-contrastive estimation模型分解的矩阵为： <span class="math display">\[
-M_{i,j}^{NCE}=\vec{w}_i\cdot \vec{c}_j=log(\frac{|(w,c)|}{|(c)|})-logk=logP(w|c)-logk\tag{7}
-\]</span></p>
-<h3 id="pmi">PMI</h3>
-<p>PMI是信息理论中用于度量一对离散输出<span class="math inline">\(x,y\)</span>的度量函数： <span class="math display">\[
-PMI(x,y) = log\frac{P(x,y)}{P(x)P(y)}\tag{8}
-\]</span> 在进行词嵌入时，上面的概率完全是由计数来估计的： <span class="math display">\[
-PMI(w,c)=log\frac{|(w,c)|\cdot|D|}{|(w)|\cdot |(c)|}\tag{9}
-\]</span></p>
-<p>上面所给的PMI估计并不是定义良好的，当不存在某个<span class="math inline">\((w,c)\)</span>对时，对应的估计将为负无穷，一个修改方式是将负无穷的分量重整为0。但考虑PMI的语义，这并不合理，更好的做法是将负值全都置为零，这称为postive PMI(PPMI)： <span class="math display">\[
-PPMI(w,c)=\max(PMI(w,c),0)\tag{10}
-\]</span></p>
-<h2 id="词嵌入的其它选择">词嵌入的其它选择</h2>
-<p>首先由前面的推导，很容易得到下面的shifted PPMI: <span class="math display">\[
-SPPMI_k(w,c)=\max (PMI(w,c)-logk,0)\tag{11}
-\]</span></p>
-<h3 id="谱降维svd-over-shifted-ppmi">谱降维：SVD over Shifted PPMI</h3>
-<p>如果将SGNS理解为矩阵分解，那么通常的矩阵分解也可以直接用于求解词嵌入，这里使用truncated SVD.</p>
-<p>SVD将M分解为三个矩阵的乘积<span class="math inline">\(U\cdot \Sigma \cdot V^T\)</span>，这里<span class="math inline">\(U\)</span>和<span class="math inline">\(V\)</span>是正交阵，<span class="math inline">\(\Sigma\)</span>为奇异值构成的对角阵。令<span class="math inline">\(\Sigma_d\)</span>为前<span class="math inline">\(d\)</span>个奇异值构成的对角阵，<span class="math inline">\(U_d\)</span>和<span class="math inline">\(V_d\)</span>为从<span class="math inline">\(U,V\)</span>对应列抽出的子阵。<span class="math inline">\(M_d=U_d\cdot \Sigma_d \cdot V_d^T\)</span>为<span class="math inline">\(M\)</span>的秩<span class="math inline">\(d\)</span>最佳估计，即有<span class="math inline">\(M_d=\mathop{\arg\min}\limits_{Rank(M&#39;)=d}||M&#39;-M||_2\)</span>成立.</p>
-<p>如果使用SVD，那么<span class="math inline">\(W=U_d \cdot \Sigma_d\)</span>行间的向量积等于<span class="math inline">\(M_D\)</span>行间的向量积，使用<span class="math inline">\(W\)</span>足够作为<span class="math inline">\(M_D\)</span>的低维稠密表示。在NLP的研究中，一个常见方法是对PPMI矩阵<span class="math inline">\(M^{PPMI}\)</span>进行SVD分解，并使用<span class="math inline">\(W^{SVD}=U_d\cdot \Sigma_d\)</span>以及<span class="math inline">\(C^{SVD}=V_D\)</span>的行元素分别作为单词与上下文表示。但这种方法得到的结果在语义任务上总是达不到SGNS的性能。</p>
-<p><strong>对称SVD</strong></p>
-<p>如果直接使用SVD来分解，那么最终得到的单词、上下文嵌入阵会相当不同，仅<span class="math inline">\(C^{SVD}\)</span>为正交的，SGNS方法相比显得更加对称，故而这里使用如下的分解： <span class="math display">\[
-W^{SVD_{1/2}}=U_D\cdot \sqrt{\Sigma_d}\quad C^{SVD_{1/2}}=V_d\cdot \sqrt{\Sigma_d}\tag{12}
-\]</span> 尽管缺乏理论解释，但在实践中进行对称化后能得到更好的性能。</p>
-<p><strong>SVD versus SGNS</strong></p>
-<p>SVD不需要训练以及超参数的调整，对任何<span class="math inline">\(\{(w,c,|(w,c)|)\}\)</span>形式的数据都可以使用，泛用性更高。</p>
-<p>而SGNS可以更好地处理观察，未观察事件；除此之外， SGNS对不同<span class="math inline">\((w,c)\)</span>对分配了不同权重，这对于SVD来说是相当困难的，对于非稀疏的矩阵SGNS拥有更高的分解效率。</p>
-<p>一个有趣的想法是使用随机矩阵分解，作者将其放在未来工作中。</p>
-<h2 id="实验结果">实验结果</h2>
-<p>个人觉得理论仍然不太充分，有些地方还是有点自圆其说，实验结果还过得去。</p>
-<figure>
-<img src="https://zyplanethome.files.wordpress.com/2019/10/svd1.png" alt><figcaption>table1</figcaption>
-</figure>
-<figure>
-<img src="https://zyplanethome.files.wordpress.com/2019/10/svd2.png" alt><figcaption>table2</figcaption>
-</figure>
+<h2 id="mpnn的能力">MPNN的能力</h2>
+<p>这一章节总结了现有的一些结果，对MPGNN的判定能力做了很好的刻画。</p>
+<p><strong>定理1.</strong> MPNN如GCN，GAT，GraphSage，GIN都不比1-WL测试更有效</p>
+<p>Chebnet也被证实不比1-WL测试更有效，但是只有当两张图的最大特征值相同的时候成立，当两者有差别时，Chennet是强于1-WL测试的。</p>
+<p><strong>定理2.</strong> 如果两张图laplacian的最大特征值不同，那么Chebnet是比1-WL测试强的。下面这张图给出了一个例子。</p>
+<p><img src="https://s2.loli.net/2022/06/22/YhtOC8p51u7J6UL.png" alt="image-20220621170355113" style="zoom:33%;"></p>
+<p>除了判定同构图以外，GNNs同时也应该具备统计子结构的能力，下面的定理刻画了MATLANG的计数能力。</p>
+<p><img src="https://s2.loli.net/2022/06/22/Kun2vQdfSHsc3AY.png" alt="image-20220621170727055" style="zoom:50%;"></p>
+<p>对于上面的四种结构，我们有如下的定理：</p>
+<p><strong>定理3.</strong> <span class="math inline">\(\mathcal{L_1^{+}}\)</span>可以准确统计3-star的个数。</p>
+<p><strong>定理4.</strong><span class="math inline">\(\mathcal{L_2^{+}}\)</span>可以准确统计triangle和4-cycle的个数。</p>
+<p><strong>定理5.</strong><span class="math inline">\(\mathcal{L_3^{+}}\)</span>可以准确统计Tailed triangle的个数</p>
+<p>上面这些定理说明1-WL等价的MPNN只能对3-star计数，而3-WL等价的MPNN可以对上面所有子图计数。</p>
+<p>另一方面<a href="https://arxiv.org/pdf/1907.05008.pdf" target="_blank" rel="noopener">Dehmamy</a>表明，MPNN如果没有合适的卷积核，无法学习到节点度数。因此，这里假定节点度数本身包含在节点特征向量中。然而，可以证明3-star的总数可以由节点度数得到。因此只要提供了节点度数，简单的MLP就可以统计3-star的数量。</p>
+<h2 id="强于1-wl测试的mpnn">强于1-WL测试的MPNN</h2>
+<p>提出了两个MPNN模型，一个是GNNML1，另一个是GNNML3。前者和1-WL测试等价，后者比1-WL更强，可以在实验中和3-WL测试接近。GNNML1的更新规则如下：</p>
+<p><img src="https://s2.loli.net/2022/06/22/O3ioW1DBJ5uPKgL.png" alt="image-20220621203303737" style="zoom: 50%;"></p>
+<p><span class="math inline">\(W^{(l,s)}\)</span>是可学习的参数，它包含三个部分，整体很简单。它的表示能力由如下的定理刻画：</p>
+<p><strong>定理6.</strong>GNNML1可以产生<span class="math inline">\(ML(\mathcal{L_1})\)</span>中所有可能的句子，因此GNNML1和1-WL测试是等价的。</p>
+<p>根据之前的结果，想要达到3-WL测试的能力，还需要<span class="math inline">\(\operatorname{tr}\)</span>操作。我们回到Figure 1，可以容易得到左边邻接矩阵五次幂的trace为0，而右边邻接矩阵五次幂的trace是20. <span class="math inline">\(tr(A^5)\)</span>实际上给出了长度5的闭环路径的数量。</p>
+<p><img src="https://s2.loli.net/2022/06/22/XdLxvZiumk9UfYN.png" alt="image-20220621204840702" style="zoom:33%;"></p>
+<p>尽管trace可以让我们表示更复杂的性质，但对于Figure3中的cospectral图是没有用的，它们总是拥有相同的闭环路径数量。在这种情况下，逐元素乘积是必要的。比如，<span class="math inline">\(e(A)=\mathbf{1}^Tf((A\odot A^2)^2\mathbf{1})\)</span>，<span class="math inline">\(f(x)=x\odot x\)</span>这个句子，左边的输出是6032，右边的输出则是5872.</p>
+<p>可以观察到，上面的操作中涉及到了矩阵的幂次，但是为了保持效率，MPNN实际上不会显式地计算矩阵次幂。因此对矩阵次幂取trace也是不可能的。</p>
+<p>为了解决这个问题，一个方式是使用MASK去保证稀疏性，即<span class="math inline">\(C^{(s)}=M\odot A^s\)</span>，比如可以取<span class="math inline">\(M=A+I\)</span>，它可以保持前后稀疏度相同。尽管没办法计算所有可能矩阵的逐元素乘积，但是可以产生所有<span class="math inline">\((M\odot A^s)^l\)</span>形式的句子，<span class="math inline">\(l\in[0,l_{max}]\)</span>，<span class="math inline">\(l_{max}\)</span>是模型层数，<span class="math inline">\(s\in[0,s_{max}]\)</span>是预计算的矩阵幂。本文最终模型中实际上用的是矩阵分解的形式，我们来看一看算法的伪代码。</p>
+<p><img src="https://s2.loli.net/2022/06/22/3kHZrQ8mewd4YS6.png" alt="image-20220621211055831" style="zoom:50%;"></p>
+<p><img src="https://s2.loli.net/2022/06/22/kKq1SOcXAgE5Mal.png" alt="image-20220621211136521" style="zoom:50%;"></p>
+<p>我感觉看看就好，肯定不太实用。</p>
+<h2 id="数据集">数据集</h2>
+<p>他们使用的数据集可以用在别的evaluation上，了解一下：</p>
+<ul>
+<li><a href="http://users.cecs.anu.edu.au/∼bdm/data/graphs.htm" target="_blank" rel="noopener">graph8c和sr25</a>Graph8c包含11117种可能的8节点图，那么就有超过61M个对，其中有312对是1-WL等价的，但是没有3-WL等价的对。sr25包含25节点构成的图，并且每个节点的度数都是12，连接节点共享5个常见领域，非连接节点包含6个常见领域。Sr25总共有15张graph，有105个pair.</li>
+<li><a href="https://arxiv.org/pdf/2010.01179.pdf" target="_blank" rel="noopener">EXP</a>，EXP包含600对1-WL等价的图。同时数据集还包含一个二分类任务，每一对中的两个图都被分到不同的类。</li>
+</ul>
+<p>高低通滤波器检验：根据<a href="https://openreview.net/forum?id=-qh0M9XWxnv" target="_blank" rel="noopener">Balcilar</a>的分析，现有的MPNN大多都是低通滤波器。本文使用了他们提出的数据集来验证模型是否只能学习到低通滤波器的行为。根据结果来看，Chebnet实际上已经和GNNML3差不多了。</p>
+<p>最后是两个benchmark数据集Zinc12K和MNIST-75，前者需要基于结构信息，而后者基于图像分析，需要模型能够处理谱域信息。</p>
+<h2 id="结语">结语</h2>
+<p>总的来说文章的方法的性能是不错的，但是并没有超出现有方法很多。这篇文章的价值在于对目前MPNN的能力进行总结，实验的结果也和理论能够对上。</p>
 
     </div>
 
@@ -426,7 +426,7 @@ W^{SVD_{1/2}}=U_D\cdot \sqrt{\Sigma_d}\quad C^{SVD_{1/2}}=V_d\cdot \sqrt{\Sigma_
           
           <div class="post-tags">
             
-              <a href="/tags/Representation-Learning/" rel="tag"># Representation Learning</a>
+              <a href="/tags/Graph-Learning/" rel="tag"># Graph Learning</a>
             
           </div>
         
@@ -436,8 +436,8 @@ W^{SVD_{1/2}}=U_D\cdot \sqrt{\Sigma_d}\quad C^{SVD_{1/2}}=V_d\cdot \sqrt{\Sigma_
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/09/01/secure aggregation for federated learning/" rel="next" title="secure aggregation for federated learning">
-                  <i class="fa fa-chevron-left"></i> secure aggregation for federated learning
+                <a href="/2022/03/03/BMOfMC/" rel="next" title="Brief Manual of Matrix Caculus">
+                  <i class="fa fa-chevron-left"></i> Brief Manual of Matrix Caculus
                 </a>
               
             </div>
@@ -445,10 +445,6 @@ W^{SVD_{1/2}}=U_D\cdot \sqrt{\Sigma_d}\quad C^{SVD_{1/2}}=V_d\cdot \sqrt{\Sigma_
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2020/09/14/Strong Convexity/" rel="prev" title="Strong Convexity">
-                  Strong Convexity <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -500,7 +496,7 @@ W^{SVD_{1/2}}=U_D\cdot \sqrt{\Sigma_d}\quad C^{SVD_{1/2}}=V_d\cdot \sqrt{\Sigma_
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#neural-word-embedding-as-implicit-matrix-factorization"><span class="nav-number">1.</span> <span class="nav-text">Neural Word Embedding as Implicit Matrix Factorization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sgns"><span class="nav-number">1.2.</span> <span class="nav-text">SGNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐式矩阵分解下的sgns"><span class="nav-number">1.3.</span> <span class="nav-text">隐式矩阵分解下的SGNS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#刻画该隐式矩阵"><span class="nav-number">1.3.1.</span> <span class="nav-text">刻画该隐式矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pmi"><span class="nav-number">1.3.2.</span> <span class="nav-text">PMI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词嵌入的其它选择"><span class="nav-number">1.4.</span> <span class="nav-text">词嵌入的其它选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#谱降维svd-over-shifted-ppmi"><span class="nav-number">1.4.1.</span> <span class="nav-text">谱降维：SVD over Shifted PPMI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">1.5.</span> <span class="nav-text">实验结果</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#动机和贡献"><span class="nav-number">1.</span> <span class="nav-text">动机和贡献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对weisfeiler-lehman测试的刻画"><span class="nav-number">2.</span> <span class="nav-text">对Weisfeiler-Lehman测试的刻画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mpnn的能力"><span class="nav-number">3.</span> <span class="nav-text">MPNN的能力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强于1-wl测试的mpnn"><span class="nav-number">4.</span> <span class="nav-text">强于1-WL测试的MPNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集"><span class="nav-number">5.</span> <span class="nav-text">数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">6.</span> <span class="nav-text">结语</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->

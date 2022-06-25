@@ -54,19 +54,27 @@
   };
 </script>
 
-  <meta name="description" content="金阁寺之夜 寺内一片寂静。金阁内只有我孤身一人。身处月光无法触及之地，我恍惚觉得金阁厚重而奢华的黑暗包裹了我。这种现实的感觉缓慢浸润着我，仿佛它将直接化为幻觉。待回过神时我才明白，如今我真实地存在于当初在龟山公园将我与人生隔离开来的那个幻影里。 《金阁寺》">
-<meta name="keywords" content="Essay">
+  <meta name="description" content="Figure 1  最近一些工作研究了GNN的预训练，但是关于GNN的可迁移性并没有理论根据。这篇文章建立了一个有理论保证的图神经网络迁移学习框架。框架包含两个部分，第一是Ego-graph information maximization(EGI)的迁移方法，第二是当节点特征是结构相关时分析了EGI的可迁移性。">
+<meta name="keywords" content="Graph Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kinkaku no yoru">
-<meta property="og:url" content="https://zyplanet.github.io/2019/05/14/kinkaku no yoru/index.html">
+<meta property="og:title" content="Transfer Learning of GNNs with EGI">
+<meta property="og:url" content="https://zyplanet.github.io/2022/06/25/TLOGNNSWEGI/index.html">
 <meta property="og:site_name" content="diphda">
-<meta property="og:description" content="金阁寺之夜 寺内一片寂静。金阁内只有我孤身一人。身处月光无法触及之地，我恍惚觉得金阁厚重而奢华的黑暗包裹了我。这种现实的感觉缓慢浸润着我，仿佛它将直接化为幻觉。待回过神时我才明白，如今我真实地存在于当初在龟山公园将我与人生隔离开来的那个幻影里。 《金阁寺》">
+<meta property="og:description" content="Figure 1  最近一些工作研究了GNN的预训练，但是关于GNN的可迁移性并没有理论根据。这篇文章建立了一个有理论保证的图神经网络迁移学习框架。框架包含两个部分，第一是Ego-graph information maximization(EGI)的迁移方法，第二是当节点特征是结构相关时分析了EGI的可迁移性。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2022-06-22T13:09:12.996Z">
+<meta property="og:image" content="https://s2.loli.net/2022/06/23/lt5nvaVpqseBJRh.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/25/x2iMgJAZKlQfwYe.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/25/jUKZk3V8fBTI7yb.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/25/nATlvXfx6kz4HU3.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/25/qrT8Q2iPwbeljnt.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/25/sMLlT4Bf2ziA3o1.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/25/kxQ2UEOZMe8uiqj.png">
+<meta property="og:updated_time" content="2022-06-25T14:07:43.713Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kinkaku no yoru">
-<meta name="twitter:description" content="金阁寺之夜 寺内一片寂静。金阁内只有我孤身一人。身处月光无法触及之地，我恍惚觉得金阁厚重而奢华的黑暗包裹了我。这种现实的感觉缓慢浸润着我，仿佛它将直接化为幻觉。待回过神时我才明白，如今我真实地存在于当初在龟山公园将我与人生隔离开来的那个幻影里。 《金阁寺》">
-  <link rel="canonical" href="https://zyplanet.github.io/2019/05/14/kinkaku no yoru/">
+<meta name="twitter:title" content="Transfer Learning of GNNs with EGI">
+<meta name="twitter:description" content="Figure 1  最近一些工作研究了GNN的预训练，但是关于GNN的可迁移性并没有理论根据。这篇文章建立了一个有理论保证的图神经网络迁移学习框架。框架包含两个部分，第一是Ego-graph information maximization(EGI)的迁移方法，第二是当节点特征是结构相关时分析了EGI的可迁移性。">
+<meta name="twitter:image" content="https://s2.loli.net/2022/06/23/lt5nvaVpqseBJRh.png">
+  <link rel="canonical" href="https://zyplanet.github.io/2022/06/25/TLOGNNSWEGI/">
 
 
 <script id="page-configurations">
@@ -80,7 +88,7 @@
   };
 </script>
 
-  <title>kinkaku no yoru | diphda</title>
+  <title>Transfer Learning of GNNs with EGI | diphda</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -270,7 +278,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://zyplanet.github.io/2019/05/14/kinkaku no yoru/">
+    <link itemprop="mainEntityOfPage" href="https://zyplanet.github.io/2022/06/25/TLOGNNSWEGI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="diphda">
@@ -282,7 +290,7 @@
       <meta itemprop="name" content="diphda">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">kinkaku no yoru
+        <h1 class="post-title" itemprop="name headline">Transfer Learning of GNNs with EGI
 
           
         </h1>
@@ -298,19 +306,11 @@
                 
               
 
-              <time title="Created: 2019-05-14 21:00:00" itemprop="dateCreated datePublished" datetime="2019-05-14T21:00:00+08:00">2019-05-14</time>
+              <time title="Created: 2022-06-25 22:00:00 / Modified: 22:07:43" itemprop="dateCreated datePublished" datetime="2022-06-25T22:00:00+08:00">2022-06-25</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-22 21:09:12" itemprop="dateModified" datetime="2022-06-22T21:09:12+08:00">2022-06-22</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -319,7 +319,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Essays/" itemprop="url" rel="index"><span itemprop="name">Essays</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Papers/" itemprop="url" rel="index"><span itemprop="name">Papers</span></a></span>
 
                 
                 
@@ -328,7 +328,7 @@
           
 
           
-            <span id="/2019/05/14/kinkaku no yoru/" class="post-meta-item leancloud_visitors" data-flag-title="kinkaku no yoru" title="Views">
+            <span id="/2022/06/25/TLOGNNSWEGI/" class="post-meta-item leancloud_visitors" data-flag-title="Transfer Learning of GNNs with EGI" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -346,7 +346,7 @@
       
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/05/14/kinkaku no yoru/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/05/14/kinkaku no yoru/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2022/06/25/TLOGNNSWEGI/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2022/06/25/TLOGNNSWEGI/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -358,7 +358,7 @@
               
                 <span class="post-meta-item-text">Symbols count in article: </span>
               
-              <span>708</span>
+              <span>5.3k</span>
             </span>
           
             <span class="post-meta-item" title="Reading time">
@@ -368,7 +368,7 @@
               
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               
-              <span>1 mins.</span>
+              <span>9 mins.</span>
             </span>
           
 
@@ -381,24 +381,77 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="金阁寺之夜">金阁寺之夜</h1><blockquote>
-<p>寺内一片寂静。金阁内只有我孤身一人。身处月光无法触及之地，我恍惚觉得金阁厚重而奢华的黑暗包裹了我。这种现实的感觉缓慢浸润着我，仿佛它将直接化为幻觉。待回过神时我才明白，如今我真实地存在于当初在龟山公园将我与人生隔离开来的那个幻影里。</p>
-<p>《金阁寺》</p>
-</blockquote><a id="more"></a>
+        <center>
+<img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://s2.loli.net/2022/06/23/lt5nvaVpqseBJRh.png"> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+Figure 1
+</div>
+</center><p>最近一些工作研究了GNN的预训练，但是关于GNN的可迁移性并没有理论根据。这篇文章建立了一个有理论保证的图神经网络迁移学习框架。框架包含两个部分，第一是Ego-graph information maximization(EGI)的迁移方法，第二是当节点特征是结构相关时分析了EGI的可迁移性。</p><a id="more"></a>
 
-<p>美的意识往往难以觉醒，但它深入心灵，如同一颗丑陋的虫牙。美是什么，至今困扰着我，我并不完全理解了美，但却包含了某种觉悟，在精神的世界中，来源于现实、来源于我自身。如果要用语言去说它，那它就是一个故事，我经历过数次这种故事，它也在你们的人生中出现过很多次，它是漫长的，但在本质上是短暂的。</p>
-<blockquote>
-<p>师因东西两堂争猫儿，师遇之，白众曰："大众道得即救取猫儿，道不得即斩却也。"众无对，师便斩之。赵州自外归，师举前语示之。州乃脱履安头上而出。师曰："子若在，即救得猫儿也。"</p>
-<p>《池州南泉普愿禅师》</p>
-</blockquote>
-<p>东西两堂的人争猫，普愿问他们，你们究竟能不能说出来，说得出来这只猫就能活，说不出我就杀掉。在我的眼里，这只猫是美的化身，它有内在的魔性，让能理解这种美的人受其折磨，这美可以委身于任何人，却不能真正得到它。有人甘愿受其摆弄，也可能会像普愿那样责问自己，强硬地了断。</p>
-<p><strong>美是可以杀掉的吗？</strong></p>
-<blockquote>
-<p>然而，这种迄今为止从未有过的思绪自产生之时起便迅速地积累了力量，膨胀了体积，最后反倒是我被它吞噬了。这思绪可以如此阐述：</p>
-<p>一定要烧掉金阁。</p>
-<p>《金阁寺》</p>
-</blockquote>
-<p>在这本书中，主人公沟口最终烧掉了他心中"无与伦比"的金阁，杀掉了这只让人痛苦的猫。他能够烧掉心中的金阁吗？在这个问题上，我与赵州禅师的想法相同，毁灭美的形体是一件徒劳的事，或许这种死亡，正是美走向永恒的方式，你再也无法解脱。</p>
+<h2 id="动机和贡献">动机和贡献</h2>
+<p>尽管有不少关于GNNs可迁移性的工作：</p>
+<ul>
+<li><a href="https://arxiv.org/pdf/1905.12265.pdf" target="_blank" rel="noopener">Strategies for pre-training GNNs</a> ICLR19</li>
+<li><a href="https://dl.acm.org/doi/pdf/10.1145/3394486.3403237" target="_blank" rel="noopener">Gpt-gnn: Generative pre-training of GNNs</a> KDD20</li>
+<li><a href="https://arxiv.org/pdf/1905.13728.pdf" target="_blank" rel="noopener">Pre-training GNNs for generic structural feature extraction</a></li>
+<li><a href="https://arxiv.org/pdf/2007.02914.pdf" target="_blank" rel="noopener">Node classification on graphs with few-shot novel labels via meta transformed network embedding</a> NIPS2020</li>
+<li><a href="https://arxiv.org/pdf/2006.06648.pdf" target="_blank" rel="noopener">Learning to extrapolate knowledge: Transductive few-shot out-of-graph link prediction</a>NIPS2020</li>
+<li><a href="https://arxiv.org/pdf/2006.03548.pdf" target="_blank" rel="noopener">Graphon neural networks and the transferability of GNNs</a>NIPS2020</li>
+<li><a href="https://arxiv.org/pdf/2108.01099.pdf" target="_blank" rel="noopener">Shift-robust gnns: Overcoming the limitations of localized graph training data</a>NIPS2020</li>
+</ul>
+<p>但是对什么情况下这种迁移（预训练+微调）会失效，并没有很好的探究清楚。这篇文章就基于domain adaptation的框架，直接研究源域到目标域的迁移问题，来进行可迁移性的理论分析。</p>
+<h2 id="可迁移gnns">可迁移GNNs</h2>
+<p>GNN的表示能力应该是对节点特征和拓扑结构的联合分布的建模能力，那么可迁移性实际上是模型对两个域分布的建模能力的差距。如果在模型的表示下，这两个分布差距并不是很大，那么迁移就是可能的。</p>
+<h3 id="基于egi的可迁移gnn">基于EGI的可迁移GNN</h3>
+<p>这篇文章研究GNN的直接迁移，即在源域做预训练，然后在目标域不进行微调进行预测。直观上来说，<span class="math inline">\(G_a,G_b\)</span>需要有相似之处，这种直接迁移才是有可能的。我们首先给出K-hop ego-graph的定义。</p>
+<p><strong>定义3.1(K-hop ego-graph)</strong>称<span class="math inline">\(g_i=\{V(g_i),E(g_i)\}\)</span>为一个以<span class="math inline">\(v_i\)</span>节点为中心的k-hop eog-graph，如果它有一个<a href="https://eprints.whiterose.ac.uk/92418/1/PR_D_14_00925R1.pdf" target="_blank" rel="noopener">k层质心展开</a>，使得<span class="math inline">\(v_i\)</span>和ego-graph其余节点的最大距离为<span class="math inline">\(k\)</span>。在这里，对于以<span class="math inline">\(\hat{v}_c\)</span>为质心的图<span class="math inline">\(G(V,E)\)</span>，它的K层质心展开子图<span class="math inline">\(\mathcal{G}_{K}(\mathcal{V}_K;\mathcal{E}_K)\)</span>是：</p>
+<p><img src="https://s2.loli.net/2022/06/25/x2iMgJAZKlQfwYe.png" alt="image-20220623194609457" style="zoom:33%;"></p>
+<p><span class="math inline">\(N_{\hat{v}_C}^K=\{u\in V|S_{G}(\hat{v}_C,u)\le K\}\)</span>，<span class="math inline">\(S_G(u,v)\)</span>是<span class="math inline">\(u,v\)</span>最短路径的长度。实际上就是以<span class="math inline">\(\hat{v}_C\)</span>为中心，最短路径小于等于<span class="math inline">\(K\)</span>的节点构成的子图。</p>
+<p><strong>定义3.2(Structural information)</strong>令<span class="math inline">\(\mathcal{G}\)</span>为子图的拓扑空间，我们将图<span class="math inline">\(G\)</span>视为从k-hop ego-graphs<span class="math inline">\(\{g_i\}_{i=1}^n\)</span>中i.i.d采样的结果。<span class="math inline">\(G\)</span>的结构信息由k-hop ego-graphs以及对应的经验分布定义。</p>
+<p>这篇文章基于<a href="https://eprints.whiterose.ac.uk/92418/1/PR_D_14_00925R1.pdf" target="_blank" rel="noopener">k-hop subgraph kernel</a>，将graph视为从k-hop ego-graph structure和节点feature中采样的结果。然而，现有的任务无法对ego-graph的分布进行建模。这边文章提出了EGI去使用互信息最大化来重构k-hop ego-graph。在Figure 1中，作者展示了<span class="math inline">\(G_0,G_1,G_2\)</span>的k-hop ego-graph。在实际情况中，除了k-hop ego-graph，图还包含了节点特征，因此<span class="math inline">\(G\)</span>应该视为两者联合分布的采样。</p>
+<p><strong>EGI.</strong>给定一个从分布<span class="math inline">\((g_i,x_i)\sim\mathbb{P}\)</span>中采样出的ego-graphs的集合<span class="math inline">\(\{(g_i,x_i)\}\)</span>。这篇文章希望训练编码器<span class="math inline">\(\Psi\)</span>来最大化<span class="math inline">\(MI(g_i,\Psi(g_i,x_i))\)</span>，即节点表示<span class="math inline">\(z_i=\Psi(g_i,x_i))\)</span>和结构信息的互信息。为了最大化MI，判别器<span class="math inline">\(D(g_i,z_i)\)</span>被用来计算边<span class="math inline">\(e\)</span>属于<span class="math inline">\(g_i\)</span>的概率。最终，作者使用Jensen-Shannon MI估计来做优化： <span class="math display">\[
+\mathcal{L}_{EGI}=-\text{MI}^{(JSD)}(\mathcal{G},\Psi)=\frac{1}{N}\Sigma_{i=1}^N[sp(\mathcal{D}(g_i,z_i&#39;))+sp(-\mathcal{D}(g_i,z_i))]
+\]</span> <span class="math inline">\(sp(x)=\log(1+e^x)\)</span>，<span class="math inline">\((g_i,z_i&#39;)\)</span>由边际分布产生，即<span class="math inline">\(z_i&#39;=\Psi(g_{i&#39;},x_{i&#39;}),(g_{i&#39;},x_{i&#39;})\sim\mathbb{P}\)</span>。虽然作者说负样本也可以随机产生，但我估计这样做效果会很差。</p>
+<p><img src="https://s2.loli.net/2022/06/25/jUKZk3V8fBTI7yb.png" alt="image-20220623212159564" style="zoom:50%;"></p>
+<p>在判别器的计算时，它取决于节点顺序。这里作者采取了图生成的常见trick，使用混合顺序，即边集<span class="math inline">\(E(g_i)\)</span>的广度优先顺序<span class="math inline">\(\pi\)</span>。<span class="math inline">\(\mathcal{D}=f\circ\Phi\)</span>，<span class="math inline">\(\Phi\)</span>是另外一个编码器，<span class="math inline">\(f\)</span>是按照边序列<span class="math inline">\(E^{\pi}:\{e_1,e_2,\dots,e_n\}\)</span>的评分函数。</p>
+<p>我们直接来看这个评分函数，对于任意一对节点<span class="math inline">\((p,q)\in E^{\pi}\)</span>，<span class="math inline">\(h_p\)</span>是由<span class="math inline">\(\Phi\)</span>产生的source node的表示，<span class="math inline">\(x_q\)</span>是target node的节点特征，评分函数如下： <span class="math display">\[
+f(h_p,x_q,z_i)=\sigma(U^T\cdot \tau(W^T[h_p||x_q||z_i]))
+\]</span> 判别器<span class="math inline">\(\mathcal{D}\)</span>被要求去区分正负样本<span class="math inline">\(((p,q),z_i),((p,q),z_i&#39;)\)</span>，按照<span class="math inline">\(g_i\)</span>的BFS顺序。<span class="math inline">\((p,q)\)</span>有两种类型，第一种是穿过了不同hop的，第二种是同一hop之中的。由于我们使用的是BFS顺序，所以对第二种不敏感。其次对于两个编码器<span class="math inline">\(\Psi,\Phi\)</span>，其输入都只需要一个k-hop ego-graph，因此只要对<span class="math inline">\(g_i\)</span>采样，就可以进行并行训练。只要<span class="math inline">\((g_i,x_i)\)</span>在两个域都满足3.2节给出的条件，EGI就是可迁移的。（这一段的写作真的太迷了。。。搞不懂写这么烂怎么不被challenge的。）</p>
+<p><strong>与现有工作的关联</strong> 上面的互信息最大化，其对偶问题实际上是一个重构问题。 <span class="math display">\[
+\max \text{MI}(g_i,x_i)=H(g_i)-H(g_i|\Psi(g_i,x_i))\le H(g_i)-R(g_i|\Psi(g_i,x_i))
+\]</span> 从这个角度，EGI和<a href="https://arxiv.org/pdf/1611.07308.pdf" target="_blank" rel="noopener">VGAE</a>的区别在于VGAE假设每条边都是被独立输入的，而EGI是同时作为输入的。现有基于互信息的方法比如<a href="https://arxiv.org/pdf/1809.10341.pdf" target="_blank" rel="noopener">DGI</a>和<a href="https://arxiv.org/pdf/2002.01169.pdf" target="_blank" rel="noopener">GMI</a>更关注节点特征，而图结构对于迁移性是更重要的。</p>
+<p><strong>支持性的观察</strong>（这些东西到底是哪个会议的格式。。我好像没见过这么写的）Table 1展示了迁移的结果。</p>
+<p><img src="https://s2.loli.net/2022/06/25/nATlvXfx6kz4HU3.png" alt="image-20220624154833964" style="zoom: 50%;"></p>
+<h3 id="基于局部graph-lapalcians的可迁移性分析">基于局部graph lapalcians的可迁移性分析</h3>
+<p>我们首先给出以下的定义。</p>
+<p><strong>定义3.3（Structure-respecting node features）.</strong>令<span class="math inline">\(g_i\)</span>为以<span class="math inline">\(v_i\)</span>为中心的有序ego-graph，其节点特征为<span class="math inline">\(\{x_{p,q}^i\}_{p=0,q=1}^{k,|V_p(g_i)|}\)</span>，<span class="math inline">\(V_p(g_i)\)</span>是<span class="math inline">\(g_i\)</span>的p阶领域节点。如果<span class="math inline">\(x_{p,q}^{i}=[f(g_i)]_{p,q}\in\mathbb{R}^d\)</span>对于任意节点<span class="math inline">\(v_q\in V_p(g_i)\)</span>，<span class="math inline">\(f:\mathcal{G}\to\mathbb{R}^{d\times |V(g_i)|}\)</span>成立，那么就说这个节点特征是结构相关的。</p>
+<p>这个定义其实跟图信号处理的差不多。他这个文章从头到尾都在强调他的theorem3.1，但是又不说具体内容，theorem3.1又放到很后面，读起来真的很痛苦。写作一定要避免这种问题。我们直接来看他的theorem3.1说了什么吧。</p>
+<p><strong>定理3.1（GNN transferablity）.</strong>令<span class="math inline">\(G_a=\{(g_i,x_i)\}_{i=1}^n\)</span>，<span class="math inline">\(G_b=\{(g_{i&#39;},x_{i&#39;})\}_{i&#39;=1}^m\)</span>为两个图，假设它的节点特征是结构相关的。考虑GCN<span class="math inline">\(\Psi_{\theta}\)</span>有k层，每层一个1-hop polynomial filter <span class="math inline">\(\phi\)</span>。只要<span class="math inline">\(G_a\)</span>和<span class="math inline">\(G_b\)</span>的局部谱满足一定条件，那么有下面的估计成立： <span class="math display">\[
+|\mathcal{L}_{EGI}(G_a)-\mathcal{L}_{EGI}(G_b)|\le\mathcal{O}(\Delta_\mathcal{D}(G_a,G_b)+C)
+\]</span> <span class="math inline">\(C\)</span>仅取决于图编码器和节点特征，<span class="math inline">\(\Delta_\mathcal{D}(G_a,G_b)\)</span>衡量了两者结构差距 <span class="math display">\[
+\Delta_\mathcal{D}(G_a,G_b)=\tilde{C}\frac{1}{nm}\Sigma_{i=1}^n\Sigma_{i&#39;=1}^m\lambda_{max}(\tilde{L}_{g_i}-\tilde{L}_{g_{i&#39;}})
+\]</span> <span class="math inline">\(\tilde{C}\)</span>是一个常数，取决于源域laplacian的最大特征值以及判别器。</p>
+<p>定理3.1有个两个用途，用于EGI预训练的point-wise pre-judge和pair-wise pre-selection。假设我们有一个目标图<span class="math inline">\(G_b\)</span>，没有充足的训练标签。我们可以用结构差距去从有充足标签的<span class="math inline">\(G_a\)</span>中筛选合适的pair，以提升<span class="math inline">\(G_b\)</span>上的性能。对于计算效率的问题，作者说我们可以通过采样去估计这个GAP，并给出了实验结果。</p>
+<p>我认为他方法的主要问题在于没有考虑标签，当两张图的异质性完全不同时，这种迁移也是不可能的。比如源域中同一邻域的节点大多都被归为一类，而目标域图上的异质性很强。这个时候做迁移就比较困难：对于源域，节点应该被分为邻域中占多数的。对于目标域，节点则不应该被分为占多数的。</p>
+<h2 id="实验">实验</h2>
+<p><a href="https://arxiv.org/pdf/1704.03165.pdf" target="_blank" rel="noopener">Airport</a>包含三个图，来自三个不同的地方。节点是一个机场，边是航班。[Gene](https://proceedings.neurips.cc/paper/2019/file/e57c6b956a6521b28495f2886ca0977a-Paper.pdf包含50种癌症的基因交互。每个基因都包含一个标签，表明它是否是转录因子。</p>
+<p>对于airport，作者在europe上训练，然后在三个数据集上测试。</p>
+<p><img src="https://s2.loli.net/2022/06/25/qrT8Q2iPwbeljnt.png" alt="image-20220625213810751" style="zoom:33%;"></p>
+<p>对于Gene，作者在一张图上训练，然后在另一张图上测试。FIgure3种，横轴显示了GAP，纵轴显示了精度提升。</p>
+<figure>
+<img src="https://s2.loli.net/2022/06/25/sMLlT4Bf2ziA3o1.png" alt><figcaption>image-20220625214505941</figcaption>
+</figure>
+<p>作者还在<a href="https://hal.archives-ouvertes.fr/hal-01472497/file/www2007.pdf" target="_blank" rel="noopener">YAGO</a>上进行了少样本学习的实验，在post-fine-tuning中，模型被无监督地预训练，然后再目标图上做微调。在joint-fine-tuning中，两部分损失被同时优化。</p>
+<figure>
+<img src="https://s2.loli.net/2022/06/25/kxQ2UEOZMe8uiqj.png" alt><figcaption>image-20220625215007816</figcaption>
+</figure>
+<h2 id="结语">结语</h2>
+<p>总的来说，这篇文章良好地定义了图的迁移学习问题，把图数据本身视作ego-graph和特征的联合分布的采样。然后从这个角度去考虑直接迁移问题，即不做微调的迁移学习。个人认为，他考虑到了很关键的问题，即图数据的特殊之处。但是另一方面，这样的采样真的能够重构出原本的图数据吗？以及，标签信息为什么对迁移完全没有影响？这些都是这篇文章的漏洞。</p>
+<p>这篇文章的写作也称不上是清晰简洁，作为文章的理论支撑，theorem3.1的内容完全没有被提前概括，以至于看前面的内容会非常困惑。这个文章另一点让我最困惑的就是评分函数那部分，为什么要用<span class="math inline">\(x_q\)</span>？以及边的遍历顺序为什么会对结果有影响？他这部分本应该写得更加清楚，把这些为什么都说明白，但全都一句话带过了。</p>
 
     </div>
 
@@ -414,7 +467,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/Essay/" rel="tag"># Essay</a>
+              <a href="/tags/Graph-Learning/" rel="tag"># Graph Learning</a>
             
           </div>
         
@@ -424,8 +477,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/05/07/neural ode/" rel="next" title="neural ode">
-                  <i class="fa fa-chevron-left"></i> neural ode
+                <a href="/2022/06/22/BTLOMPNN/" rel="next" title="突破MPNN模型的能力边界">
+                  <i class="fa fa-chevron-left"></i> 突破MPNN模型的能力边界
                 </a>
               
             </div>
@@ -433,10 +486,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/05/26/hydrangea after the rain/" rel="prev" title="hydrangea after the rain">
-                  hydrangea after the rain <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -488,7 +537,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#金阁寺之夜"><span class="nav-number">1.</span> <span class="nav-text">金阁寺之夜</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#动机和贡献"><span class="nav-number">1.</span> <span class="nav-text">动机和贡献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可迁移gnns"><span class="nav-number">2.</span> <span class="nav-text">可迁移GNNs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于egi的可迁移gnn"><span class="nav-number">2.1.</span> <span class="nav-text">基于EGI的可迁移GNN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于局部graph-lapalcians的可迁移性分析"><span class="nav-number">2.2.</span> <span class="nav-text">基于局部graph lapalcians的可迁移性分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验"><span class="nav-number">3.</span> <span class="nav-text">实验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
